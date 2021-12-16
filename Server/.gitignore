@@ -1,11 +1,12 @@
 /node_modules
-
+config/config.json
 .env
 .env.local
 .env.development.local
 .env.production.local
 
 package-lock.json
+.eslintrc.json
 
 .pem
 
