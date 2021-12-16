@@ -3,9 +3,8 @@ openapi: 3.0.0
 info:
   title: open-spot-API
   version: 1.0.0
-servers:
-- url: http://localhost:3000
-  description: open-spot_API
+host: ec2-54-180-147-254.ap-northeast-2.compute.amazonaws.com
+basePath: /
 paths:
   /markers:
     get:
