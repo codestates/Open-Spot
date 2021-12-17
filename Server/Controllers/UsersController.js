@@ -1,5 +1,29 @@
 const models = require('./../models');
+<<<<<<< HEAD
 const { createSaltedPassword } = require('./HashFunctions');
+=======
+const crypto = require('crypto');
+
+// salt 생성 함수
+const createSalt = () =>
+  new Promise((resolve, reject) => {
+    crypto.randomBytes(64, (err, buf) => {
+      if (err) reject(err);
+      resolve(buf.toString('base64'));
+    });
+  });
+
+// 유저가 입력한 패스워드와 salt를 이용해 문자열 생성
+function createSaltedPassword (password) {
+  return new Promise(async (resolve, reject) => {
+    const salt = await createSalt();
+    crypto.pbkdf2(password, salt, 9999, 64, 'sha512', (err, key) => {
+      if (err) reject(err);
+      resolve({ saltedPassword: key.toString('base64'), salt });
+    });
+  });
+}
+>>>>>>> 53b536407ec2b5291170e6ba4edabbe7e6a885b5
 
 module.exports = {
   signUp: async (req, res) => {
