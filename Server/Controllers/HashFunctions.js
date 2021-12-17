@@ -12,15 +12,14 @@ function createSalt () {
 }
 
 // 비밀번호를 salt로 암호화한 결과(digest)를 반환한다
-function createSaltedPassword (password) {
-  return new Promise(async (resolve, reject) => {
-    const salt = await createSalt();
+function createSaltedPassword (password, salt) {
+  return new Promise((resolve, reject) => {
     crypto.pbkdf2(password, salt, 9999, 64, 'sha512', (err, key) => {
       if (err) reject(err);
 
-      resolve({ saltedPassword: key.toString('base64'), salt });
+      resolve({ saltedPassword: key.toString('base64') });
     });
   });
 }
 
-export { createSalt, createSaltedPassword };
+module.exports = { createSalt, createSaltedPassword };
