@@ -1,0 +1,116 @@
+/*배경 이미지 고정*/
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: url(./../public/img/StoreIMG.jpg) no-repeat center center rgba(82, 82, 82, 0.5);
+  background-blend-mode: multiply;
+  background-size: cover;
+}
+/*헤더 영역 고정*/
+header {
+  height: 70px;
+}
+/*로고 이미지 고정*/
+#logo {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  top: 30px;
+  left: 45px;
+  background: url(./../public/img/ProjectLogoEX.png) no-repeat center center;
+  background-size: cover;
+  cursor: pointer;
+}
+/*로그인 영역*/
+.container {
+  height: 75%;
+  display: flex;
+  flex-direction: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+/*로그인 타이틀*/
+#title {
+  text-align: center;
+  font-size: 3em;
+  font-weight: 900;
+  color: rgb(240, 240, 240);
+  cursor: grab;
+}
+/*로그인 관련 창 모음 div*/
+.input-container {
+  height: 160px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 6%;
+}
+/*-이메일, 비밀번호 input 창*/
+.input-container > input {
+  height: 23%;
+  stroke: none;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 10px;
+  padding: 0 1.6ch;
+  font-weight: 500;
+  margin-bottom: 7px;
+  letter-spacing: 1.5px;
+  background-color: f2f5fb;
+}
+/*알림문구 verification*/
+.verification {
+  height: 15%;
+  margin-left: 1%;
+  color: rgb(245, 59, 59);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+/*-로그인 button 창*/
+.input-container > button {
+  height: 26%;
+  border-radius: 10px;
+  color: rgb(44, 44, 44);
+  font-size: 1em;
+  font-weight: 600;
+  border: 1px solid rgb(194, 152, 152);
+  background-color: rgb(211, 165, 165);
+  cursor: pointer;
+}
+/*분리선*/
+hr {
+  width: 100%;
+  border-bottom: 0px;
+  background-color: rgb(255, 255, 255);
+}
+/*소셜 로그인 버튼 모음*/
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+/*소셜 로그인 아이콘*/
+.social-icons {
+  width: 55px;
+  height: 55px;
+  border: none;
+  cursor: pointer;
+}
+/*구글*/
+#googleIcon {
+  background: url(./../public/img/GoogleIcon.png) no-repeat;
+  background-size: cover;
+}
+/*네이버*/
+#naverIcon {
+  background: url(./../public/img/NaverIcon.png) no-repeat;
+  background-size: cover;
+}
+/*카카오*/
+#kakaoIcon {
+  background: url(./../public/img/KakaoIcon.png) no-repeat;
+  background-size: cover;
+}
