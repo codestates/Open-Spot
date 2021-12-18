@@ -11,4 +11,6 @@ router.post('/naver/delete', authController.GetNaverAPI.delete);
 router.post('/kakao/Issued', authController.GetKakaoAPI.issued);
 router.post('/kakao/delete', authController.GetKakaoAPI.delete);
 
+router.post('/local', authController.localSignIn);
+
 module.exports = router;
