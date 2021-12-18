@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css';
+import './../Styles/Home.css';
 
 // input 태그와 button 태그 둘 다 버튼을 만들 수 있음 -> 차이점 뭔지 알아보기
 
@@ -8,19 +8,9 @@ function Home () {
     <>
       <div className="entire-container">
         <div className="main-section">
-          <header>
-            <div id="logo"/>
-            <div className="tab-container">
-              <button className="tab">MAP</button>
-              <div id="vertical-hr"></div>
-              <button className="tab">LOG IN</button>
-              {/* <button className="tab">MY PAGE</button> */}
-              <button className="tab">SIGN IN</button>
-              {/* <button className="tab">LOG OUT</button> */}
-            </div>
-          </header>
+          <header />
           <div className="main-container">
-            <p id="title">새롭게 떠오르는.<br/>빠르게 알고싶은.</p>
+            <p id="main-title">새롭게 떠오르는.<br/>빠르게 알고싶은.</p>
             <button className="map-button">Open Spot 체험하러가기</button>
             {/* <button className="map-button">Map 구경가기</button> */}
           </div>
@@ -30,12 +20,15 @@ function Home () {
           </div>
         </div>
         <div className="client-section">
+          {/* 일반 유저 서비스 소개 섹션 (꾸미기 영역) */}
           Hello World
         </div>
         <div className="business-section">
+          {/* 사업자 서비스 소개 섹션 (꾸미기 영역) */}
           Hello World
         </div>
         <footer>
+          {/* 웹 로고와 팀원들 깃헙 링크 연결 */}
           Hello World
         </footer>
       </div>

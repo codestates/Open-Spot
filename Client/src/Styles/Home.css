@@ -7,57 +7,17 @@
 .main-section {
   width: 100vw;
   height: 100vh;
-  background: url(./../public/img/StoreIMG.jpg) no-repeat center center rgba(82, 82, 82, 0.5);
+  background: url(../../public/Img/StoreIMG.jpg) no-repeat center center rgba(82, 82, 82, 0.5);
   background-blend-mode: multiply;
   background-size: cover;
 }
-/*헤더 영역 고정*/
-header {
-  height: 100px;
-}
-/*로고 이미지 고정*/ /*동일*/
-#logo {
-  width: 50px;
-  height: 50px;
-  position: fixed;
-  top: 30px;
-  left: 45px;
-  background: url(./../public/img/ProjectLogoEX.png) no-repeat center center;
-  background-size: cover;
-  cursor: pointer;
-}
-/*로그인 타이틀*/
-#title {
+/*메인 타이틀*/
+#main-title {
   text-align: center;
   font-size: 3.5em;
   font-weight: 300;
   color: rgb(240, 240, 240);
   cursor: grab;
-}
-/*헤더 Tab 모음*/
-.tab-container {
-  position: fixed;
-  top: 0.5%;
-  right: 3%;
-  width: 270px;
-  height: 105px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-/*분리선*/
-#vertical-hr {
-  width: 0.5px;
-  height: 13px;
-  background-color: rgb(255, 255, 255, 0.7);
-}
-/*Tab 버튼*/
-.tab {
-  color: rgb(240, 240, 240);
-  font-size: 0.9em;
-  background-color: transparent;
-  border-style: none;
-  cursor: pointer;
 }
 /*main div*/
 .main-container {
@@ -86,7 +46,6 @@ header {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-  justify-content: end;
 }
 /*다운 스크롤 아이콘*/
 #down-icon {
@@ -95,8 +54,6 @@ header {
 }
 /*다운 스크롤 text*/
 #down-text {
-  margin-top: 5px;
-  margin-bottom: 30px;
   color: rgb(240, 240, 240, 0.8);
   font-size: 0.85em;
   text-align: center;
