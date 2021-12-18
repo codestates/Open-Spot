@@ -1,0 +1,117 @@
+/*배경 이미지 고정*/ /*동일*/
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: url(./../public/img/StoreIMG.jpg) no-repeat center center rgba(82, 82, 82, 0.5);
+  background-blend-mode: multiply;
+  background-size: cover;
+}
+/*헤더 영역 고정*/ /*동일*/
+header {
+  height: 70px;
+}
+/*로고 이미지 고정*/ /*동일*/
+#logo {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  top: 30px;
+  left: 45px;
+  background: url(./../public/img/ProjectLogoEX.png) no-repeat center center;
+  background-size: cover;
+  cursor: pointer;
+}
+/*회원가입 영역*/ /*동일*/
+.container {
+  height: 75%;
+  display: flex;
+  flex-direction: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+/*회원가입 타이틀*/ /*동일*/
+#title {
+  text-align: center;
+  font-size: 3em;
+  font-weight: 900;
+  color: rgb(240, 240, 240);
+  cursor: grab;
+}
+/*회원가입 서브 타이틀*/
+.sub-title {
+  height: 13%;
+  margin-left: 1%;
+  color: rgb(240, 240, 240);
+  font-size: 1em;
+  font-weight: 600;
+}
+/*회원가입 관련 창 모음 div*/
+.input-container {
+  height: 420px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 6%;
+}
+/*-이메일, 비밀번호 input 창*/ /*동일*/ /*"-사업자 번호 input 창"만 추가*/
+input{
+  height: 23%;
+  stroke: none;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 10px;
+  padding: 0 1.6ch;
+  font-weight: 500;
+  margin-bottom: 7px;
+  letter-spacing: 1.5px;
+  background-color: f2f5fb;
+}
+/*알림문구 verification*/ /*동일*/
+.verification {
+  height: 15%;
+  margin-left: 1%;
+  color: rgb(245, 59, 59);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+/*-회원가입 button 창*/
+button {
+  height: 26%;
+  border-radius: 10px;
+  color: rgb(44, 44, 44);
+  font-size: 1em;
+  font-weight: 600;
+  border: 1px solid rgb(194, 152, 152);
+  background-color: rgb(211, 165, 165);
+  cursor: pointer;
+  margin-top: 15px;
+}
+/*새로 추가한 부분들 -> 뭔가 조잡함*/
+/*사업자 번호 관련 창 모음*/
+.auth-container {
+  width: 400px;
+}
+/*-사업자 번호 틀 잡기*/
+.business-code-container {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+/*-사업자 번호 input 창*/
+.input-business-code {
+  width: 100px;
+  height: 37px;
+}
+/*-사업자 번호 verification 창*/
+.auth-container > .verification {
+  height: 25px;
+}
+/*-사업자 번호 button 창*/
+.auth-container > button {
+  width: 400px;
+  height: 46px;
+  margin-bottom: 40px;
+}
