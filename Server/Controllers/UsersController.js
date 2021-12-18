@@ -1,66 +1,60 @@
 const models = require('./../models');
-const crypto = require('crypto');
-
-// salt 생성 함수
-const createSalt = () =>
-  new Promise((resolve, reject) => {
-    crypto.randomBytes(64, (err, buf) => {
-      if (err) reject(err);
-      resolve(buf.toString('base64'));
-    });
-  });
-
-// 유저가 입력한 패스워드와 salt를 이용해 문자열 생성
-function createSaltedPassword (password) {
-  return new Promise(async (resolve, reject) => {
-    const salt = await createSalt();
-    crypto.pbkdf2(password, salt, 9999, 64, 'sha512', (err, key) => {
-      if (err) reject(err);
-      resolve({ saltedPassword: key.toString('base64'), salt });
-    });
-  });
-}
+const { createSaltedPassword, createSalt } = require('./HashFunctions');
 
 module.exports = {
   signUp: async (req, res) => {
     const { email, password, phoneNum, userName, companyNumbers } = req.body;
-    const { saltedPassword, salt } = await createSaltedPassword(password).catch(err => {
-      console.log(err);
+    const salt = await createSalt();
+    const { saltedPassword } = await createSaltedPassword(password, salt).catch(err => {
+      return res.status(500).json({ code: 500, error: err });
     });
 
     // 사업자 번호 유무에 따라 일반 사용자 / 사업자로 구분한다
+    // 이메일이 중복되면 회원가입 거부
     if (companyNumbers === undefined) {
-      const newUser = await models.User.create({
-        userName: userName,
-        email: email,
-        phoneNum: phoneNum,
-        role: 'general',
-        oauthLogin: false,
-        saltedPassword: saltedPassword,
-        salt: salt
-      }, {
+      const [newUser, created] = await models.User.findOrCreate({
+        where: { email: email },
+        defaults: {
+          userName: userName,
+          email: email,
+          phoneNum: phoneNum,
+          role: 'general',
+          oauthLogin: false,
+          saltedPassword: saltedPassword,
+          salt: salt
+        },
         raw: true
       }).catch(err => {
-        console.log(err);
+        return res.status(500).json({ code: 500, error: err });
       });
 
-      res.status(201).json({ code: 201, role: newUser.role });
+      if (created) {
+        res.status(201).json({ code: 201, role: newUser.role });
+      } else {
+        res.status(409).json({ code: 409, error: 'user info already exists' });
+      }
     } else {
-      const newUser = await models.User.create({
-        userName: userName,
-        email: email,
-        phoneNum: phoneNum,
-        role: 'business',
-        oauthLogin: false,
-        saltedPassword: saltedPassword,
-        salt: salt
-      }, {
+      const [newUser, created] = await models.User.findOrCreate({
+        where: { email: email },
+        defaults: {
+          userName: userName,
+          email: email,
+          phoneNum: phoneNum,
+          role: 'general',
+          oauthLogin: false,
+          saltedPassword: saltedPassword,
+          salt: salt
+        },
         raw: true
       }).catch(err => {
-        console.log(err);
+        return res.status(500).json({ code: 500, error: err });
       });
 
-      res.status(201).json({ code: 201, role: newUser.role });
+      if (created) {
+        res.status(201).json({ code: 201, role: newUser.role });
+      } else {
+        res.status(409).json({ code: 409, error: 'user info already exists' });
+      }
     }
   }
 };

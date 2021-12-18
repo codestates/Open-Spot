@@ -2,6 +2,7 @@ const { swaggerUi, swaggerSpec } = require('./SwaggerDoc');
 const express = require('express');
 const cors = require('cors');
 const markersRouter = require('./Routes/Markers');
+const authRouter = require('./Routes/Auth');
 const usersRouter = require('./Routes/Users');
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(
 
 app.get('/', (_, res) => res.send('Hello world'));
 app.use('/markers', markersRouter);
+app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 
 app.listen(port, () => {
