@@ -1,0 +1,38 @@
+/* #nav-container {
+  height: 100px;
+  color: pink;
+} */
+#logo {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  top: 30px;
+  left: 45px;
+  background: url(./../../public/Img/ProjectLogoEX.png) no-repeat center center;
+  background-size: cover;
+  cursor: pointer;
+}
+#nav-body {
+  position: fixed;
+  top: 0.5%;
+  right: 3%;
+  width: 270px;
+  height: 105px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+/*분리선*/
+#vertical-hr {
+  width: 0.5px;
+  height: 13px;
+  background-color: rgb(255, 255, 255, 0.7);
+}
+/*Tab 버튼*/
+.tab {
+  color: rgb(240, 240, 240);
+  font-size: 0.9em;
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+}
