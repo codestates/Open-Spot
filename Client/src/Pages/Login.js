@@ -1,5 +1,6 @@
 import React from 'react';
-import './Login.css';
+import './../App.css';
+import './../Styles/Login.css';
 
 function Login () {
   return (
@@ -13,13 +14,13 @@ function Login () {
             <p id="title">
               LOG IN
             </p>
-            <div className="input-container">
-              <input placeholder='이메일'/>
-              <input placeholder='비밀번호'/>
+            <div id="input-container-login">
+              <input className="base-input" placeholder='이메일'/>
+              <input className="base-input" placeholder='비밀번호'/>
               <div className="verification">
                 {/* 이메일과 비밀번호가 일치하지 않습니다 -문구 띄우기 */}
               </div>
-              <button>로그인</button>
+              <button className="base-button">로그인</button>
             </div>
             {/* client, business 구분자 */}
             <hr/>
