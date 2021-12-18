@@ -256,6 +256,18 @@ paths:
                   error:
                     type: string
                     example: unauthorized
+        "404":
+          description: not found. DB에 없는 이메일이 입력된 경우
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error:
+                    type: string
+                    example: not found
         "500": 
           description: internal server error
           content: 

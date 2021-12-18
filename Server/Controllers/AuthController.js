@@ -11,6 +11,11 @@ module.exports = {
       return res.status(500).json({ code: 500, error: err });
     });
 
+    // DB에 없는 이메일인 경우
+    if (!userInfo) {
+      return res.status(404).json({ code: 404, error: 'not found' });
+    }
+
     const { userName, email, phoneNum, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo;
 
     const { saltedPassword } = await createSaltedPassword(req.body.password, userInfo.salt).catch(err => {
