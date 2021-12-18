@@ -54,6 +54,45 @@ module.exports = {
         생성 state: 'req.body.state'
     */
     issued: (req, res) => {
+      const redirectURI = encodeURI('http://localhost:3000');
+      const code = req.body.authorizationCode;
+      const state = req.body.state;
+
+      const apiUrl = 'https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=' +
+      process.env.NAVER_CLIENT_ID + '&client_secret=' + process.env.NAVER_CLIENT_SECRET + '&redirect_uri=' +
+      redirectURI + '&code=' + code + '&state=' + state;
+      //   const result = {};
+      //   클라이언트에게 원래 유저 데이터를 줘야하니 장식이지만 남겨두는 것
+
+      axios.post(apiUrl)
+        .then((resp) => {
+          console.log(resp.data);
+          const accessToken = resp.data.access_token;
+          const refreshToken = resp.data.refresh_token;
+
+          const token = 'Bearer ' + accessToken;
+          axios.get('https://openapi.naver.com/v1/nid/me', {
+            headers: { Authorization: token }
+          })
+            .then((res) => {
+              console.log(res.data);
+              /*
+          res.data.response 객체로 들어오는 정보
+          id 네이버에서 사용자를 식별하는 값
+          profile_image 사용자 프로필 사진
+          email 사용자 이메일
+          name 사용자 이름
+          */
+            });
+
+          res.status(200).json({
+            accessToken,
+            refreshToken
+          });
+        })
+        .catch(err => {
+          return err;
+        });
     },
 
     /*
@@ -79,6 +118,41 @@ module.exports = {
   GetKakaoAPI: {
     // 로그인, 로그아웃시 요청하는 api가 다르다.
     issued: async (req, res) => {
+      const clientID = 'dca677be4251f006b061960a3063b1f4';
+      const clientSecret = 'WPXSZeHmisgqHZQ9VgfBiPdyg3CSw8oe';
+
+      const options = {
+        uri: 'https://kauth.kakao.com/oauth/token',
+        method: 'POST',
+        form: {
+          grant_type: 'authorization_code',
+          client_id: clientID,
+          client_secret: clientSecret,
+          redirect_uri: 'http://localhost:3000',
+          code: req.body.authorizationCode
+        },
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        json: true
+      };
+      const token = await request(options, function (error, res, body) {
+        console.log(error, body);
+        return res;
+      });
+      //   console.log(token);
+
+      const accessToken = token.access_token;
+      //   const refreshToken = token.refresh_token;
+      //   console.log(`토큰의 값\n access\n${accessToken}\n refresh\n${refreshToken}\n`);
+
+      const userInfo = await axios.get('https://kapi.kakao.com/v2/user/me', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      console.log(userInfo);
+      // 여기서 이제 res를 통해 전달해줘야함
     },
 
     delete: async (req, res) => {
