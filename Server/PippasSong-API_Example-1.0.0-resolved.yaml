@@ -160,24 +160,68 @@ paths:
       - users
       description: 사용자 정보 업데이트
       responses:
-        "200":
-          description: ok
+        "201":
+          description: 수정 성공
           content:
             application/json:
               schema:
                properties:
+                code:
+                  type: integer
+                  example: 201
+                message:
+                  type: string
+                  example: 'modified'
+        "401":
+          description: 토큰 유효 기간 경과
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 401
+                message:
+                  type: string
+                  example: 'expired token'
+        "404":
+          description: 토큰의 정보로 사용자 정보를 찾지 못함
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 404
+                message:
+                  type: string
+                  example: 'user not found'
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                email:
-                  description: 이메일
+                newUserName:
+                  description: 새로운 사용자 이름
                   type: string
-                password:
+                  example: 새이름
+                newEmail:
+                  description: 새로운 이메일
+                  type: string
+                  example: newemail@naver.com
+                newPassword:
                   description: 비밀 번호
                   type: string
+                  example: newpassword
     delete:
       tags:
       - users

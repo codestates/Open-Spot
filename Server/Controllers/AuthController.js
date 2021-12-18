@@ -171,7 +171,7 @@ module.exports = {
       return res.status(404).json({ code: 404, error: 'not found' });
     }
 
-    const { userName, email, phoneNum, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo;
+    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo;
 
     const { saltedPassword } = await createSaltedPassword(req.body.password, userInfo.salt).catch(err => {
       return res.status(500).json({ code: 500, error: err });
@@ -180,7 +180,7 @@ module.exports = {
     // 쿠키의 유효 시간을 토큰의 만료 시간과 동일하게 설정
     // https 통신을 할 경우 쿠키에서 secure: ture옵션 사용하기
     if (saltedPassword === userInfo.saltedPassword) {
-      const accessToken = jwt.sign({ userName, email, phoneNum, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
+      const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
       res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
       res.status(200).json({ code: 200, role: userInfo.role });
     } else {
