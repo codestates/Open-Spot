@@ -294,7 +294,7 @@ paths:
     get:
       tags:
       - auth
-      description: 토큰 정보를 이용한 로그아웃
+      description: 로그아웃. 쿠키의 토큰에 빈 문자열을 할당한다. 이미 만료된 토큰의 경우 expired token 메시지를 반환한다
       responses:
         "200":
           description: ok
@@ -302,6 +302,21 @@ paths:
             application/json:
               schema:
                 properties:
+                  code:
+                    type: integer
+                    example: 200
+        "401":
+          description: 쿠키가 없거나 쿠키에 토큰이 없는 경우
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error:
+                    type: string
+                    example: unauthorized
   
                 
 components:

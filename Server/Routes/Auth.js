@@ -12,5 +12,6 @@ router.post('/kakao/Issued', authController.GetKakaoAPI.issued);
 router.post('/kakao/delete', authController.GetKakaoAPI.delete);
 
 router.post('/local', authController.localSignIn);
+router.get('/local', authController.logout);
 
 module.exports = router;
