@@ -6,7 +6,7 @@ function BusinessMyPage () {
     <div className="entire-box">
       <div className="intro-bg">
         <div className="header">
-          <div className="rogo">로고</div>
+          <div className="logo">로고</div>
           <ul className="nav">
             <li><a href="www.naver.com">MAP</a></li>
             <li><a href="www.naver.com">MYPAGE</a></li>
