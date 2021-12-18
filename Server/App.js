@@ -4,6 +4,7 @@ const cors = require('cors');
 const markersRouter = require('./Routes/Markers');
 const authRouter = require('./Routes/Auth');
 const usersRouter = require('./Routes/Users');
+const authRouter = require('./Routes/Auth');
 
 const app = express();
 const port = 80;

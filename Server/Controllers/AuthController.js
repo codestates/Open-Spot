@@ -209,4 +209,4 @@ module.exports = {
     res.cookie('accessToken', '');
     res.status(200).json({ code: 200 });
   }
-};
+}
