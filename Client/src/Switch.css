@@ -1,0 +1,74 @@
+/*배경 이미지 고정*/
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: url(./../public/img/StoreIMG.jpg) no-repeat center center rgba(82, 82, 82, 0.5);
+  background-blend-mode: multiply;
+  background-size: cover;
+}
+/*헤더 영역 고정*/
+header {
+  height: 70px;
+}
+/*로고 이미지 고정*/
+#logo {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  top: 30px;
+  left: 45px;
+  background: url(./../public/img/ProjectLogoEX.png) no-repeat center center;
+  background-size: cover;
+  cursor: pointer;
+}
+/*로그인 영역*/
+.container {
+  height: 75%;
+  display: flex;
+  flex-direction: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+/*로그인 타이틀*/
+#title {
+  text-align: center;
+  font-size: 3em;
+  font-weight: 900;
+  color: rgb(240, 240, 240);
+  cursor: grab;
+}
+/*선택 모음 버튼*/
+.button-container {
+  width: 500px;
+  height: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 70px;
+}
+/*분리선*/
+#vertical-hr {
+  width: 0.1px;
+  height: 200px;
+  border-bottom: 0px;
+  background-color: rgb(255, 255, 255, 0.3);
+}
+/*동그란 버튼 & 내부 텍스트*/
+.circle-button {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background-color: rgb(194, 152, 152);
+  cursor: pointer;
+  color: rgb(240, 240, 240);
+  font-size: 1.2em;
+  font-weight: 700;
+  text-align: center;
+  line-height: 170px; /*text가 한줄일때만 수직 중앙 정렬 가능한 방식*/
+}
+.circle-button > strong {
+  color: rgb(44, 44, 44);
+  font-weight: 900;
+}
+

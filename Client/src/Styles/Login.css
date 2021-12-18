@@ -1,0 +1,51 @@
+/*로그인 영역*/
+.container {
+  height: 75%;
+  display: flex;
+  flex-direction: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+/*로그인 관련 창 div*/
+#input-container-login {
+  height: 160px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 6%;
+}
+/*분리선*/
+hr {
+  width: 100%;
+  border-bottom: 0px;
+  background-color: rgb(255, 255, 255);
+}
+/*소셜 로그인 버튼 모음*/
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+/*소셜 로그인 아이콘*/
+.social-icons {
+  width: 55px;
+  height: 55px;
+  border: none;
+  cursor: pointer;
+}
+/*구글*/
+#googleIcon {
+  background: url(./../../public/Img/GoogleIcon.png) no-repeat;
+  background-size: cover;
+}
+/*네이버*/
+#naverIcon {
+  background: url(./../../public/Img/NaverIcon.png) no-repeat;
+  background-size: cover;
+}
+/*카카오*/
+#kakaoIcon {
+  background: url(./../../public/Img/KakaoIcon.png) no-repeat;
+  background-size: cover;
+}
