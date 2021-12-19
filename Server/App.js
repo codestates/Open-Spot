@@ -4,7 +4,6 @@ const cors = require('cors');
 const markersRouter = require('./Routes/Markers');
 const authRouter = require('./Routes/Auth');
 const usersRouter = require('./Routes/Users');
-const authRouter = require('./Routes/Auth');
 
 const app = express();
 const port = 80;
@@ -24,7 +23,6 @@ app.get('/', (_, res) => res.send('Hello world'));
 app.use('/markers', markersRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
-app.use('/auth', authRouter);
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
