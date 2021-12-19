@@ -19,20 +19,20 @@ import './../Styles/Header.css';
 //   );
 // };
 
-const Guest = ({ check1 }) => {
+const Guest = ({ switchCheck }) => {
   return (
     <>
       <Link to="/switch">
-        <button className="tab" onClick={() => check1(true)}>LOG IN</button>
+        <button className="tab" onClick={() => switchCheck(true)}>LOG IN</button>
       </Link>
       <Link to="/switch">
-        <button className="tab" onClick={() => check1(false)}>SIGN IN</button>
+        <button className="tab" onClick={() => switchCheck(false)}>SIGN IN</button>
       </Link>
     </>
   );
 };
 
-function Home ({ check1 }) {
+function Home ({ switchCheck }) {
   const isLogin = false; // 아직 로그인 안한 상태로 테스트
 
   return (
@@ -49,7 +49,7 @@ function Home ({ check1 }) {
                   <button className="tab">MAP</button>
                 </Link>
                 <div id="vertical-hr"></div>
-                { isLogin ? null : <Guest check1={check1} /> }
+                { isLogin ? null : <Guest switchCheck={switchCheck} /> }
               </div>
             </div>
           </header>

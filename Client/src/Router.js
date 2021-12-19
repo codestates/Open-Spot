@@ -13,35 +13,31 @@ import BusinessLogin from './Pages/BusinessLogin.js';
 import BusinessSignin from './Pages/BusinessSignin.js';
 
 // for redux
-import { selectLoginOrSignin } from './Actions/index.js';
+import { selectLoginOrSignin, isUserOrGuest } from './Actions/index.js';
 import { useSelector, useDispatch } from 'react-redux';
 
 function Routers () {
   const state = useSelector(state => state.pageReducer);
-  const { isLoginTab } = state;
+  const { isLoginTab, isUser } = state;
   const dispatch = useDispatch();
 
-  const handleGuestClick = (bool) => {
+  const handleIsLoginTab = (bool) => {
     dispatch(selectLoginOrSignin(bool));
   };
-  // const [isLoginTab, setIsLoginTab] = useState(null);
-  // const clickLoginTab = () => {
-  //   setIsLoginTab(true);
-  //   console.log(isLoginTab);
-  // };
-  // const clickSigninTab = () => {
-  //   setIsLoginTab(false);
-  //   console.log(isLoginTab);
-  // };
+
+  const handleIsUser = (bool) => {
+    dispatch(isUserOrGuest(bool));
+  };
   return (
     <Router>
       <Routes>
-        <Route exact={true} path='/' element={<Home check1={handleGuestClick} />} />
+        <Route exact={true} path='/' element={<Home switchCheck={handleIsLoginTab} isUser={isUser}/>} />
         <Route path='/switch' element={<Switch isLoginTab={isLoginTab} />} />
-          <Route path='/client/login' element={<ClientLogin />}/>
-          <Route path='/business/login' element={<BusinessLogin />} />
-          <Route path='/client/signin' element={<ClientSignin />} />
-          <Route path='/business/signin' element={<BusinessSignin />} />
+          <Route path='/client/login' element={<ClientLogin handleIsUser={handleIsUser} />} />
+            {/* 여기서 리다이렉트 시키기 */}
+          <Route path='/business/login' element={<BusinessLogin handleIsUser={handleIsUser} />} />
+          <Route path='/client/signin' element={<ClientSignin handleIsUser={handleIsUser} />} />
+          <Route path='/business/signin' element={<BusinessSignin handleIsUser={handleIsUser} />} />
       </Routes>
     </Router>
   );
