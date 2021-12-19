@@ -15,9 +15,14 @@
   justify-content: center;
   padding-bottom: 6%;
 }
+#align-center {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
 /*분리선*/
 hr {
-  width: 100%;
+  width: 80%;
   border-bottom: 0px;
   background-color: rgb(255, 255, 255);
 }

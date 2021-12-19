@@ -1,16 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './../App.css';
 import './../Styles/Login.css';
 
-function Login () {
+function ClientLogin () {
   return (
     <>
       <div className="background">
         <header>
-          <div id="logo"/>
+          <Link to="/">
+            <div id="logo"/>
+          </Link>
         </header>
         <div className="container">
-          <div>
+          <div id="align-center">
             <p id="title">
               LOG IN
             </p>
@@ -37,4 +40,4 @@ function Login () {
   );
 }
 
-export default Login;
+export default ClientLogin;

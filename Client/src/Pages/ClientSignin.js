@@ -1,40 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './../App.css';
 import './../Styles/Signin.css';
 
 // http://open-spot-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com : S3 버킷 주소
 
-function Signin () {
+function ClientSignin () {
   return (
     <>
       <div className="background">
         <header>
-          <div id="logo"/>
+          <Link to="/">
+            <div id="logo"/>
+          </Link>
         </header>
         <div className="container">
           <div>
             <p id="title">
               SIGN IN
             </p>
-            {/* client, business 구분자 */}
-            <div className="auth-container">
-              <p className="sub-title">
-                사업자 인증
-              </p>
-              <div className="business-code-container">
-                <input className="base-input input-business-code"/>
-                <input className="base-input input-business-code"/>
-                <input className="base-input input-business-code"/>
-              </div>
-              <div className="verification">
-                {/* 이미 사용된 사업자 번호입니다/(통과) or 사업자 번호 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
-              </div>
-              <button className="base-button business-button">사업자 번호 인증하기</button>
-            </div>
-            {/* client, business 구분자 */}
             <div id="input-container-signin">
               <p className="sub-title">
-                {/* 사용자 개인 정보/사업자 개인정보 */}사용자 개인 정보
+                사용자 개인 정보
               </p>
               <input className="base-input" placeholder='닉네임'/>
               <div className="verification">
@@ -61,4 +48,4 @@ function Signin () {
   );
 };
 
-export default Signin;
+export default ClientSignin;
