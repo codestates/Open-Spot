@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../Controllers/AuthController');
 
-router.post('/google', authController.GetGoogleAPI);
+// router.post('/google', authController.GetGoogleAPI);
 
 router.post('/naver/issued', authController.GetNaverAPI.issued);
 router.post('/naver/renewal', authController.GetNaverAPI.renewal);

@@ -10,12 +10,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      // define association here
+      models.CompanyNumber.belongsTo(models.User);
+      models.CompanyNumber.belongsTo(models.Marker);
     }
   };
   CompanyNumber.init({
-    number: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
+    number: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
+    userId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    }
   }, {
     sequelize,
     modelName: 'CompanyNumber',

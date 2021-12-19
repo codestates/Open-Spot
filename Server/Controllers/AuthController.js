@@ -182,7 +182,7 @@ module.exports = {
     if (saltedPassword === userInfo.saltedPassword) {
       const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
       res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-      res.status(200).json({ code: 200, role: userInfo.role });
+      res.status(200).json({ code: 200, userName: userInfo.userName, role: userInfo.role, email: userInfo.email });
     } else {
       res.status(401).json({ code: 401, error: 'unauthorized' });
     }
@@ -209,4 +209,4 @@ module.exports = {
     res.cookie('accessToken', '');
     res.status(200).json({ code: 200 });
   }
-}
+};
