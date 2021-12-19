@@ -10,15 +10,17 @@
 
 .entire-box{
   width: 100%;
-  height: 1440px;
+  height: 100%;
 }
 
 .second-big-box{
   display: flex;
   width: 100%;
-  height: calc(1440px - 331.71px);
+  height: calc(900px - 331.71px);
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
-
+/* sider-bar랑 inner-box를 감싸고 있다. */
 .intro-bg{
   background-image: url("../public/Img/BackgroundImage.png");
   width: 100%;
@@ -27,40 +29,45 @@
 
 .header{
   display: flex;
-  width: 1280px;
-  height: 86px;
-  margin: auto;
+  justify-content: flex-start;
+  width: 100%;
+  height: 70px;
 }
 
-.rogo{
+.logo{
   width: 100px;
   height: 40px;
   margin-top: 24px;
   font-size: 50px;
   color: #fff;
+  cursor: pointer;
+  position: fixed;
 }
 
 .nav{
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   line-height: 86px;
-  width: calc(1280px - 100px);
+  width: 100%;
+  margin-right: 20px;
 }
 
 .nav > li{ 
   margin-left: 84px;
   font-size: 20px;
   font-weight: bolder;
+  cursor: pointer;
+}
+
+.nav > li >a{
   color: #fff;
 }
 
-.nav > li > a{
-  background: #fff;
-}
-
 .sider-bar{
+  display: flex;
+  flex-direction: column;
   width: 250px;
-  height: calc(1440px - 331.71px);
   border-right: 1px solid #000;
 }
 
@@ -68,6 +75,7 @@
   width: 250px;
   height: 67px;
   background-color: #000;
+  cursor: pointer;
 }
 
 .client-info{ 
@@ -83,6 +91,7 @@
   background-color: #fff;
   border-bottom: #fff;
   border-right: #fff;
+  cursor: pointer;
 }
 
 .favorite-li{
@@ -93,8 +102,7 @@
 }
 
 .inner-box{
-  width: calc(100% - 250px);
-  height: 600px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -107,7 +115,6 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  background-color: #fff;
   width: 600px;
   height: 200px;
 }
@@ -122,11 +129,8 @@
   width: 128px;
   height: 120px;
   margin: 40px auto 150px auto;
+  cursor: pointer;
 }
-
-/* .info-box{
-  display: flex;
-} */
 
 .name-box{
   display: flex;
@@ -190,12 +194,14 @@
 }
 
 .info-change-bt{
-  width: 520px;
+  width: 495px;
   height: 30px;
   margin-top: 10px;
+  margin-right: 20px;
   border-radius: 5px;
   background-color: rgb(73, 70, 70);
   border: rgb(73, 70, 70);
+  cursor: pointer;
 }
 
 .client-info-change{
@@ -204,12 +210,14 @@
 }
 
 .delete-bt{
-  width: 520px;
+  width: 495px;
   height: 30px;
   margin-top: 10px;
+  margin-right: 20px;
   border-radius: 5px;
   background-color: rgb(251, 73, 73);
   border: rgb(251, 73, 73);
+  cursor: pointer;
 }
 
 .with-drawal{
