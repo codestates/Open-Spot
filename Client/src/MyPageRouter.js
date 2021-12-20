@@ -5,7 +5,6 @@ import {
   Route
 } from 'react-router-dom';
 
-// import Siderbar from './Siderbar.js';
 // import ClientMyPage from './ClientMyPage.js';
 // import ClientFavoriteList from './ClientFavoriteList.js';
 import BusinessFavoriteList from './MyPages/BusinessFavoriteList.js';

@@ -1,4 +1,4 @@
-import './../AllMyPage.css';
+import '../MyPageStyles/AllMyPage.css';
 import React from 'react';
 import Siderbar from '../MyPageComponents/Siderbar';
 
@@ -9,9 +9,9 @@ function BusinessMyPage () {
         <div className="header">
           <div id="logo" />
           <ul className="nav">
-            <li><a href="www.naver.com">MAP</a></li>
-            <li><a href="www.naver.com">MYPAGE</a></li>
-            <li><a href="www.naver.com">LOGOUT</a></li>
+            <li>MAP</li>
+            <li>MYPAGE</li>
+            <li>LOGOUT</li>
           </ul>
         </div>
       </div>
@@ -23,36 +23,26 @@ function BusinessMyPage () {
               <div className="client-img"></div>
             </div>
             <div className="info-box">
-              <ul className="name-box">
-                <li className="name">
+              <div className="name-box">
+                <div className="name">
                   <div>이름</div>
-                </li>
-                <li className="name-area">
+                </div>
+                <div className="name-area">
                   <div>
                     <input name="text-nmae" type="text"></input>
                   </div>
-                </li>
-              </ul>
-              <ul className="password-box">
-                <li className="password">
-                  <div>비밀번호</div>
-                </li>
-                <li className="password-area">
-                  <div>
-                    <input name="text-password" type="text"></input>
-                  </div>
-                </li>
-              </ul>
-              <ul className="email-box">
-                <li className="email">
+                </div>
+              </div>
+              <div className="name-box">
+                <div className="name">
                   <div>E-mail</div>
-                </li>
-                <li className="email-area">
+                </div>
+                <div className="name-area">
                   <div>
-                    <input name="text-email" type="text"></input>
+                    <input name="text-nmae" type="text"></input>
                   </div>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div className="change-bt">
