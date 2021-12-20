@@ -1,4 +1,4 @@
-import './ClientFavoriteList.css';
+import './AllMyPage.css';
 import React from 'react';
 
 function ClientFavoriteList () {
@@ -6,7 +6,7 @@ function ClientFavoriteList () {
     <div className="entire-box">
       <div className="intro-bg">
         <div className="header">
-          <div className="logo">로고</div>
+          <div id="logo" />
           <ul className="nav">
             <li><a href="www.naver.com">MAP</a></li>
             <li><a href="www.naver.com">MYPAGE</a></li>
@@ -23,7 +23,7 @@ function ClientFavoriteList () {
             <div className="favorite-li">나의 보관함</div>
           </button>
         </div>
-        <div className="inner-box">
+        <div className="favorite-inner-box">
           <div className="store-info">
             <div className="store-img-box">
               <div className="store-img"></div>
