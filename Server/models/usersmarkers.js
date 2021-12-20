@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
+      models.UsersMarkers.belongsTo(models.User);
+      models.UsersMarkers.belongsTo(models.Marker);
     }
   };
   UsersMarkers.init({
