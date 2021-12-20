@@ -35,7 +35,6 @@ function ClientLogin ({ handleIsUser }) {
     }).then((data) => {
       console.log(data);
       handleIsUser(true);
-      history.push('/');
     })
       .catch((err) => console.log(err));
   };
