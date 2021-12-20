@@ -1,5 +1,6 @@
-import './BusinessMyStore.css';
+import './AllMyPage.css';
 import React from 'react';
+import Siderbar from './Siderbar';
 
 function BusinessMyStore () {
   return (
@@ -15,18 +16,8 @@ function BusinessMyStore () {
         </div>
       </div>
       <div className="second-big-box">
-        <div className="sider-bar">
-          <button className="client-info-bt">
-            <div className="client-info">회원정보</div>
-          </button>
-          <button className="favorite-li-bt">
-            <div className="favorite-li">나의 보관함</div>
-          </button>
-          <button className="my-store-bt">
-            <div className="my-store-li">나의 가게함</div>
-          </button>
-        </div>
-        <div className="inner-box">
+        <Siderbar />
+        <div className="store-inner-box">
           <div>
             <button className="register-bt">
               <div className="change">가게 등록 하기</div>

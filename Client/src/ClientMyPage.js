@@ -1,4 +1,4 @@
-import './ClientMyPage.css';
+import './AllMyPage.css';
 import React from 'react';
 
 function ClientMyPage () {
@@ -6,7 +6,7 @@ function ClientMyPage () {
     <div className="entire-box">
       <div className="intro-bg">
         <div className="header">
-          <div className="logo">로고</div>
+          <div id="logo" />
           <ul className="nav">
             <li><a href="www.naver.com">MAP</a></li>
             <li><a href="www.naver.com">MYPAGE</a></li>
@@ -23,7 +23,7 @@ function ClientMyPage () {
             <div className="favorite-li">나의 보관함</div>
           </button>
         </div>
-        <div className="inner-box">
+        <div className="my-page-inner-box">
           <div className="client-info-box">
             <div className="client-img-box">
               <div className="client-img"></div>

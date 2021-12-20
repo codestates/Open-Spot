@@ -1,12 +1,13 @@
-import './BusinessFavoriteList.css';
+import './AllMyPage.css';
 import React from 'react';
+import Siderbar from './Siderbar';
 
 function BusinessFavoriteList () {
   return (
     <div className="entire-box">
       <div className="intro-bg">
         <div className="header">
-          <div className="logo">로고</div>
+          <div id="logo" />
           <ul className="nav">
             <li><a href="www.naver.com">MAP</a></li>
             <li><a href="www.naver.com">MYPAGE</a></li>
@@ -15,18 +16,8 @@ function BusinessFavoriteList () {
         </div>
       </div>
       <div className="second-big-box">
-        <div className="sider-bar">
-          <button className="client-info-bt">
-            <div className="client-info">회원정보</div>
-          </button>
-          <button className="favorite-li-bt">
-            <div className="favorite-li">나의 보관함</div>
-          </button>
-          <button className="my-store-bt">
-            <div className="my-store-li">나의 가게함</div>
-          </button>
-        </div>
-        <div className="inner-box">
+        <Siderbar />
+        <div className="favorite-inner-box">
           <div className="store-info">
             <div className="store-img-box">
               <div className="store-img"></div>
