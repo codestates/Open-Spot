@@ -1,27 +1,3 @@
-/*배경 이미지 고정*/
-.background {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background: url(./../public/img/StoreIMG.jpg) no-repeat center center rgba(82, 82, 82, 0.5);
-  background-blend-mode: multiply;
-  background-size: cover;
-}
-/*헤더 영역 고정*/
-header {
-  height: 70px;
-}
-/*로고 이미지 고정*/
-#logo {
-  width: 50px;
-  height: 50px;
-  position: fixed;
-  top: 30px;
-  left: 45px;
-  background: url(./../public/img/ProjectLogoEX.png) no-repeat center center;
-  background-size: cover;
-  cursor: pointer;
-}
 /*로그인 영역*/
 .container {
   height: 75%;
@@ -29,14 +5,6 @@ header {
   flex-direction: column wrap;
   justify-content: center;
   align-items: center;
-}
-/*로그인 타이틀*/
-#title {
-  text-align: center;
-  font-size: 3em;
-  font-weight: 900;
-  color: rgb(240, 240, 240);
-  cursor: grab;
 }
 /*선택 모음 버튼*/
 .button-container {
@@ -48,7 +16,7 @@ header {
   margin-top: 70px;
 }
 /*분리선*/
-#vertical-hr {
+#select-vertical-hr {
   width: 0.1px;
   height: 200px;
   border-bottom: 0px;

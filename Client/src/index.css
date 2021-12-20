@@ -19,3 +19,7 @@ code {
 button {
   font-family: 'NanumSquare';
 }
+
+a {
+  text-decoration: none;
+}
