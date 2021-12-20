@@ -8,9 +8,9 @@ import {
 // import Siderbar from './Siderbar.js';
 // import ClientMyPage from './ClientMyPage.js';
 // import ClientFavoriteList from './ClientFavoriteList.js';
-import BusinessFavoriteList from './BusinessFavoriteList.js';
-import BusinessMyPage from './BusinessMyPage.js';
-import BusinessMyStore from './BusinessMyStore.js';
+import BusinessFavoriteList from './MyPages/BusinessFavoriteList.js';
+import BusinessMyPage from './MyPages/BusinessMyPage.js';
+import BusinessMyStore from './MyPages/BusinessMyStore';
 
 function MyPageRouter () {
   return (
