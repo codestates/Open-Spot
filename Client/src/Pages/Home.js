@@ -19,18 +19,16 @@ import './../Styles/Header.css';
 //   );
 // };
 
-const Guest = ({ switchCheck }) => {
-  return (
-    <>
-      <Link to="/switch">
-        <button className="tab" onClick={ () => switchCheck(true) }>LOG IN</button>
-      </Link>
-      <Link to="/switch">
-        <button className="tab" onClick={ () => switchCheck(false) }>SIGN IN</button>
-      </Link>
-    </>
-  );
-};
+const Guest = ({ switchCheck }) => (
+  <>
+    <Link to="/switch">
+      <button className="tab" onClick={ () => switchCheck(true) }>LOG IN</button>
+    </Link>
+    <Link to="/switch">
+      <button className="tab" onClick={ () => switchCheck(false) }>SIGN IN</button>
+    </Link>
+  </>
+);
 
 function Home ({ switchCheck }) {
   const isLogin = false; // 아직 로그인 안한 상태로 테스트
