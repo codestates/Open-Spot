@@ -6,7 +6,7 @@ function Switch () {
     <>
       <div className="background">
         <header>
-          <div id="logo"/>
+          <div id="logo" />
         </header>
         <div className="container">
           <div>
@@ -19,7 +19,7 @@ function Switch () {
                   <strong>개인</strong>입니다
                 </div>
               </div>
-              <div id="vertical-hr"/>
+              <div id="vertical-hr" />
               <div>
                 <div className="circle-button">
                   <strong>사업자</strong>입니다

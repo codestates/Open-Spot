@@ -40,14 +40,14 @@ function Nav () {
     <>
       <div id="nav-container">
         <Link to="/">
-          <div id="logo"/>
+          <div id="logo" />
         </Link>
         <div id="nav-body">
           <Link to="/map">
             <button className="tab">MAP</button>
           </Link>
           <div id="vertical-hr"></div>
-          { isLogin ? <User/> : null }
+          { isLogin ? <User /> : null }
         </div>
       </div>
     </>

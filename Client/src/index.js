@@ -1,9 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// import reportWebVitals from './reportWebVitals';
+// import Login from './Login.js';
+import './AllMyPage.css';
+// import ClientMyPage from './ClientMyPage.js';
+// import ClientFavoriteList from './ClientFavoriteList.js';
+// import BusinessFavoriteList from './BusinessFavoriteList.js';
+// import BusinessMyPage from './BusinessMyPage.js';
+// import BusinessMyStore from './BusinessMyStore.js';
+// import MyPageRouter from './MyPageRouter.js';
+import ClientMyPageRouter from './ClientMyPageRouter.js';
+
 ReactDOM.render(
   <React.StrictMode>
-
+    <ClientMyPageRouter />
   </React.StrictMode >,
   document.getElementById('root')
 );

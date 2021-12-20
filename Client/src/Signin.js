@@ -8,7 +8,7 @@ function Signin () {
     <>
       <div className="background">
         <header>
-          <div id="logo"/>
+          <div id="logo" />
         </header>
         <div className="container">
           <div>
@@ -21,9 +21,9 @@ function Signin () {
                 사업자 인증
               </p>
               <div className="business-code-container">
-                <input className="input-business-code"/>
-                <input className="input-business-code"/>
-                <input className="input-business-code"/>
+                <input className="input-business-code" />
+                <input className="input-business-code" />
+                <input className="input-business-code" />
               </div>
               <div className="verification">
                 {/* 이미 사용된 사업자 번호입니다/(통과) or 사업자 번호 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
@@ -35,19 +35,19 @@ function Signin () {
               <p className="sub-title">
                 {/* 사용자 개인 정보/사업자 개인정보 */}사용자 개인 정보
               </p>
-              <input placeholder='닉네임'/>
+              <input placeholder="닉네임" />
               <div className="verification">
                 {/* 닉네임이 중복됩니다/(통과) or 닉네임의 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
               </div>
-              <input placeholder='이메일'/>
+              <input placeholder="이메일" />
               <div className="verification">
                 {/* 이메일이 중복됩니다/(통과) or 이메일의 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
               </div>
-              <input placeholder='비밀번호' className="input-password"/>
+              <input className="input-password" placeholder="비밀번호" />
               <div className="verification">
                 {/* 비밀번호의 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
               </div>
-              <input placeholder='비밀번호 확인' className="input-password"/>
+              <input className="input-password" placeholder="비밀번호 확인" />
               <div className="verification">
                 {/* 비밀번호가 일치합니다/비밀번호가 일치하지 않습니다 -문구 띄우기 */}
               </div>

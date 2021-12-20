@@ -1,6 +1,6 @@
-import './AllMyPage.css';
+import './../AllMyPage.css';
 import React from 'react';
-import Siderbar from './Siderbar';
+import Siderbar from '../MyPageComponents/Siderbar';
 
 function BusinessMyStore () {
   return (

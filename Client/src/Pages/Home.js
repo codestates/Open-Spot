@@ -10,13 +10,13 @@ function Home () {
         <div className="main-section">
           <header />
           <div className="main-container">
-            <p id="main-title">새롭게 떠오르는.<br/>빠르게 알고싶은.</p>
+            <p id="main-title">새롭게 떠오르는.<br />빠르게 알고싶은.</p>
             <button className="map-button">Open Spot 체험하러가기</button>
             {/* <button className="map-button">Map 구경가기</button> */}
           </div>
           <div className="down-button-container">
-            <i id="down-icon" className="fas fa-chevron-down"></i>
-            <p id="down-text">Scroll<br/>Down</p>
+            <i className="fas fa-chevron-down" id="down-icon"></i>
+            <p id="down-text">Scroll<br />Down</p>
           </div>
         </div>
         <div className="client-section">
