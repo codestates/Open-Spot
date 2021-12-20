@@ -47,8 +47,7 @@ module.exports = {
         role: 'general'
       }
     });
-    console.log('userInfo는 이렇다\n');
-    console.log(userInfo);
+
     const needData = userInfo[0].dataValues;
     const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = needData;
 
@@ -57,7 +56,7 @@ module.exports = {
     res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: picture });
   },
   GetNaverAPI: async (req, res) => {
-    const redirectURI = encodeURI('http://localhost:3000');
+    const redirectURI = encodeURI('https://d1839m99iakp36.cloudfront.net');
     const code = req.body.authorizationCode;
     const state = req.body.state;
 
@@ -77,12 +76,14 @@ module.exports = {
       email 사용자 이메일
       name 사용자 이름
       */
-    const naverInfo = axios.get('https://openapi.naver.com/v1/nid/me', {
+    const naverInfo = await axios.get('https://openapi.naver.com/v1/nid/me', {
       headers: { Authorization: token }
     })
       .catch(err => {
-        return err;
+        return res.status(500).json({ code: 500, error: err });
       });
+    console.log(naverInfo);
+
     const result = naverInfo.data.response;
     const profile = result.profile_image;
     // 여기까지가 데이터 가져오는 코드
@@ -136,9 +137,26 @@ module.exports = {
       }
     });
     console.log(kakaoInfo);
-
     const result = kakaoInfo.data;
-    const profile = result.kakao_account.profile.profile_image_url;
+    // const result =
+    // {
+    //   id: 2038967258,
+    //   connected_at: '2021-12-18T04:31:08Z',
+    //   properties: {
+    //     profile_image: 'http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_640x640.jpg',
+    //     thumbnail_image: 'http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_110x110.jpg'
+    //   },
+    //   kakao_account: {
+    //     profile_image_needs_agreement: false,
+    //     has_email: true,
+    //     email_needs_agreement: false,
+    //     is_email_valid: true,
+    //     is_email_verified: true,
+    //     email: 'terrabattle@naver.com'
+    //   }
+    // };
+
+    const profile = result.properties.profile_image;
     const userInfo = await models.User.findOrCreate({
       where: { oauthCI: result.id },
       defaults: {
@@ -154,7 +172,7 @@ module.exports = {
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.staus(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile });
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile });
   },
   localSignIn: async (req, res) => {
     const userInfo = await models.User.findOne({
