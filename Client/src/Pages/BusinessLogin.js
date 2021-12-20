@@ -9,7 +9,7 @@ function BusinessLogin () {
       <div className="background">
         <header>
           <Link to="/">
-            <div id="logo"/>
+            <div id="logo" />
           </Link>
         </header>
         <div className="container">
@@ -18,8 +18,8 @@ function BusinessLogin () {
               LOG IN
             </p>
             <div id="input-container-login">
-              <input className="base-input" placeholder='이메일'/>
-              <input className="base-input" placeholder='비밀번호'/>
+              <input className="base-input" placeholder="이메일" />
+              <input className="base-input" placeholder="비밀번호" />
               <div className="verification">
                 {/* 이메일과 비밀번호가 일치하지 않습니다 -문구 띄우기 */}
               </div>
