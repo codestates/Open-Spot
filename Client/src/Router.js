@@ -33,15 +33,15 @@ const Routers = () => {
   return (
     <Router>
       <Routes>
-        <Route exact={true} path='/' element={<Home handleIsLoginTab={handleIsLoginTab} isUser={isUser} />} />
-        <Route path='/switch' element={<Switch isLoginTab={isLoginTab} />} />
-        <Route path='/client/login' element={<ClientLogin handleIsUser={handleIsUser} />} />
+        <Route element={ <Home handleIsLoginTab={ handleIsLoginTab } isUser={ isUser } /> } exact path="/" />
+        <Route element={ <Switch isLoginTab={ isLoginTab } /> } path="/switch" />
+        <Route element={ <ClientLogin handleIsUser={ handleIsUser } /> } path="/client/login" />
         {/* 여기서 리다이렉트 시키기 */}
-        <Route path='/business/login' element={<BusinessLogin handleIsUser={handleIsUser} />} />
-        <Route path='/client/signin' element={<ClientSignin handleIsUser={handleIsUser} />} />
-        <Route path='/business/signin' element={<BusinessSignin handleIsUser={handleIsUser} />} />
-        <Route path='/map/guest' element={<MapGuest />} />
-        <Route path='/map/user' element={<MapUser />} />
+        <Route element={ <BusinessLogin handleIsUser={ handleIsUser } /> } path="/business/login" />
+        <Route element={ <ClientSignin handleIsUser={ handleIsUser } /> } path="/client/signin" />
+        <Route element={ <BusinessSignin handleIsUser={ handleIsUser } /> } path="/business/signin" />
+        <Route element={ <MapGuest /> } path="/map/guest" />
+        <Route element={ <MapUser /> } path="/map/user" />
       </Routes>
     </Router>
   );

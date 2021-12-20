@@ -12,7 +12,7 @@ import Router from './Router.js';
 // const bool = true;
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={ store }>
     {/* {bool ? <MapGuest /> : <MapUser />} */}
     <Router />
   </Provider>,
