@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       models.Marker.hasMany(models.UsersMarkers);
-      models.Marker.hasOne(models.CompanyNumber);
+      models.Marker.belongsTo(models.User);
     }
   };
   Marker.init({
@@ -26,11 +26,11 @@ module.exports = (sequelize, DataTypes) => {
     tagName: DataTypes.STRING,
     description: DataTypes.STRING,
     latitude: DataTypes.DECIMAL,
-    longitude: DataTypes.DECIMAL
+    longitude: DataTypes.DECIMAL,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Marker',
-    timestamps: false
+    modelName: 'Marker'
   });
   return Marker;
 };

@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       models.User.hasMany(models.UsersMarkers);
-      models.User.hasMany(models.CompanyNumber);
+      models.User.hasMany(models.Marker);
     }
   };
   User.init({

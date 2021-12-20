@@ -133,10 +133,19 @@ module.exports = {
       return res.status(500).json({ code: 500, error: err });
     });
 
+    // const markers = await models.User.findAll({
+    //   include: [
+    //     {
+    //       model: models.Marker
+    //     }
+    //   ],
+    //   where: { id: Sequelize.col('Markers.userId') }
+    // });
+
     res.status(200).json({ code: 200, markers });
   },
   getBusinessMarkers: async (req, res) => {
-    // // 토큰이 없는 경우
+    // 토큰이 없는 경우
     if (!req.cookies || !req.cookies.accessToken) {
       return res.status(401).json({ code: 401, error: 'unauthorized' });
     }
@@ -164,8 +173,8 @@ module.exports = {
     //   return res.status(500).json({ code: 500, error: err });
     // });
 
-    // Users, CompanyNumbers, Markers테이블을 join
-    const queryString = 'SELECT id, storeName, address, callNum, tagName, description, latitude, longitude FROM Markers JOIN CompanyNumbers ON Markers.id=CompanyNumbers.number WHERE CompanyNumbers.userId=?';
+    // Users, Markers테이블을 join
+    const queryString = 'SELECT Markers.id, storeName, address, callNum, tagName, description, latitude, longitude, Markers.createdAt, Markers.updatedAt, userId FROM Markers JOIN Users ON Markers.userId=Users.id WHERE Markers.userId=?';
 
     db.query(queryString, [decoded.id], (error, markers) => {
       if (error) return res.status(500).json({ code: 500, error: error });
