@@ -1,24 +1,44 @@
-import React from 'react';
+import * as React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from 'react-router-dom';
 
-import Nav from './Components/Nav.js';
-import Home from './Pages/Home.js';
-import Login from './Pages/Login.js';
-import Signin from './Pages/Signin.js';
+import Home from './Pages/Home.js'; // Home을 Routes위에 안넣어줘도 맞아 이게 ?
+import Switch from './Pages/Switch.js';
+import ClientLogin from './Pages/ClientLogin.js';
+import ClientSignin from './Pages/ClientSignin.js';
+import BusinessLogin from './Pages/BusinessLogin.js';
+import BusinessSignin from './Pages/BusinessSignin.js';
+
+// for redux
+import { selectLoginOrSignin, isUserOrGuest } from './Actions/index.js';
+import { useSelector, useDispatch } from 'react-redux';
 
 function Routers () {
+  const state = useSelector(state => state.pageReducer);
+  const { isLoginTab, isUser } = state;
+  const dispatch = useDispatch();
+
+  const handleIsLoginTab = (bool) => {
+    dispatch(selectLoginOrSignin(bool));
+  };
+
+  const handleIsUser = (bool) => {
+    dispatch(isUserOrGuest(bool));
+  };
   return (
     <Router>
-      <Nav />
-        <Routes>
-          <Route exact={true} path='/' element={<Home />} />
-          <Route path='/login' element={<Login />}/>
-          <Route path='/signin' element={<Signin />}/>
-        </Routes>
+      <Routes>
+        <Route exact={true} path='/' element={<Home switchCheck={handleIsLoginTab} isUser={isUser}/>} />
+        <Route path='/switch' element={<Switch isLoginTab={isLoginTab} />} />
+          <Route path='/client/login' element={<ClientLogin handleIsUser={handleIsUser} />} />
+            {/* 여기서 리다이렉트 시키기 */}
+          <Route path='/business/login' element={<BusinessLogin handleIsUser={handleIsUser} />} />
+          <Route path='/client/signin' element={<ClientSignin handleIsUser={handleIsUser} />} />
+          <Route path='/business/signin' element={<BusinessSignin handleIsUser={handleIsUser} />} />
+      </Routes>
     </Router>
   );
 }
