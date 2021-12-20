@@ -11,12 +11,14 @@ import ClientLogin from './Pages/ClientLogin.js';
 import ClientSignin from './Pages/ClientSignin.js';
 import BusinessLogin from './Pages/BusinessLogin.js';
 import BusinessSignin from './Pages/BusinessSignin.js';
+import MapGuest from './Pages/MapGuest.js';
+import MapUser from './Pages/MapUser.js';
 
 // for redux
 import { selectLoginOrSignin, isUserOrGuest } from './Actions/index.js';
 import { useSelector, useDispatch } from 'react-redux';
 
-function Routers () {
+const Routers = () => {
   const state = useSelector(state => state.pageReducer);
   const { isLoginTab, isUser } = state;
   const dispatch = useDispatch();
@@ -31,16 +33,18 @@ function Routers () {
   return (
     <Router>
       <Routes>
-        <Route element={ <Home isUser={ isUser } switchCheck={ handleIsLoginTab } /> } exact path="/" />
-        <Route element={ <Switch isLoginTab={ isLoginTab } /> } path="/switch" />
-        <Route element={ <ClientLogin handleIsUser={ handleIsUser } /> } path="/client/login" />
+        <Route exact={true} path='/' element={<Home handleIsLoginTab={handleIsLoginTab} isUser={isUser} />} />
+        <Route path='/switch' element={<Switch isLoginTab={isLoginTab} />} />
+        <Route path='/client/login' element={<ClientLogin handleIsUser={handleIsUser} />} />
         {/* 여기서 리다이렉트 시키기 */}
-        <Route element={ <BusinessLogin handleIsUser={ handleIsUser } /> } path="/business/login" />
-        <Route element={ <ClientSignin handleIsUser={ handleIsUser } /> } path="/client/signin" />
-        <Route element={ <BusinessSignin handleIsUser={ handleIsUser } /> } path="/business/signin" />
+        <Route path='/business/login' element={<BusinessLogin handleIsUser={handleIsUser} />} />
+        <Route path='/client/signin' element={<ClientSignin handleIsUser={handleIsUser} />} />
+        <Route path='/business/signin' element={<BusinessSignin handleIsUser={handleIsUser} />} />
+        <Route path='/map/guest' element={<MapGuest />} />
+        <Route path='/map/user' element={<MapUser />} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default Routers;
