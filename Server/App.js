@@ -1,6 +1,7 @@
 const { swaggerUi, swaggerSpec } = require('./SwaggerDoc');
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const markersRouter = require('./Routes/Markers');
 const authRouter = require('./Routes/Auth');
 const usersRouter = require('./Routes/Users');
@@ -13,6 +14,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(cookieParser());
 app.use(
   cors({
     origin: true,

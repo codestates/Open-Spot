@@ -16,14 +16,13 @@ module.exports = {
         => 추출해낸 값들을 DB에 저장하고, 클라이언트에 보낼 건 보내주고 과정을 마친다
         */
 
-    // console.log(req.body);
     let decode = {};
     axios.post('https://oauth2.googleapis.com/token', {
       client_id: process.env.GOOGLE_CLIENT_ID,
       client_secret: process.env.GOOGLE_CLIENT_SECRET,
       code: req.body.authorizationCode,
       grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3000'
+      redirect_uri: 'https://d1839m99iakp36.cloudfront.net'
     }
     ).then((resp) => {
       //   console.log(resp.data);
@@ -34,29 +33,30 @@ module.exports = {
       .catch(err => {
         return err;
       });
-    // 여기까지가 데이터를 가져오는 공간인데, 이제 이걸 통해서 우리 DB에 저장해야함.
-    // DB에 저장하고, 다음에 소셜 로그인을 해도 똑같은 마이페이지가 떠야 하니까 테이블 id[pk]를 꺼내올 수 있으면 좋을듯
-    // 근데 그러면 다음에 로그인 했을 때 어떻게 기억하고 다시 아이디에 넣지? /여기서 유효성 검사를 해야함/ findorCreate 함수를 써서
-    // email, userName, oauthLogin, oauthCI 가지고 확인하는데
-    // 구글은 email = 구글이메일, userName = 구글이름, oauthLogin = 1, oauthCI = null로 해서 확인해야할 듯
-    // 그러면 그렇게 해서 확인하고, payload에 내가 넣고 싶은 정보 넣고 jwt토큰화하고
-    // 그걸 그대로 클라이언트에 전송해주면 되겠다 완벽하다.
-    const { userEmail, name } = decode; // 프로필 사진은 나중에 추가하려면 하면 됨
-    const userInfo = await models.User.findorCreate({
+
+    const { userEmail, name, picture } = decode;
+
+    // 하드 코딩이 되어야 하는 시점.
+    // const userEmail = 'a01023329417@gmail.com';
+    // const name = '양재영';
+    // const picture = 'https://lh3.googleusercontent.com/a/AATXAJwhegjEnASqnjidlgyYC7xzyu4U5jdCPpfV30MT=s96-c';
+
+    const userInfo = await models.User.findOrCreate({
       where: { userName: name, email: userEmail, oauthLogin: 1, oauthCI: null },
       defaults: {
         role: 'general'
       }
     });
 
-    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo[0].dataValues;
+    const needData = userInfo[0].dataValues;
+    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = needData;
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.status(200).json({ code: 200, role: userInfo.role });
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: picture });
   },
   GetNaverAPI: async (req, res) => {
-    const redirectURI = encodeURI('http://localhost:3000');
+    const redirectURI = encodeURI('https://d1839m99iakp36.cloudfront.net');
     const code = req.body.authorizationCode;
     const state = req.body.state;
 
@@ -76,16 +76,19 @@ module.exports = {
       email 사용자 이메일
       name 사용자 이름
       */
-    const naverInfo = axios.get('https://openapi.naver.com/v1/nid/me', {
+    const naverInfo = await axios.get('https://openapi.naver.com/v1/nid/me', {
       headers: { Authorization: token }
     })
       .catch(err => {
-        return err;
+        return res.status(500).json({ code: 500, error: err });
       });
+    console.log(naverInfo);
+
     const result = naverInfo.data.response;
+    const profile = result.profile_image;
     // 여기까지가 데이터 가져오는 코드
     // 네이버는 검증을 어떻게 해야하지? userName=네이버이름, email=네이버이메일, oauthCI=id, oauthLogin:1
-    const userInfo = await models.User.findorCreate({
+    const userInfo = await models.User.findOrCreate({
       where: { oauthCI: result.id },
       defaults: {
         userName: result.name,
@@ -94,11 +97,12 @@ module.exports = {
         oauthLogin: 1
       }
     });
-    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo[0].dataValues;
+    const needData = userInfo[0].dataValues;
+    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = needData;
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.status(200).json({ code: 200, role: userInfo.role });
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile });
   },
   GetKakaoAPI: async (req, res) => {
     const clientID = process.env.KAKAO_CLIENT_ID;
@@ -133,9 +137,27 @@ module.exports = {
       }
     });
     console.log(kakaoInfo);
-
     const result = kakaoInfo.data;
-    const userInfo = await models.User.findorCreate({
+    // const result =
+    // {
+    //   id: 2038967258,
+    //   connected_at: '2021-12-18T04:31:08Z',
+    //   properties: {
+    //     profile_image: 'http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_640x640.jpg',
+    //     thumbnail_image: 'http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_110x110.jpg'
+    //   },
+    //   kakao_account: {
+    //     profile_image_needs_agreement: false,
+    //     has_email: true,
+    //     email_needs_agreement: false,
+    //     is_email_valid: true,
+    //     is_email_verified: true,
+    //     email: 'terrabattle@naver.com'
+    //   }
+    // };
+
+    const profile = result.properties.profile_image;
+    const userInfo = await models.User.findOrCreate({
       where: { oauthCI: result.id },
       defaults: {
         userName: result.kakao_account.email.split('@')[0],
@@ -144,13 +166,13 @@ module.exports = {
         oauthLogin: 1
       }
     });
-    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo[0].dataValues;
+
+    const needData = userInfo[0].dataValues;
+    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = needData;
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.status(200).json({ code: 200, role: userInfo.role });
-
-    // 여기서 이제 res를 통해 전달해줘야함
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile });
   },
   localSignIn: async (req, res) => {
     const userInfo = await models.User.findOne({
