@@ -18,10 +18,20 @@ paths:
             application/json:
               schema:
                 properties:
+                  code:
+                    type: integer
+                    example: 200
                   markers:
                     type: array
                     items:
                       $ref: '#/components/schemas/Marker'
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
     post:
       tags:
       - markers
@@ -325,7 +335,7 @@ paths:
                 authorizationCode:
                   description: URL로 받은 인증 코드
                   type: string
-  /auth/local:
+  /auth/local-general:
     post:
       tags:
       - auth
@@ -350,7 +360,7 @@ paths:
                     type: string
                     example: abc@naver.com
         "401":
-          description: unauthorized. 잘못된 비밀번호를 받았을 경우
+          description: unauthorized. 잘못된 비밀번호를 입력받거나 일반 사용자 / 사업자 여부가 잘못된 경우
           content:
             application/json:
               schema:
@@ -394,8 +404,80 @@ paths:
                 password:
                   description: 비밀 번호
                   type: string
-                  example: 귤
+                  example: rbf
                   required: true
+  /auth/local-business:
+    post:
+      tags:
+      - auth
+      description: 사업자 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+                  userName:
+                    type: string
+                    example: 귤
+                  role:
+                    type: string
+                    example: general or business
+                  email:
+                    type: string
+                    example: abc@naver.com
+        "401":
+          description: unauthorized. 잘못된 비밀번호를 입력받거나 일반 사용자 / 사업자 여부가 잘못된 경우
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error:
+                    type: string
+                    example: unauthorized
+        "404":
+          description: not found. DB에 없는 이메일이 입력된 경우
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error:
+                    type: string
+                    example: not found
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  description: 이메일
+                  type: string
+                  example: abc11@naver.com
+                  required: true
+                password:
+                  description: 비밀 번호
+                  type: string
+                  example: '12345'
+                  required: true
+  /auth/local:    
     get:
       tags:
       - auth

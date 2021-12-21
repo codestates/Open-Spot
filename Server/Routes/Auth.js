@@ -7,7 +7,8 @@ router.post('/google', authController.GetGoogleAPI);
 router.post('/naver', authController.GetNaverAPI);
 router.post('/kakao', authController.GetKakaoAPI);
 
-router.post('/local', authController.localSignIn);
+router.post('/local-general', authController.localSignInGen);
+router.post('/local-business', authController.localSignInBus);
 router.get('/local', authController.logout);
 
 module.exports = router;
