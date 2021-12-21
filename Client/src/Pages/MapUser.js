@@ -30,7 +30,7 @@ const MapUser = () => {
   });
   return (
     <>
-      <div id='gather-map-sidebar'>
+      <div id="gather-map-sidebar">
         {bool ? <MapUserSideBar /> : <MapUserSideBarPin />}
         <div id="map"></div>
       </div>

@@ -93,7 +93,7 @@ const ClientLogin = ({ handleUserInfo, handleSocialLoginBtn }) => {
               <div className="verification">
                 {isNotMatch ? '이메일과 비밀번호가 일치하지 않습니다' : null}
               </div>
-              <button className="base-button" onClick={() => getLogin(loginData)}>로그인</button>
+              <button className="base-button" onClick={ () => getLogin(loginData) }>로그인</button>
             </div>
             {/* client, business 구분자 */}
             <hr />
