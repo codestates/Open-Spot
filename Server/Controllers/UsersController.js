@@ -252,5 +252,36 @@ module.exports = {
       .catch(err => {
         return res.status(500).json({ code: 500, error: err });
       });
+  },
+  addMarkerstoMypage: async (req, res) => {
+    // 토큰이 없는 경우
+    if (!req.cookies || !req.cookies.accessToken) {
+      return res.status(401).json({ code: 401, error: 'unauthorized' });
+    }
+
+    const token = req.cookies.accessToken;
+    // 토큰의 유효성 검사
+    const decoded = await verifyToken(token, process.env.ACCESS_SECRET)
+      .catch(err => {
+        console.log(err);
+        return res.status(401).json({ code: 401, message: 'unauthorized' });
+      });
+
+    const [newElement, created] = await models.UsersMarkers.findOrCreate({
+      where: { userId: decoded.id, markerId: req.body.markerId },
+      defaults: {
+        userId: decoded.id,
+        markerId: req.body.markerId
+      },
+      raw: true
+    }).catch(err => {
+      return res.status(500).json({ code: 500, error: err });
+    });
+
+    if (created) {
+      res.status(201).json({ code: 201, message: 'created' });
+    } else {
+      res.status(409).json({ code: 409, error: 'info already exists' });
+    }
   }
 };
