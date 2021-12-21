@@ -23,7 +23,7 @@ const KAKAO_CLIENT_ID = 'dca677be4251f006b061960a3063b1f4';
 const KAKAO_AUTHORIZE_URI = 'https://kauth.kakao.com/oauth/authorize';
 const KAKAO_QUERY_STRING = qs.stringify({
   client_id: KAKAO_CLIENT_ID,
-  redirect_uri: 'http://localhost:3000', // 카카오만 여기로 부르는 이유가 있나 ?
+  redirect_uri: 'https://d1839m99iakp36.cloudfront.net',
   response_type: 'code'
 });
 

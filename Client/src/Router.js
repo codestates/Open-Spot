@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,16 +16,22 @@ import MapGuest from './Pages/MapGuest.js';
 import MapUser from './Pages/MapUser.js';
 
 // for redux
-import { selectLoginOrSignin, getUserInfo } from './Actions/index.js';
+import {
+  selectLoginOrSignin,
+  getUserInfo,
+  selectSocialLoginBtn
+} from './Actions/index.js';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 
 const Routers = () => {
   const state1 = useSelector(state => state.pageReducer);
   const state2 = useSelector(state => state.userStateReducer);
-  const { isLoginTab } = state1;
+  const { isLoginTab, socialLoginBtn } = state1;
   const { userInfo } = state2;
   const dispatch = useDispatch();
 
+  // test
   console.log(userInfo);
 
   const handleIsLoginTab = (bool) => {
@@ -35,12 +42,94 @@ const Routers = () => {
     dispatch(getUserInfo(object));
   };
 
+  const handleSocialLoginBtn = (object) => {
+    dispatch(selectSocialLoginBtn(object));
+  };
+
+  const getToken = async (authorizationCode, socialButtonName) => {
+    switch (socialButtonName) {
+      case 'google':
+        await axios({
+          url: 'https://api.open-spot.tk/auth/google',
+          method: 'post',
+          data: { authorizationCode }
+        }).then((res) => {
+          const userInfo = {
+            isLogin: true,
+            role: res.body.role,
+            name: res.body.userName,
+            email: res.body.email,
+            profile: res.body.profile
+          };
+          handleUserInfo(userInfo);
+        }).catch((err) => {
+          console.log(err);
+          handleUserInfo({ isLogin: false });
+        });
+        break;
+      case 'naver':
+        await axios({
+          url: 'https://api.open-spot.tk/auth/naver',
+          method: 'post',
+          data: { authorizationCode }
+        }).then((res) => {
+          const userInfo = {
+            isLogin: true,
+            role: res.body.role,
+            name: res.body.userName,
+            email: res.body.email,
+            profile: res.body.profile
+          };
+          handleUserInfo(userInfo);
+        }).catch((err) => {
+          console.log(err);
+          handleUserInfo({ isLogin: false });
+        });
+        break;
+      case 'kakao':
+        await axios({
+          url: 'https://api.open-spot.tk/auth/kakao',
+          method: 'post',
+          data: { authorizationCode }
+        }).then((res) => {
+          const userInfo = {
+            isLogin: true,
+            role: res.body.role,
+            name: res.body.userName,
+            email: res.body.email,
+            profile: res.body.profile
+          };
+          handleUserInfo(userInfo);
+        }).catch((err) => {
+          console.log(err);
+          handleUserInfo({ isLogin: false });
+        });
+        break;
+      default:
+        console.log('Hello World');
+    }
+  };
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    // console.log(`지금 url의 값은 ${url}`);
+    const authorizationCode = url.searchParams.get('code');
+    // console.log(`authorizationCode 값은 ${authorizationCode}`);
+    if (authorizationCode) {
+      for (const btn in socialLoginBtn) {
+        if (socialLoginBtn[btn] === true) {
+          getToken(authorizationCode, btn);
+        };
+      };
+    }
+  });
+
   return (
     <Router>
       <Routes>
         <Route exact={true} path='/' element={<Home handleIsLoginTab={handleIsLoginTab} isLogin={userInfo.isLogin} />} />
         <Route path='/switch' element={<Switch isLoginTab={isLoginTab} />} />
-        <Route path='/client/login' element={<ClientLogin handleUserInfo={handleUserInfo} userInfo={userInfo} />} />
+        <Route path='/client/login' element={<ClientLogin handleUserInfo={handleUserInfo} handleSocialLoginBtn={handleSocialLoginBtn} userInfo={userInfo} />} />
         <Route path='/business/login' element={<BusinessLogin handleUserInfo={handleUserInfo} />} />
         <Route path='/client/signin' element={<ClientSignin handleUserInfo={handleUserInfo} />} />
         <Route path='/business/signin' element={<BusinessSignin handleUserInfo={handleUserInfo} />} />
