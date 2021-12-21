@@ -115,7 +115,7 @@ module.exports = {
         grant_type: 'authorization_code',
         client_id: clientID,
         client_secret: clientSecret,
-        redirect_uri: 'http://localhost:3000',
+        redirect_uri: 'https://d1839m99iakp36.cloudfront.net',
         code: req.body.authorizationCode
       },
       headers: {
