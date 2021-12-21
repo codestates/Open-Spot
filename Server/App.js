@@ -4,12 +4,14 @@ const cors = require('cors');
 const markersRouter = require('./Routes/Markers');
 const authRouter = require('./Routes/Auth');
 const usersRouter = require('./Routes/Users');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = 80;
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({

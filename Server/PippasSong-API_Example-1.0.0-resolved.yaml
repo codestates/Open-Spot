@@ -105,7 +105,7 @@ paths:
                     example: 201
                   role:
                     type: string
-                    example: general
+                    example: general / business
         "409": 
           description: conflict
           content: 
@@ -141,20 +141,15 @@ paths:
                   type: string
                   example: password
                   required: true
-                phoneNum:
-                  description: 하이픈을 제외한 전화 번호
-                  type: string
-                  example: 01012345678
-                  required: true
                 userName:
-                  description: 성명
+                  description: 닉네임
                   type: string
                   example: 김사과
                   required: true
                 companyNumbers:
                   description: 사업자 등록번호
                   example: '0001122222'
-                  type: integer
+                  type: string
     patch:
       tags:
       - users
@@ -233,11 +228,11 @@ paths:
             application/json:
               schema:
                properties:
-  /users/markers:
+  /users/general-markers:
     get:
       tags:
       - users
-      description: 유저의 토큰을 이용해, 해당 유저 아이디가 저장한 마커들을 조회한다.
+      description: 유저의 토큰을 이용해, 유저가 저장한 마커들을 조회한다.
       responses:
         "200":
           description: ok
@@ -245,10 +240,70 @@ paths:
             application/json:
               schema:
                properties:
+                code:
+                  type: number
+                  example: 200
                 markers:
                   type: array
                   items:
                     $ref: '#/components/schemas/Marker'
+        "401":
+          description: 토큰을 받지 못하거나 유효성 검사에 실패했을 때
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 401
+                error:
+                  type: string
+                  example: unauthorized
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+  /users/business-markers:
+    get:
+      tags:
+      - users
+      description: 유저의 토큰을 이용해, 사업자가 등록한 마커들을 조회한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 200
+                markers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Marker'
+        "401":
+          description: 토큰을 받지 못하거나 유효성 검사에 실패했을 때
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 401
+                error:
+                  type: string
+                  example: unauthorized
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
   /auth/naver:
     post:
       tags:
@@ -274,7 +329,7 @@ paths:
     post:
       tags:
       - auth
-      description: 일반 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 role을 반환한다.
+      description: 일반 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
       responses:
         "200":
           description: ok
@@ -285,11 +340,17 @@ paths:
                   code:
                     type: integer
                     example: 200
+                  userName:
+                    type: string
+                    example: 귤
                   role:
                     type: string
-                    example: general
+                    example: general or business
+                  email:
+                    type: string
+                    example: abc@naver.com
         "401":
-          description: unauthorized
+          description: unauthorized. 잘못된 비밀번호를 받았을 경우
           content:
             application/json:
               schema:
@@ -369,29 +430,51 @@ components:
       type: object
       properties:
         id:
+          type: string
+          description: 사업자 등록번호
+          example: '0001122222'
+        userId:
           type: integer
-          description: ObjectId
+          description: 마커를 추가한 유저의 아이디
+          example: 18
         storeName:
           type: string
           description: 가게명
+          example: 멋진 가게명
         address:
           type: string
           description: 가게 주소
+          example: 서울시 성북구
         callNum:
           type: string
           description: 전화번호
+          example: 010-1234-5678
         tagName:
           type: string
           description: 태그명
+          example: 카페
         description:
           type: string
           description: 가게 소개
+          example: 주택 개조 카페
         latitude:
           type: number
           description: 위도
+          example: 33.0000000000
         longitude:
           type: number
           description: 경도
+          example: 126.0000000000
+        createdAt:
+          type: string
+          format: date-time
+          description: 생성일자
+          example: 2021-12-16 13:28:26
+        updatedAt:
+          type: string
+          format: date-time
+          description: 갱신일자
+          example: 2021-12-16 13:28:26
     ServerErr:
       type: object
       properties:
