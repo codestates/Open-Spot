@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
     // }
     // 2번째 인자는 별칭일 수 있다. 확실한 건 optional하다.
     static associate (models) {
-      // define association here
       models.User.hasMany(models.Marker);
       models.User.hasMany(models.UsersMarkers);
     }

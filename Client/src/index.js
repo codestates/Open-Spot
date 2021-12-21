@@ -5,11 +5,27 @@ import store from './Store/Store.js';
 import { Provider } from 'react-redux';
 
 // test
-// import Router from './Router.js';
+import Router from './Router.js';
+// import MapUser from './Pages/MapUser.js';
+// import MapGuest from './Pages/MapGuest.js';
+
+// const bool = true;
+
+// import reportWebVitals from './reportWebVitals';
+// import Login from './Login.js';
+import './AllMyPage.css';
+// import ClientMyPage from './ClientMyPage.js';
+// import ClientFavoriteList from './ClientFavoriteList.js';
+// import BusinessFavoriteList from './BusinessFavoriteList.js';
+// import BusinessMyPage from './BusinessMyPage.js';
+// import BusinessMyStore from './BusinessMyStore.js';
+// import MyPageRouter from './MyPageRouter.js';
+// import ClientMyPageRouter from './ClientMyPageRouter.js';
 
 ReactDOM.render(
-  <Provider store={store}>
-
+  <Provider store={ store }>
+    {/* {bool ? <MapGuest /> : <MapUser />} */}
+    <Router />
   </Provider>,
   document.getElementById('root')
 );

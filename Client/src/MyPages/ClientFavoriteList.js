@@ -1,5 +1,6 @@
-import './AllMyPage.css';
+import './../AllMyPage.css';
 import React from 'react';
+import ClientSiderbar from '../MyPageComponents/ClientSiderbar';
 
 function ClientFavoriteList () {
   return (
@@ -15,14 +16,7 @@ function ClientFavoriteList () {
         </div>
       </div>
       <div className="second-big-box">
-        <div className="sider-bar">
-          <button className="client-info-bt">
-            <div className="client-info">회원정보</div>
-          </button>
-          <button className="favorite-li-bt">
-            <div className="favorite-li">나의 보관함</div>
-          </button>
-        </div>
+        <ClientSiderbar />
         <div className="favorite-inner-box">
           <div className="store-info">
             <div className="store-img-box">
