@@ -32,3 +32,8 @@
   border-style: none;
   cursor: pointer;
 }
+.change-tab-design {
+  background-color: rgba(82, 82, 82, 0.8);
+  padding-top: 3px;
+  border-radius: 5px;
+}

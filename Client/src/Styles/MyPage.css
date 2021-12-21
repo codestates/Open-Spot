@@ -1,23 +1,18 @@
-
-.entire-box{
+.entire-box {
   width: 100%;
-  height: 1500px;
+  height: auto;
+}
+.intro-bg {
+  width: 100vw;
+  height: 331.71px;
+  position: relative;
+  background: url(../../public/Img/StoreIMG.jpg) no-repeat center center rgba(82, 82, 82, 0.5);
 }
 
 .second-big-box{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  width: 100%;
+  width: 100vw;
   height: 100%;
-  border-color: 1.5px solid rgb(240, 240, 240, 0.6);
-}
-
-
-.intro-bg{
-  background-image: url("../../public/Img/BackgroundImage.png");
-  width: 100%;
-  height: 331.71px;
+  display: flex;
 }
 
 .header{
@@ -54,22 +49,42 @@
   cursor: pointer;
   color: rgb(240, 240, 240);
 }
-
-
+/*MyPage SideBar 컴포넌트 css*/
 .sider-bar{
-  display: flex;
-  flex-direction: column;
   width: 250px;
-  border-right: 1.5px solid rgb(240, 240, 240, 0.6);
+  height: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  border-right: 1px solid rgba(82, 82, 82, 0.5);
+}
+
+#mypage-vertical-line-wow {
+  width: 1px;
+  height: 65vh;
 }
 
 .client-info-bt{
   width: 250px;
   height: 67px;
-  background-color: #fff;
-  border-bottom: #fff;
-  border-right: #fff;
-  border-top: #fff;
+  border: none;
+  cursor: pointer;
+}
+.favorite-li-bt{
+  width: 250px;
+  height: 67px;
+  border: none;
+  cursor: pointer;
+}
+.my-store-bt{
+  width: 250px;
+  height: 67px;
+  border: none;
+  cursor: pointer;
+}
+.my-store-bt{
+  width: 250px;
+  height: 67px;
+  border: none;
   cursor: pointer;
 }
 
@@ -79,34 +94,12 @@
   font-size: 20px;
   font-weight: 300;
 }
-
-.favorite-li-bt{
-  width: 250px;
-  height: 67px;
-  background-color: #fff;
-  border-top: #fff;
-  border-bottom: #fff;
-  border-right: #fff;
-  cursor: pointer;
-}
-
 .favorite-li{
   text-align: center;
   /* color: #000; */
   font-size: 20px;
   font-weight: 300;
 }
-
-.my-store-bt{
-  width: 250px;
-  height: 67px;
-  background-color: #fff;
-  border-bottom: #fff;
-  border-right: #fff;
-  border-top: #fff;
-  cursor: pointer;
-}
-
 .my-store-li{
   text-align: center;
   /* color: #000; */
@@ -116,106 +109,132 @@
 
 /* 여기까지 공통으로 있는거 */
 
-/* 여기부턴 가게 정보 공통으로 있는거 */
+/*MyPageStoreCard*/
+#store-card-container {
+  width: 300px;
+  height: 400px;
+  border: 2px solid rgba(82, 82, 82, 0.2);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3%;
+}
+
 .store-info{
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  border: 1.5px solid #000;
-  width: 237px;
-  height: 308px;
+  flex-flow: column wrap;
+  align-content: center;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 }
 
 .store-img-box{
-  width: 237px;
-  height: 154px;
-  background-image: url("../../public/Img/Buger.png");
+  width: 100%;
+  height: 50%;
+  background-color: pink;
+  /*왜 어제부터 img src 파일 경로가 안먹히냐*/
 }
 
-.store-name{
-  width: 237x;
-  height: 30px;
-  text-align: center;
-  margin: 2%;
-  /* font-weight: bolder; */
+.store-name-main{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: rgba(41, 41, 41);
 }
 
 .store-detail-info{
+  width: 100%;
+  height: auto;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-flow: column wrap;
+}
+.detail-info {
+  margin-left: 27px;
+}
+.store-info-style-sheet {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  font-size: 0.85em;
+  color: rgba(82, 82, 82, 0.95);
+}
+.store-info-title {
+  width: 70px;
+  font-weight: 600;
+  border-right: 1.5px solid rgba(82, 82, 82, 0.75);
+}
+.store-info-property {
+  margin-left: 13px;
+}
+.store-reaction-box {
+  width: 100%;
+  height: 10px;
+  margin-top: 19px;
+  display: flex;
+  align-items: center;
+}
+#store-info-like {
+  color: rgba(211, 67, 67, 0.55);
+  margin-left: 30px;
+}
+.store-info-count {
+  color: rgba(211, 67, 67, 0.85);
+  margin-left: 5px;
+  font-size: 0.95em;
+  font-weight: 800;
 }
 
-.detail-info{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.reaction-box{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-
-.count{
-  /* font-weight: bold; */
-  margin-left: 10px;
-}
 
 /* 여기까지 */
 
-/* 여기는 BusinessFavoriteList inner box */
+/* BusinessFavoriteList inner box */
+.favorite-list-container {
+  width: 100%;
+  height: 100%;
+  min-width: auto;
+  padding: 5% 0;
+}
+#favorite-list-get-center {
+  margin-left: 13.5%;
+}
 .favorite-inner-box{
   width: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+  flex-flow: row wrap;
   margin-bottom: 60%;
 }
-
-/*  */
-
-/* 여기는 회원정보 inner box */
-
+/*회원정보 inner box*/
 .my-page-inner-box{
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
+  justify-content: center;
   align-items: center;
+  margin-top: 8%;
 }
-
-/*  */
-
-/* 여기는 회원정보 */
+/*회원정보 박스*/
 .client-info-box{
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   align-items: center;
-  width: 600px;
+  width: 500px;
   height: 200px;
-  margin-top: 10%;
 }
 
 .client-img-box{
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  display: flex;
+  align-items: center;
 }
 
 .client-img{
-  background-image: url("../../public/Img/profile.png");
-  width: 128px;
-  height: 120px;
-  margin: 40px auto 150px auto;
   cursor: pointer;
 }
 
@@ -227,20 +246,24 @@
 
 .name-box{
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: center;
   width: calc(600px - 200px);
-  margin-top: 30px;
+  margin: 10px;
 }
 
 .name{
-  width: 80px;
-  border-right: 1.5px solid rgb(240, 240, 240, 0.6);
+  width: 100px;
+  font-size: 0.9em;
+  margin-top: 6px;
+  border-right: 1.1px solid rgba(82, 82, 82, 0.3);
 }
 
 .name-area{
   margin-left: 50px;
+  margin-top: 5px;
+}
+.mypage-userinfo-input-wow {
+  font-size: 0.95em;
 }
 
 /* .email-box{
@@ -275,7 +298,7 @@
   margin-top: 10px;
   margin-right: 20px;
   border-radius: 5px;
-  background-color: rgb(73, 70, 70);
+  background-color: rgba(37, 37, 37, 0.7);
   border: 1.5px solid rgb(240, 240, 240, 0.6);
   cursor: pointer;
 }
@@ -291,8 +314,8 @@
   margin-top: 10px;
   margin-right: 20px;
   border-radius: 5px;
-  background-color: rgb(251, 73, 73);
-  border: rgb(251, 73, 73);
+  background-color: rgb(206, 58, 58);
+  border: rgb(206, 58, 58);
   cursor: pointer;
 }
 
@@ -318,23 +341,25 @@
 /* 여기부턴 BusinessMyStore  */
 
 .register-bt{
-  width: 520px;
-  height: 30px;
-  background-color: rgb(73, 70, 70);
+  width: 300px;
+  height: 34px;
+  background-color: rgb(73, 70, 70, 0.92);
   border: 1.5px solid rgb(240, 240, 240, 0.6);
-  margin-top: 7%;
+  border-radius: 7px;
+  margin-top: 30%;
+  margin-bottom: 10%;
 }
 
 .change{
   color: rgb(240, 240, 240);
-  /* font-weight: bolder; */
+  font-weight: 700;
+  font-size: 1.1em;
 }
 
 .aside{
   width: 70%;
   height: 5px;
-  border: 1px solid #000;
-  border-color: #fff #fff #000 #fff;
+  border-bottom: 1px solid rgb(73, 70, 70, 0.32);
   margin-top: 5%;
 }
 

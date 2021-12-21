@@ -14,6 +14,11 @@ import BusinessLogin from './Pages/BusinessLogin.js';
 import BusinessSignin from './Pages/BusinessSignin.js';
 import MapGuest from './Pages/MapGuest.js';
 import MapUser from './Pages/MapUser.js';
+import ClientUserInfo from './Pages/ClientUserInfo.js';
+import ClientFavoriteList from './Pages/ClientFavoriteList.js';
+import BusinessFavoriteList from './Pages/BusinessFavoriteList.js';
+import BusinessUserInfo from './Pages/BusinessUserInfo.js';
+import BusinessMyStore from './Pages/BusinessMyStore.js';
 
 // for redux
 import {
@@ -46,6 +51,7 @@ const Routers = () => {
     dispatch(selectSocialLoginBtn(object));
   };
 
+  // OAuth
   const getToken = async (authorizationCode, socialButtonName) => {
     switch (socialButtonName) {
       case 'google':
@@ -56,10 +62,10 @@ const Routers = () => {
         }).then((res) => {
           const userInfo = {
             isLogin: true,
-            role: res.body.role,
-            name: res.body.userName,
-            email: res.body.email,
-            profile: res.body.profile
+            role: res.data.role,
+            name: res.data.userName,
+            email: res.data.email,
+            profile: res.data.profile
           };
           handleUserInfo(userInfo);
         }).catch((err) => {
@@ -75,10 +81,10 @@ const Routers = () => {
         }).then((res) => {
           const userInfo = {
             isLogin: true,
-            role: res.body.role,
-            name: res.body.userName,
-            email: res.body.email,
-            profile: res.body.profile
+            role: res.data.role,
+            name: res.data.userName,
+            email: res.data.email,
+            profile: res.data.profile
           };
           handleUserInfo(userInfo);
         }).catch((err) => {
@@ -94,10 +100,10 @@ const Routers = () => {
         }).then((res) => {
           const userInfo = {
             isLogin: true,
-            role: res.body.role,
-            name: res.body.userName,
-            email: res.body.email,
-            profile: res.body.profile
+            role: res.data.role,
+            name: res.data.userName,
+            email: res.data.email,
+            profile: res.data.profile
           };
           handleUserInfo(userInfo);
         }).catch((err) => {
@@ -127,14 +133,27 @@ const Routers = () => {
   return (
     <Router>
       <Routes>
-        <Route exact={true} path='/' element={<Home handleIsLoginTab={handleIsLoginTab} isLogin={userInfo.isLogin} />} />
-        <Route path='/switch' element={<Switch isLoginTab={isLoginTab} />} />
-        <Route path='/client/login' element={<ClientLogin handleUserInfo={handleUserInfo} handleSocialLoginBtn={handleSocialLoginBtn} userInfo={userInfo} />} />
-        <Route path='/business/login' element={<BusinessLogin handleUserInfo={handleUserInfo} />} />
-        <Route path='/client/signin' element={<ClientSignin handleUserInfo={handleUserInfo} />} />
-        <Route path='/business/signin' element={<BusinessSignin handleUserInfo={handleUserInfo} />} />
-        <Route path='/map/guest' element={<MapGuest />} />
-        <Route path='/map/user' element={<MapUser />} />
+        <Route element={ <Home handleIsLoginTab={ handleIsLoginTab } userInfo={ userInfo } /> } exact path="/" />
+        <Route element={ <Switch isLoginTab={ isLoginTab } /> } path="/switch" />
+        <Route element={ <ClientLogin handleSocialLoginBtn={ handleSocialLoginBtn } handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } path="/client/login" />
+        <Route element={ <BusinessLogin handleUserInfo={ handleUserInfo } /> } path="/business/login" />
+        <Route element={ <ClientSignin handleUserInfo={ handleUserInfo } /> } path="/client/signin" />
+        <Route element={ <BusinessSignin handleUserInfo={ handleUserInfo } /> } path="/business/signin" />
+        <Route element={ <MapGuest /> } path="/map/guest" />
+        <Route element={ <MapUser /> } path="/map/user" />
+        <Route
+          element={ <ClientUserInfo /> } exact path="/client/mypage"
+          userInfo={ userInfo }
+        />
+        <Route element={ <ClientUserInfo /> } path="/client/userinfo" userInfo={ userInfo } />
+        <Route element={ <ClientFavoriteList /> } path="/client/favoritelist" />
+        <Route
+          element={ <BusinessUserInfo /> } exact path="/business/mypage"
+          userInfo={ userInfo }
+        />
+        <Route element={ <BusinessUserInfo /> } path="/business/userinfo" userInfo={ userInfo } />
+        <Route element={ <BusinessFavoriteList /> } path="/business/favoritelist" />
+        <Route element={ <BusinessMyStore /> } path="/business/mystore" />
       </Routes>
     </Router>
   );

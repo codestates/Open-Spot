@@ -31,12 +31,19 @@ const BusinessLogin = ({ handleUserInfo }) => {
 
   const getLogin = (payload) => {
     axios({
-      url: 'https://api.open-spot.tk/auth/local',
+      url: 'https://api.open-spot.tk/local/business',
       method: 'post',
       data: payload
-    }).then((data) => {
-      console.log(data); // 받아오는 response.body로 handleUserInfo 업데이트시키기
-
+    }).then((res) => {
+      console.log(res);
+      const userInfo = {
+        isLogin: true,
+        role: res.data.role,
+        name: res.data.userName,
+        email: res.data.email,
+        profile: res.data.profile
+      };
+      handleUserInfo(userInfo);
       setIsNotMatch(false);
       navigate('/');
     })
@@ -61,12 +68,12 @@ const BusinessLogin = ({ handleUserInfo }) => {
               LOG IN
             </p>
             <div id="input-container-login">
-              <input className="base-input" placeholder='이메일' onChange={handleEmail} />
-              <input className="base-input" placeholder='비밀번호' onChange={handlePassword} />
+              <input className="base-input" onChange={ handleEmail } placeholder="이메일" />
+              <input className="base-input" onChange={ handlePassword } placeholder="비밀번호" />
               <div className="verification">
                 {isNotMatch ? '이메일과 비밀번호가 일치하지 않습니다' : null}
               </div>
-              <button className="base-button" onClick={() => getLogin(loginData)} >로그인</button>
+              <button className="base-button" onClick={ () => getLogin(loginData) } >로그인</button>
             </div>
           </div>
         </div>
