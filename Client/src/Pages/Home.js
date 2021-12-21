@@ -19,10 +19,10 @@ const User = () => (
 const Guest = ({ handleIsLoginTab }) => (
   <>
     <Link to="/switch">
-      <button className="tab" onClick={ () => handleIsLoginTab(true) }>LOG IN</button>
+      <button className="tab" onClick={() => handleIsLoginTab(true)}>LOG IN</button>
     </Link>
     <Link to="/switch">
-      <button className="tab" onClick={ () => handleIsLoginTab(false) }>SIGN IN</button>
+      <button className="tab" onClick={() => handleIsLoginTab(false)}>SIGN IN</button>
     </Link>
   </>
 );
@@ -56,7 +56,7 @@ const MapButtonGuest = () => (
   </Link>
 );
 
-const Home = ({ handleIsLoginTab, isUser }) => (
+const Home = ({ handleIsLoginTab, isLogin }) => (
   <>
     <div className="entire-container">
       <div className="main-section">
@@ -66,19 +66,19 @@ const Home = ({ handleIsLoginTab, isUser }) => (
               <div id="logo" />
             </Link>
             <div id="nav-body">
-              {isUser ? <MapTabUser /> : <MapTabGuest />}
+              {isLogin ? <MapTabUser /> : <MapTabGuest />}
               <div id="vertical-hr"></div>
               {/* 사업자와 일반인을 구분하는 역할 필요 */}
-              {isUser ? <User /> : <Guest handleIsLoginTab={ handleIsLoginTab } />}
+              {isLogin ? <User role="역할구분" /> : <Guest handleIsLoginTab={handleIsLoginTab} />}
             </div>
           </div>
         </header>
         <div className="main-container">
           <p id="main-title">새롭게 떠오르는.<br />빠르게 알고싶은.</p>
-          {isUser ? <MapButtonUser /> : <MapButtonGuest />}
+          {isLogin ? <MapButtonUser /> : <MapButtonGuest />}
         </div>
         <div className="down-button-container">
-          <i className="fas fa-chevron-down" id="down-icon"></i>
+          <i id="down-icon" className="fas fa-chevron-down"></i>
           <p id="down-text">Scroll<br />Down</p>
         </div>
       </div>

@@ -15,33 +15,37 @@ import MapGuest from './Pages/MapGuest.js';
 import MapUser from './Pages/MapUser.js';
 
 // for redux
-import { selectLoginOrSignin, isUserOrGuest } from './Actions/index.js';
+import { selectLoginOrSignin, getUserInfo } from './Actions/index.js';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Routers = () => {
-  const state = useSelector(state => state.pageReducer);
-  const { isLoginTab, isUser } = state;
+  const state1 = useSelector(state => state.pageReducer);
+  const state2 = useSelector(state => state.userStateReducer);
+  const { isLoginTab } = state1;
+  const { userInfo } = state2;
   const dispatch = useDispatch();
+
+  console.log(userInfo);
 
   const handleIsLoginTab = (bool) => {
     dispatch(selectLoginOrSignin(bool));
   };
 
-  const handleIsUser = (bool) => {
-    dispatch(isUserOrGuest(bool));
+  const handleUserInfo = (object) => {
+    dispatch(getUserInfo(object));
   };
+
   return (
     <Router>
       <Routes>
-        <Route element={ <Home handleIsLoginTab={ handleIsLoginTab } isUser={ isUser } /> } exact path="/" />
-        <Route element={ <Switch isLoginTab={ isLoginTab } /> } path="/switch" />
-        <Route element={ <ClientLogin handleIsUser={ handleIsUser } /> } path="/client/login" />
-        {/* 여기서 리다이렉트 시키기 */}
-        <Route element={ <BusinessLogin handleIsUser={ handleIsUser } /> } path="/business/login" />
-        <Route element={ <ClientSignin handleIsUser={ handleIsUser } /> } path="/client/signin" />
-        <Route element={ <BusinessSignin handleIsUser={ handleIsUser } /> } path="/business/signin" />
-        <Route element={ <MapGuest /> } path="/map/guest" />
-        <Route element={ <MapUser /> } path="/map/user" />
+        <Route exact={true} path='/' element={<Home handleIsLoginTab={handleIsLoginTab} isLogin={userInfo.isLogin} />} />
+        <Route path='/switch' element={<Switch isLoginTab={isLoginTab} />} />
+        <Route path='/client/login' element={<ClientLogin handleUserInfo={handleUserInfo} userInfo={userInfo} />} />
+        <Route path='/business/login' element={<BusinessLogin handleUserInfo={handleUserInfo} />} />
+        <Route path='/client/signin' element={<ClientSignin handleUserInfo={handleUserInfo} />} />
+        <Route path='/business/signin' element={<BusinessSignin handleUserInfo={handleUserInfo} />} />
+        <Route path='/map/guest' element={<MapGuest />} />
+        <Route path='/map/user' element={<MapUser />} />
       </Routes>
     </Router>
   );
