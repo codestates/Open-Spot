@@ -40,7 +40,7 @@ module.exports = {
           userName: userName,
           email: email,
           phoneNum: phoneNum,
-          role: 'general',
+          role: 'business',
           oauthLogin: false,
           saltedPassword: saltedPassword,
           salt: salt
