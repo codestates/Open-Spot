@@ -1,12 +1,13 @@
-import './BusinessMyPage.css';
+import './../AllMyPage.css';
 import React from 'react';
+import ClientSiderbar from '../MyPageComponents/ClientSiderbar';
 
-function BusinessMyPage () {
+function ClientMyPage () {
   return (
     <div className="entire-box">
       <div className="intro-bg">
         <div className="header">
-          <div className="logo">로고</div>
+          <div id="logo" />
           <ul className="nav">
             <li><a href="www.naver.com">MAP</a></li>
             <li><a href="www.naver.com">MYPAGE</a></li>
@@ -15,18 +16,8 @@ function BusinessMyPage () {
         </div>
       </div>
       <div className="second-big-box">
-        <div className="sider-bar">
-          <button className="client-info-bt">
-            <div className="client-info">회원정보</div>
-          </button>
-          <button className="favorite-li-bt">
-            <div className="favorite-li">나의 보관함</div>
-          </button>
-          <button className="my-store-bt">
-            <div className="my-store-li">나의 가게함</div>
-          </button>
-        </div>
-        <div className="inner-box">
+        <ClientSiderbar />
+        <div className="my-page-inner-box">
           <div className="client-info-box">
             <div className="client-img-box">
               <div className="client-img"></div>
@@ -77,4 +68,5 @@ function BusinessMyPage () {
     </div>
   );
 }
-export default BusinessMyPage;
+
+export default ClientMyPage;
