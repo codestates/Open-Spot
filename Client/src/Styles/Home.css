@@ -28,7 +28,7 @@
   align-items: center;
 }
 /*map 버튼*/
-.map-button {
+#home-map-button {
   width: 380px;
   height: 35px;
   border-radius: 4px;

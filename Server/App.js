@@ -25,7 +25,6 @@ app.get('/', (_, res) => res.send('Hello world'));
 app.use('/markers', markersRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
-app.use('/auth', authRouter);
 
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
