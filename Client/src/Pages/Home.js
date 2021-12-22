@@ -68,6 +68,9 @@ const MapButtonGuest = () => (
   </Link>
 );
 
+
+
+
 function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
   return (
     <div className="entire-container">
@@ -200,14 +203,16 @@ function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
       <footer>
         {/* 웹 로고와 팀원들 깃헙 링크 연결 */}
         <div className="open-spot-team">
-          <div className="logo-box">
-            <div className="open-spot-logo"></div>
-          </div>
+          <Link to="/">
+            <div className="logo-box">
+              <div className="open-spot-logo"></div>
+            </div>
+          </Link>
           <div className="with-people">
-            <a id="our-worklog">김동운</a>
-            <a id="our-worklog">양재영</a>
-            <a id="our-worklog">이승연</a>
-            <a id="our-worklog">정채련</a>
+            <a href={ 'https://github.com/jyang510' } id="our-worklog">김동운</a>
+            <a href={ 'https://github.com/jyang510' } id="our-worklog">양재영</a>
+            <a href={ 'https://github.com/jyang510' } id="our-worklog">이승연</a>
+            <a href={ 'https://github.com/Brian-free1' } id="our-worklog">정채련</a>
           </div>
         </div>
       </footer>
