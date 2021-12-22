@@ -2,8 +2,8 @@ import * as React from 'react';
 import './../App.css';
 import './../Styles/Map.css';
 
-const MapGuestSideBarPin = (props) => {
-  const { storeName, address, callNum, tagName, description, createdAt } = props.currentMarker;
+const MapUserSideBarPin = (props) => {
+  const { storeName, address, callNum, tagName, description, createdAt, parking, booking } = props.currentMarker;
 
   // 마커가 추가된 뒤, 경과한 시간을 계산
   function getUpdateDate (createdAt) {
@@ -11,7 +11,6 @@ const MapGuestSideBarPin = (props) => {
     const now = new Date();
     return Math.round((now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
   }
-
   const updatedDate = getUpdateDate(createdAt);
   return (
     <div id="map-background">
@@ -32,11 +31,12 @@ const MapGuestSideBarPin = (props) => {
               <div id="map-text">
                 {`위치: ${address}`} <br />
                 {`전화: ${callNum}`} <br />
-                예약: 불가능 <br />
-                주차: 가능
+                예약: {booking === 1 ? '가능' : '불가능'} <br />
+                주차: {parking === 1 ? '가능' : '불가능'}
               </div>
               <div className="map-line" />
               <button className="map-button">내 목록에 담기</button>
+              <button className="map-button">마이페이지 이동</button>
             </div>
           </div>
         </div>
@@ -45,4 +45,4 @@ const MapGuestSideBarPin = (props) => {
   );
 };
 
-export default MapGuestSideBarPin;
+export default MapUserSideBarPin;

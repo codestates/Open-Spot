@@ -2,13 +2,13 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import './../App.css';
 import './../Styles/Map.css';
-import MapGuestSideBar from '../Components/MapGuestSideBar.js';
-import MapGuestSideBarPin from '../Components/MapGuestSideBarPin.js';
+import MapUserSideBar from '../Components/MapUserSideBar.js';
+import MapUserSideBarPin from '../Components/MapUserSideBarPin.js';
 import axios from 'axios';
 
 const { kakao } = window;
 
-const MapGuest = () => {
+const MapUser = () => {
   const [isClicked, setIsClicked] = useState(false);
   // const [markersData, setMarkersData] = useState();
   const [currentMarker, setCurrentMarker] = useState();
@@ -34,7 +34,7 @@ const MapGuest = () => {
         /* 지도에 핀 표시하는 로직 */
         // 지도 Pin HTML
         // 마커들의 위치 정보들
-        const positions = getPositions(response.data.markers);
+        const positions = getPositions(response.data);
 
         // customOverlay.setMap(map);
         for (let i = 0; i < positions.length; i++) {
@@ -43,7 +43,7 @@ const MapGuest = () => {
           content.className = 'fas fa-map-marker-alt fa-3x';
           content.style.cssText = 'color:rgba(216, 129, 129, 0.99)';
           content.onclick = function () {
-            setCurrentMarker(response.data.markers[i]);
+            setCurrentMarker(response.data[i]);
             setIsClicked(true);
           };
 
@@ -67,11 +67,11 @@ const MapGuest = () => {
   return (
     <>
       <div id="gather-map-sidebar">
-        {isClicked ? <MapGuestSideBarPin currentMarker={ currentMarker } /> : <MapGuestSideBar /> }
+        {isClicked ? <MapUserSideBarPin currentMarker={ currentMarker } /> : <MapUserSideBar /> }
         <div id="map"></div>
       </div>
     </>
   );
 };
 
-export default MapGuest;
+export default MapUser;
