@@ -227,12 +227,12 @@ module.exports = {
     verifyToken(token, process.env.ACCESS_SECRET)
       .catch(err => {
         console.log(err);
-        res.cookie('accessToken', '', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
+        res.cookie('accessToken', 'success', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
         return res.status(200).json({ code: 200, message: 'expired token' });
       });
 
     // 쿠키에 빈 문자열 할당
-    res.cookie('accessToken', '', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
+    res.cookie('accessToken', 'success', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
     res.status(200).json({ code: 200 });
   }
 };
