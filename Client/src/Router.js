@@ -37,7 +37,6 @@ const Routers = () => {
   const dispatch = useDispatch();
 
   // test
-  console.log(userInfo);
 
   const handleIsLoginTab = (bool) => {
     dispatch(selectLoginOrSignin(bool));
