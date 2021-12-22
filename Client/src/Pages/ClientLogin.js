@@ -34,9 +34,10 @@ const ClientLogin = ({ handleUserInfo, handleSocialLoginBtn }) => {
 
   const getLogin = (payload) => {
     axios({
-      url: 'https://api.open-spot.tk/local/general',
+      url: 'https://api.open-spot.tk/auth/local-general',
       method: 'post',
-      data: payload
+      data: payload,
+      withCredentials: true
     }).then((res) => {
       console.log(res);
       const userInfo = {

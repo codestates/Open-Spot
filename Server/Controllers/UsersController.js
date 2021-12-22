@@ -67,7 +67,7 @@ module.exports = {
     const decoded = await verifyToken(token, process.env.ACCESS_SECRET)
       .catch(err => {
         console.log(err);
-        res.cookie('accessToken', '');
+        res.cookie('accessToken', '', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
         return res.status(401).json({ code: 401, error: 'expired token' });
       });
 
@@ -107,7 +107,7 @@ module.exports = {
     const decoded = await verifyToken(token, process.env.ACCESS_SECRET)
       .catch(err => {
         console.log(err);
-        res.cookie('accessToken', '');
+        res.cookie('accessToken', '', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
         return res.status(401).json({ code: 401, message: 'unauthorized' });
       });
 
@@ -154,7 +154,7 @@ module.exports = {
     const decoded = await verifyToken(token, process.env.ACCESS_SECRET)
       .catch(err => {
         console.log(err);
-        res.cookie('accessToken', '');
+        res.cookie('accessToken', '', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
         return res.status(401).json({ code: 401, message: 'unauthorized' });
       });
 
@@ -191,7 +191,7 @@ module.exports = {
     const decoded = await verifyToken(token, process.env.ACCESS_SECRET)
       .catch(err => {
         console.log(err);
-        res.cookie('accessToken', '');
+        res.cookie('accessToken', '', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
         return res.status(401).json({ code: 401, error: 'expired token' });
       });
 

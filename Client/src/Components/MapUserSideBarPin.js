@@ -2,9 +2,10 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './../App.css';
 import './../Styles/Map.css';
+import axios from 'axios';
 
 const MapUserSideBarPin = (props) => {
-  const { storeName, address, callNum, tagName, description, createdAt, parking, booking } = props.currentMarker;
+  const { id, storeName, address, callNum, tagName, description, createdAt, parking, booking } = props.currentMarker;
 
   // 마커가 추가된 뒤, 경과한 시간을 계산
   function getUpdateDate (createdAt) {
@@ -13,6 +14,21 @@ const MapUserSideBarPin = (props) => {
     return Math.round((now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
   }
   const updatedDate = getUpdateDate(createdAt);
+
+  // 내 보관함에 담기 버튼
+  function addMarkertoMypage () {
+    axios.post('https://api.open-spot.tk/users/markers', { markerId: id }, { withCredentials: true })
+      .then(response => {
+        alert('추가 성공!');
+      })
+      .catch(err => {
+        if (err.response.status === 409) {
+          alert('이미 추가된 마커입니다.');
+        } else if (err.response.status === 401) {
+          alert('로그인해 주세요.');
+        }
+      });
+  }
   return (
     <div id="map-background">
       <div id="map-container">
@@ -38,7 +54,7 @@ const MapUserSideBarPin = (props) => {
                 주차: {parking === 1 ? '가능' : '불가능'}
               </div>
               <div className="map-line" />
-              <button className="map-button">내 목록에 담기</button>
+              <button className="map-button" onClick={ addMarkertoMypage }>내 목록에 담기</button>
               <button className="map-button">마이페이지 이동</button>
             </div>
           </div>
@@ -47,6 +63,5 @@ const MapUserSideBarPin = (props) => {
     </div>
   );
 };
-
 
 export default MapUserSideBarPin;

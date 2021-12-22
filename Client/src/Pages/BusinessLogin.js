@@ -31,9 +31,10 @@ const BusinessLogin = ({ handleUserInfo }) => {
 
   const getLogin = (payload) => {
     axios({
-      url: 'https://api.open-spot.tk/local/business',
+      url: 'https://api.open-spot.tk/auth/local-business',
       method: 'post',
-      data: payload
+      data: payload,
+      withCredentials: true
     }).then((res) => {
       console.log(res);
       const userInfo = {

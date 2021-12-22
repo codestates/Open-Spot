@@ -52,7 +52,7 @@ module.exports = {
     const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = needData;
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
-    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
+    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
     res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: picture, oauthLogin: 1 });
   },
   GetNaverAPI: async (req, res) => {
@@ -101,7 +101,7 @@ module.exports = {
     const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = needData;
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
-    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
+    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
     res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile, oauthLogin: 1 });
   },
   GetKakaoAPI: async (req, res) => {
@@ -172,7 +172,7 @@ module.exports = {
     const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = needData;
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
-    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
+    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
     res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile, oauthLogin: 1 });
   },
 
@@ -200,7 +200,7 @@ module.exports = {
     // https 통신을 할 경우 쿠키에서 secure: true옵션 사용하기
     if (saltedPassword === userInfo.saltedPassword) {
       const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
-      res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
+      res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
       res.status(200).json({ code: 200, userName: userInfo.userName, role: userInfo.role, email: userInfo.email });
     } else {
       res.status(401).json({ code: 401, error: 'unauthorized' });
@@ -230,7 +230,7 @@ module.exports = {
     // https 통신을 할 경우 쿠키에서 secure: true옵션 사용하기
     if (saltedPassword === userInfo.saltedPassword) {
       const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
-      res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
+      res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
       res.status(200).json({ code: 200, userName: userInfo.userName, role: userInfo.role, email: userInfo.email, oauthLogin: 0 });
     } else {
       res.status(401).json({ code: 401, error: 'unauthorized' });
@@ -250,12 +250,12 @@ module.exports = {
     verifyToken(token, process.env.ACCESS_SECRET)
       .catch(err => {
         console.log(err);
-        res.cookie('accessToken', '');
+        res.cookie('accessToken', '', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
         return res.status(200).json({ code: 200, message: 'expired token' });
       });
 
     // 쿠키에 빈 문자열 할당
-    res.cookie('accessToken', '');
+    res.cookie('accessToken', '', { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
     res.status(200).json({ code: 200 });
   }
 };

@@ -15,7 +15,8 @@ function ClientFavoriteList () {
   useEffect(() => {
     axios({
       url: 'https://api.open-spot.tk/users/general-markers',
-      method: 'get'
+      method: 'get',
+      withCredentials: true
     }).then((res) => {
       const { markers } = res.data;
       markers.forEach((marker) => {
