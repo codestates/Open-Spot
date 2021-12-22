@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const MapUserSideBarPin = (props) => {
   // fileName 추가
-  const { id, storeName, address, callNum, tagName, description, createdAt, parking, booking, fileName } = props.currentMarker;
+  const { id, storeName, address, callNum, /* tagName, */ description, createdAt, parking, booking, fileName } = props.currentMarker;
 
   // 마커가 추가된 뒤, 경과한 시간을 계산
   function getUpdateDate (createdAt) {
@@ -47,7 +47,7 @@ const MapUserSideBarPin = (props) => {
           <div id="map-sidebar-body-guest">
             <div id="map-content">
               <div id="map-update-desc">{description}</div>
-              <img id="map-image" src={`${imageUrl}`} /> {/* 이미지링크 넣기 */}
+              <img id="map-image" src={ `${imageUrl}` } /> {/* 이미지링크 넣기 */}
               <div id="map-store-title">
                 {storeName}
               </div>
@@ -59,8 +59,8 @@ const MapUserSideBarPin = (props) => {
                 주차: {parking === 1 ? '가능' : '불가능'}
               </div>
               <div className="map-line" />
-              <button className="map-button" onClick={ addMarkertoMypage }>내 목록에 담기</button>
-              <button className="map-button">마이페이지 이동</button>
+              <button className="map-button" onClick={ () => addMarkertoMypage() }>내 목록에 담기</button>
+              { props.role === 'general' ? <Link to="/client/mypage"><button className="map-button">마이페이지 이동</button></Link> : <Link to="/business/mypage"><button className="map-button">마이페이지 이동</button></Link> }
             </div>
           </div>
         </div>

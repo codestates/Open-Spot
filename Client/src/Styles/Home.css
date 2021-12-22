@@ -110,22 +110,22 @@
 .pt-map-img{
   width: 90%;
   height: 70%;
-  border-radius: 500%;
-  background-image: url(../../public/Img/Map.png);
+  /* border-radius: 500%; */
+  background-image: url(../../public/Img/Recommend-Freepik.png);
 }
 
 .pt-notification-img{
   width: 90%;
   height: 70%;
-  border-radius: 500%;
-  background-image: url(../../public/Img/Notification.png);
+  /* border-radius: 500%; */
+  background-image: url(../../public/Img/Notification-Freepick.png);
 }
 
 .pt-reservation-img{
   width: 90%;
   height: 70%;
-  border-radius: 500%;
-  background-image: url(../../public/Img/Reservation.png);
+  /* border-radius: 500%; */
+  background-image: url(../../public/Img/Waiting-Freepik.png);
 }
 
 .pt-text-box{
@@ -167,10 +167,12 @@
 }
 
 .third-title{
+  width: 100%;
   font-size: 3.5em;
   font-weight: 300;
   color: rgb(56, 55, 55);
   cursor: grab;
+  background-color: rgba(248, 248, 248, 0.6);
 }
 
 .business-pt-section{
@@ -259,6 +261,8 @@
   align-items: flex-end;
   width: 65%;
   height: 60%;
-  color: rgb(240, 240, 240);;
+}
 
+#our-worklog{
+  color: rgb(240, 240, 240);;
 }

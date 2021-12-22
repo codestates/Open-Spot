@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const { kakao } = window;
 
-const MapUser = () => {
+const MapUser = ({ userInfo }) => {
   const [isClicked, setIsClicked] = useState(false);
   // const [markersData, setMarkersData] = useState();
   const [currentMarker, setCurrentMarker] = useState();
@@ -67,7 +67,7 @@ const MapUser = () => {
   return (
     <>
       <div id="gather-map-sidebar">
-        {isClicked ? <MapUserSideBarPin currentMarker={ currentMarker } /> : <MapUserSideBar /> }
+        {isClicked ? <MapUserSideBarPin currentMarker={ currentMarker } role={ userInfo.role } /> : <MapUserSideBar role={ userInfo.role } /> }
         <div id="map"></div>
       </div>
     </>

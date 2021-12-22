@@ -18,11 +18,11 @@ const userStateReducer = (state = initialState, action) => {
         const values = [];
         for (let i = 0; i < len; i++) {
           values.push(copiedState.myFavoriteMarkers[i].compId);
-        }
+        };
         if (values.indexOf(id) === -1) {
           copiedState.myFavoriteMarkers = copiedState.myFavoriteMarkers.concat(action.payload);
         }
-      }
+      };
       return copiedState;
     case GET_MY_STORE_MARKERS:
       {
@@ -31,10 +31,10 @@ const userStateReducer = (state = initialState, action) => {
         const values = [];
         for (let i = 0; i < len; i++) {
           values.push(copiedState.myStoreMarkers[i].compId);
-        }
+        };
         if (values.indexOf(id) === -1) {
           copiedState.myStoreMarkers = copiedState.myStoreMarkers.concat(action.payload);
-        }
+        };
       }
       return copiedState;
     default:

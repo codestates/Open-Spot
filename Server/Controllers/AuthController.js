@@ -16,47 +16,42 @@ module.exports = {
         => 추출해낸 값들을 DB에 저장하고, 클라이언트에 보낼 건 보내주고 과정을 마친다
         */
 
-    let decode = {};
-    axios.post('https://oauth2.googleapis.com/token', {
+    console.log('구글');
+    const decode = await axios.post('https://oauth2.googleapis.com/token', {
       client_id: process.env.GOOGLE_CLIENT_ID,
       client_secret: process.env.GOOGLE_CLIENT_SECRET,
       code: req.body.authorizationCode,
       grant_type: 'authorization_code',
-      redirect_uri: 'https://d1839m99iakp36.cloudfront.net'
+      redirect_uri: 'https://open-spot.tk'
     }
     ).then((resp) => {
-      //   console.log(resp.data);
       // const accessToken = resp.data.access_token;
       const idToken = resp.data.id_token;
-      decode = jwtDecode(idToken);
+      const info = jwtDecode(idToken);
+      return info;
     })
       .catch(err => {
         return err;
       });
 
-    const { userEmail, name, picture } = decode;
-
-    // 하드 코딩이 되어야 하는 시점.
-    // const userEmail = 'a01023329417@gmail.com';
-    // const name = '양재영';
-    // const picture = 'https://lh3.googleusercontent.com/a/AATXAJwhegjEnASqnjidlgyYC7xzyu4U5jdCPpfV30MT=s96-c';
+    const { email, name, picture } = decode;
 
     const userInfo = await models.User.findOrCreate({
-      where: { userName: name, email: userEmail, oauthLogin: 1, oauthCI: null },
+      where: { userName: name, email: email, oauthLogin: 1, oauthCI: null },
       defaults: {
         role: 'general'
       }
     });
 
     const needData = userInfo[0].dataValues;
-    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = needData;
-
+    const { id, userName, role, oauthLogin, createdAt, updatedAt, oauthCI } = needData;
+    console.log(needData);
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
     res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: picture, oauthLogin: 1 });
   },
   GetNaverAPI: async (req, res) => {
-    const redirectURI = encodeURI('https://d1839m99iakp36.cloudfront.net');
+    const redirectURI = encodeURI('https://open-spot.tk');
     const code = req.body.authorizationCode;
     const state = req.body.state;
 
@@ -87,7 +82,6 @@ module.exports = {
     const result = naverInfo.data.response;
     const profile = result.profile_image;
     // 여기까지가 데이터 가져오는 코드
-    // 네이버는 검증을 어떻게 해야하지? userName=네이버이름, email=네이버이메일, oauthCI=id, oauthLogin:1
     const userInfo = await models.User.findOrCreate({
       where: { oauthCI: result.id },
       defaults: {
@@ -115,7 +109,7 @@ module.exports = {
         grant_type: 'authorization_code',
         client_id: clientID,
         client_secret: clientSecret,
-        redirect_uri: 'https://d1839m99iakp36.cloudfront.net',
+        redirect_uri: 'https://open-spot.tk',
         code: req.body.authorizationCode
       },
       headers: {
@@ -138,24 +132,6 @@ module.exports = {
     });
     console.log(kakaoInfo);
     const result = kakaoInfo.data;
-
-    // const result =
-    // {
-    //   id: 2038967258,
-    //   connected_at: '2021-12-18T04:31:08Z',
-    //   properties: {
-    //     profile_image: 'http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_640x640.jpg',
-    //     thumbnail_image: 'http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_110x110.jpg'
-    //   },
-    //   kakao_account: {
-    //     profile_image_needs_agreement: false,
-    //     has_email: true,
-    //     email_needs_agreement: false,
-    //     is_email_valid: true,
-    //     is_email_verified: true,
-    //     email: 'terrabattle@naver.com'
-    //   }
-    // };
 
     const profile = result.properties.profile_image;
     const userInfo = await models.User.findOrCreate({
