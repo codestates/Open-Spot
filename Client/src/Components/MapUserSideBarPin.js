@@ -60,7 +60,7 @@ const MapUserSideBarPin = (props) => {
               </div>
               <div className="map-line" />
               <button className="map-button" onClick={ () => addMarkertoMypage() }>내 목록에 담기</button>
-              { props.role === 'general' ? <Link to="/client/mypage"><button className="map-button">마이페이지 이동</button></Link> : <Link to="/business/mypage"><button className="map-button">마이페이지 이동</button></Link> }
+              { props.role === 'general' ? <Link to="/client/mypage"><button className="map-button" id="resolve-a-tag-problem">마이페이지 이동</button></Link> : <Link to="/business/mypage"><button className="map-button" id="resolve-a-tag-problem">마이페이지 이동</button></Link> }
             </div>
           </div>
         </div>

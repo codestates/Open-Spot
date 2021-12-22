@@ -10,7 +10,8 @@ import './../Styles/MyPage.css';
 import './../Styles/Header.css';
 import { getMyStoreMarkers } from './../Actions/index.js';
 
-function BusinessMyStore () {
+
+function BusinessMyStore ({ handleUserInfo }) {
   const dispatch = useDispatch();
   const { myStoreMarkers } = useSelector(state => state.userStateReducer);
   const [addStoreMarkerClicked, setaddStoreMarkerClicked] = useState(false);
@@ -55,7 +56,20 @@ function BusinessMyStore () {
                   <button className="tab change-tab-design">MY PAGE</button>
                 </Link>
                 <Link to="/">
-                  <button className="tab change-tab-design">LOG OUT</button>
+                  <button
+                    className="tab change-tab-design" onClick={
+                    () => axios.get(
+                      'https://api.open-spot.tk/auth/local',
+                      { withCredentials: true })
+                      .then(() => {
+                        handleUserInfo({ isLogin: false });
+                      })
+                      .catch((err) => {
+                        alert(err);
+                        console.log(err);
+                      })
+                    }
+                  >LOG OUT</button>
                 </Link>
               </div>
             </div>

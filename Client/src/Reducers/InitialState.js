@@ -6,13 +6,8 @@ export const initialState = {
     role: null,
     name: null,
     email: null,
-    profile: null,
+    profile: 'hdjsd.png', // 'https://api.open-spot.tk/profile.png'
     oauthLogin: null
-  },
-  socialLoginBtn: {
-    google: false,
-    naver: false,
-    kakao: false
   },
   myFavoriteMarkers: [
     {

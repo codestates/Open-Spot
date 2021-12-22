@@ -9,7 +9,7 @@ import './../Styles/MyPage.css';
 import './../Styles/Header.css';
 import { getMyFavoriteMarkers } from './../Actions/index.js';
 
-function ClientFavoriteList () {
+function ClientFavoriteList ({ handleUserInfo }) {
   const dispatch = useDispatch();
   const { myFavoriteMarkers } = useSelector(state => state.userStateReducer);
 
@@ -32,7 +32,7 @@ function ClientFavoriteList () {
     <div className="entire-box">
       <div className="intro-bg">
         <header>
-          <div id="nav-container">ssss
+          <div id="nav-container">
             <Link to="/">
               <div id="logo" />
             </Link>
@@ -47,7 +47,20 @@ function ClientFavoriteList () {
                 <button className="tab change-tab-design">MY PAGE</button>
               </Link>
               <Link to="/">
-                <button className="tab change-tab-design">LOG OUT</button>
+                <button
+                  className="tab change-tab-design" onClick={
+                () => axios.get(
+                  'https://api.open-spot.tk/auth/local',
+                  { withCredentials: true })
+                  .then(() => {
+                    handleUserInfo({ isLogin: false });
+                  })
+                  .catch((err) => {
+                    alert(err);
+                    console.log(err);
+                  })
+                }
+                >LOG OUT</button>
               </Link>
             </div>
           </div>
