@@ -113,29 +113,6 @@ paths:
                 booking:
                   description: 예약 가능 여부
                   type: integer
-  /markers/{markerId}:
-    get:
-      tags:
-      - markers
-      description: 해당 아이디를 가진 마커를 조회한다. 맵에서 마커를 누른 경우, ??마이페이지에서 저장한 가계를 선택했을 경우(이미 마커에 대한 정보가 있기 때문)??
-      parameters:
-      - name: markerId
-        in: path
-        required: true
-        schema:
-         type: string
-      responses:
-        "200":
-          description: ok
-          content:
-            application/json:
-              schema:
-               properties:
-                code: 
-                  type: integer
-                marker:
-                  type: object
-                  $ref: '#/components/schemas/Marker'
   /users:
     post:
       tags:
@@ -398,11 +375,16 @@ paths:
       responses:
         "201":
           description: 보관 성공
-          type: number
-          example: 201
-           message:
-            type: string
-            example: created
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 201
+                message:
+                  type: string
+                  example: created
         "401":
           description: 토큰을 받지 못하거나 유효성 검사에 실패했을 때
           content:
@@ -417,8 +399,13 @@ paths:
                   example: unauthorized
         "409":
           description: 이미 추가된 마커인 경우
-          type: number
-          example: 409
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 409
                 error:
                   type: string
                   example: info already exists
@@ -429,6 +416,16 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/ServerErr' 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                markerId:
+                  description: 마커의 아이디(사업자 번호)
+                  type: string
+                  example: '2223344444'
   /auth/kakao:
     post:
       tags:
@@ -585,6 +582,9 @@ paths:
                   email:
                     type: string
                     example: abc@naver.com
+                  oauthLogin:
+                    type: integer
+                    example: 0
         "401":
           description: unauthorized. 잘못된 비밀번호를 입력받거나 일반 사용자 / 사업자 여부가 잘못된 경우
           content:
@@ -656,6 +656,9 @@ paths:
                   email:
                     type: string
                     example: abc@naver.com
+                  oauthLogin:
+                    type: integer
+                    example: 0
         "401":
           description: unauthorized. 잘못된 비밀번호를 입력받거나 일반 사용자 / 사업자 여부가 잘못된 경우
           content:
@@ -791,9 +794,12 @@ components:
           type: integer
           description: 예약 가능 여부
           example: 0
-        image:
+        imageId:
+          type: integer
+          description: 이미지 파일 id
+        fileName:
           type: string
-          description: 사진 정보
+          description: 이미지 파일 정보
     ServerErr:
       type: object
       properties:
