@@ -23,8 +23,12 @@ export const initialState = {
       desc: '매일매일 맛있는 빵이 가득 !',
       lat: '33',
       lon: '126',
-      isPark: '불가능',
-      isBook: '불가능'
+      isPark: 0,
+      isBook: 1,
+      userId1: 2,
+      userId2: 2,
+      createdAt: '2021-12-21T14:49:52.000Z',
+      updatedAt: '2021-12-21T14:49:52.000Z'
     }
   ],
   myStoreMarkers: [
