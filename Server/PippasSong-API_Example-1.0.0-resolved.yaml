@@ -38,16 +38,48 @@ paths:
       description: 마커를 추가한다.
       responses:
         "201":
-          description: created
+          description: 추가 성공
           content:
             application/json:
               schema:
                properties:
                 code:
                   type: integer
-                markers:
-                  type: object
-                  $ref: '#/components/schemas/Marker'
+                  example: 201
+                message:
+                  type: string
+                  example: created
+        "401":
+          description: 토큰을 받지 못하거나 유효성 검사에 실패했을 때
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 401
+                error:
+                  type: string
+                  example: unauthorized
+        "409": 
+          description: 이미 추가된 마커인 경우
+          content: 
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 409
+                  error:
+                    type: string
+                    example: marker info already exists          
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'  
       requestBody:
         content:
           application/json:
@@ -75,6 +107,12 @@ paths:
                 longitude:
                   description: 경도
                   type: number
+                parking:
+                  description: 주차 가능 여부
+                  type: integer
+                booking:
+                  description: 예약 가능 여부
+                  type: integer
   /markers/{markerId}:
     get:
       tags:
@@ -351,6 +389,46 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/ServerErr'
+
+  /users/markers:
+    post:
+      tags:
+      - users
+      description: 마이페이지 보관함에 해당 마커를 보관한다.
+      responses:
+        "201":
+          description: 보관 성공
+          type: number
+          example: 201
+           message:
+            type: string
+            example: created
+        "401":
+          description: 토큰을 받지 못하거나 유효성 검사에 실패했을 때
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 401
+                error:
+                  type: string
+                  example: unauthorized
+        "409":
+          description: 이미 추가된 마커인 경우
+          type: number
+          example: 409
+                error:
+                  type: string
+                  example: info already exists
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr' 
   /auth/kakao:
     post:
       tags:
@@ -705,6 +783,17 @@ components:
           format: date-time
           description: 갱신일자
           example: 2021-12-16 13:28:26
+        parking:
+          type: integer
+          description: 주차 가능 여부
+          example: 0
+        booking:
+          type: integer
+          description: 예약 가능 여부
+          example: 0
+        image:
+          type: string
+          description: 사진 정보
     ServerErr:
       type: object
       properties:
