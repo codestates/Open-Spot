@@ -2,6 +2,7 @@ const models = require('./../models');
 const { createSaltedPassword, createSalt, verifyToken } = require('./HashFunctions');
 const { Sequelize } = require('./../models');
 const db = require('../DB');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   signUp: async (req, res) => {
@@ -30,7 +31,11 @@ module.exports = {
       });
 
       if (created) {
-        res.status(201).json({ code: 201, role: newUser.role });
+        const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = newUser;
+        const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
+
+        res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
+        res.status(201).json({ code: 201, userName, role, email, oauthLogin });
       } else {
         res.status(409).json({ code: 409, error: 'user info already exists' });
       }
