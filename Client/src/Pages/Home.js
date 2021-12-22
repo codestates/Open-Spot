@@ -204,10 +204,10 @@ function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
             <div className="open-spot-logo"></div>
           </div>
           <div className="with-people">
-            <div>김동운</div>
-            <div>양재영</div>
-            <div>이승연</div>
-            <div>정채련</div>
+            <a id="our-worklog">김동운</a>
+            <a id="our-worklog">양재영</a>
+            <a id="our-worklog">이승연</a>
+            <a id="our-worklog">정채련</a>
           </div>
         </div>
       </footer>
