@@ -21,7 +21,8 @@ const userStateReducer = (state = initialState, action) => {
         };
         if (values.indexOf(id) === -1) {
           copiedState.myFavoriteMarkers = copiedState.myFavoriteMarkers.concat(action.payload);
-        };
+        }
+      };
       return copiedState;
     case GET_MY_STORE_MARKERS:
       {
