@@ -61,12 +61,10 @@
 }
 
 .client-pt-container{
-  /* background-color: peru; */
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-start; */
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-around;
@@ -74,7 +72,6 @@
 }
 
 .about-open-spot-container{
-  /* background-color: powderblue; */
   width: 90%;
   height: 20%;
   display: flex;
@@ -97,11 +94,9 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* background-color: orchid; */
 }
 
 .pt-section{
-  /* background-color: blue; */
   width: 30%;
   height: 70%;
   display: flex;
@@ -134,7 +129,6 @@
 }
 
 .pt-text-box{
-  /* background-color: burlywood; */
   width: 100%;
   height: 25%;
   display: flex;
@@ -148,18 +142,14 @@
 }
 
 .pt-text{
-  /* background-color: orange; */
   margin-left: 20px;
   text-align: center;
   box-shadow: inset 0 -5px 0 rgb(240, 240, 240, 0.6);
   line-height: 21px;
 }
 .business-pt-container{
-  /* background-color: powderblue; */
   display: flex;
-  flex-wrap: nowrap;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   justify-content: space-around;
   width: 100vw;
@@ -167,10 +157,8 @@
 }
 
 .about-business-container{
-  /* background-color: purple; */
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   justify-content: flex-end;
   align-items: flex-start;
   width: 90%;
@@ -186,30 +174,25 @@
 }
 
 .business-pt-section{
-  /* background-color: red; */
   display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: space-around;
-  /* justify-content: flex-start; */
-  align-items: center;
   width: 90%;
   height: 40%;
-  border-top: 1px solid rgb(56, 55, 55);;
 }
 
 .business-pt-box{
-  /* background-color: royalblue; */
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   justify-content: space-around;
   width: 23%;
   height: 90%;
+  border-top: 2px solid rgb(226, 224, 224);
+}
+
+.business-pt-box:hover{
+  border-top: 2px solid #000 ;
 }
 
 .pt-about-business{
-  /* background-color: salmon; */
   width: 100%;
   height: 25%;
   display: flex;
@@ -229,10 +212,8 @@
 }
 
 .pt-detaile-box{
-  /* background-color: salmon; */
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   justify-content: space-around;
   justify-content: flex-start;
   align-items: center;
@@ -248,4 +229,36 @@
   text-align: center;
   color: #B2B2B2;
   font-weight: bolder;
+}
+
+.open-spot-team{
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 20vh;
+  background-color: #282828;
+}
+
+.logo-box{
+  width: 20%;
+}
+
+.open-spot-logo {
+  width: 50px;
+  height: 50px;
+  margin-left: 45px;
+  background: url(./../../public/Img/ProjectLogoEX.png) no-repeat center center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.with-people{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 65%;
+  height: 60%;
+  color: rgb(240, 240, 240);;
+
 }
