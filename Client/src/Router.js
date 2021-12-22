@@ -38,14 +38,14 @@ const Routers = () => {
   return (
     <Router>
       <Routes>
-        <Route exact={true} path='/' element={<Home handleIsLoginTab={handleIsLoginTab} isLogin={userInfo.isLogin} />} />
-        <Route path='/switch' element={<Switch isLoginTab={isLoginTab} />} />
-        <Route path='/client/login' element={<ClientLogin handleUserInfo={handleUserInfo} userInfo={userInfo} />} />
-        <Route path='/business/login' element={<BusinessLogin handleUserInfo={handleUserInfo} />} />
-        <Route path='/client/signin' element={<ClientSignin handleUserInfo={handleUserInfo} />} />
-        <Route path='/business/signin' element={<BusinessSignin handleUserInfo={handleUserInfo} />} />
-        <Route path='/map/guest' element={<MapGuest />} />
-        <Route path='/map/user' element={<MapUser />} />
+        <Route element={ <Home handleIsLoginTab={ handleIsLoginTab } isLogin={ userInfo.isLogin } /> } exact path="/" />
+        <Route element={ <Switch isLoginTab={ isLoginTab } /> } path="/switch" />
+        <Route element={ <ClientLogin handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } path="/client/login" />
+        <Route element={ <BusinessLogin handleUserInfo={ handleUserInfo } /> } path="/business/login" />
+        <Route element={ <ClientSignin handleUserInfo={ handleUserInfo } /> } path="/client/signin" />
+        <Route element={ <BusinessSignin handleUserInfo={ handleUserInfo } /> } path="/business/signin" />
+        <Route element={ <MapGuest /> } path="/map/guest" />
+        <Route element={ <MapUser /> } path="/map/user" />
       </Routes>
     </Router>
   );

@@ -70,8 +70,8 @@ const ClientLogin = ({ handleUserInfo }) => {
               LOG IN
             </p>
             <div id="input-container-login">
-              <input className="base-input" placeholder='이메일' onChange={handleEmail} />
-              <input className="base-input" placeholder='비밀번호' onChange={handlePassword} />
+              <input className="base-input" onChange={ handleEmail } placeholder="이메일" />
+              <input className="base-input" onChange={ handlePassword } placeholder="비밀번호" />
               <div className="verification">
                 {isNotMatch ? '이메일과 비밀번호가 일치하지 않습니다' : null}
               </div>
@@ -80,9 +80,18 @@ const ClientLogin = ({ handleUserInfo }) => {
             {/* client, business 구분자 */}
             <hr />
             <div className="button-container">
-              <input type="button" className="social-icons" id="googleIcon" onClick={() => socialLoginHandler(google)} />
-              <input type="button" className="social-icons" id="naverIcon" onClick={() => socialLoginHandler(naver)} />
-              <input type="button" className="social-icons" id="kakaoIcon" onClick={() => socialLoginHandler(kakao)} />
+              <input
+                className="social-icons" id="googleIcon" onClick={ () => socialLoginHandler(google) }
+                type="button"
+              />
+              <input
+                className="social-icons" id="naverIcon" onClick={ () => socialLoginHandler(naver) }
+                type="button"
+              />
+              <input
+                className="social-icons" id="kakaoIcon" onClick={ () => socialLoginHandler(kakao) }
+                type="button"
+              />
             </div>
             {/* client, business 구분자 */}
           </div>

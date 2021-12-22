@@ -248,11 +248,11 @@ function BusinessSignin () {
               <p className="sub-title">
                 사용자 개인 정보
               </p>
-              <input className="base-input" onChange={ handleUserName }placeholder="닉네임" />
+              <input className="base-input" onChange={ handleUserName } placeholder="닉네임" />
               <div className="verification" ref={ userNameVerDOM }>
                 {/* 닉네임이 중복됩니다/(통과) or 닉네임의 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
               </div>
-              <input className="base-input"onChange={ handleEmail } placeholder="이메일" />
+              <input className="base-input" onChange={ handleEmail } placeholder="이메일" />
               <div className="verification" ref={ emailVerDOM }>
                 {/* 이메일이 중복됩니다/(통과) or 이메일의 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
               </div>

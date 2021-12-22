@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import store from './Store/Store.js';
-// import { Provider } from 'react-redux';
+import store from './Store/Store.js';
+import { Provider } from 'react-redux';
 // test
-// import Router from './Router.js';
+import Router from './Router.js';
 // import MapUser from './Pages/MapUser.js';
 // import MapGuest from './Pages/MapGuest.js';
 // import reportWebVitals from './reportWebVitals';
@@ -19,12 +19,12 @@ import './index.css';
 // import ClientMyPageRouter from './ClientMyPageRouter.js';
 // import WithDrawal from './Modals/WithDrawal';
 // import ModalBox from './Modals/ModalBox';
-import RegisterStore from './Modals/RegisterStore';
+// import RegisterStore from './Modals/RegisterStore';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <RegisterStore />
-  </React.StrictMode >,
+  <Provider store={ store }>
+    <Router />
+  </Provider >,
   document.getElementById('root')
 );
 

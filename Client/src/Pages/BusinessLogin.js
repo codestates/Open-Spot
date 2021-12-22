@@ -61,12 +61,12 @@ const BusinessLogin = ({ handleUserInfo }) => {
               LOG IN
             </p>
             <div id="input-container-login">
-              <input className="base-input" placeholder='이메일' onChange={handleEmail} />
-              <input className="base-input" placeholder='비밀번호' onChange={handlePassword} />
+              <input className="base-input" onChange={ handleEmail } placeholder="이메일" />
+              <input className="base-input" onChange={ handlePassword } placeholder="비밀번호" />
               <div className="verification">
                 {isNotMatch ? '이메일과 비밀번호가 일치하지 않습니다' : null}
               </div>
-              <button className="base-button" onClick={() => getLogin(loginData)} >로그인</button>
+              <button className="base-button" onClick={ () => getLogin(loginData) } >로그인</button>
             </div>
           </div>
         </div>
