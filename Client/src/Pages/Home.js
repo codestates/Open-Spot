@@ -66,7 +66,7 @@ function Home ({ handleIsLoginTab, userInfo }) {
             <div id="nav-body">
               {userInfo.isLogin ? <MapTabUser /> : <MapTabGuest />}
               <div id="vertical-hr"></div>
-              {/* 사업자와 일반인을 구분하는 역할 필요 */}             
+              {/* 사업자와 일반인을 구분하는 역할 필요 */}
               {userInfo.isLogin ? <User role={ userInfo.role } /> : <Guest handleIsLoginTab={ handleIsLoginTab } />}
             </div>
           </div>
@@ -134,7 +134,7 @@ function Home ({ handleIsLoginTab, userInfo }) {
               <div className="detaile-text">사업자 등록 번호 검증 후 회원 등록</div>
               <div className="detaile-box">
                 <p>
-                  사업자 전용 페이지를 만들어 일반 고객과 분리하여 데이터를 관리하고 있습니다.
+                  사업자 전용 페이지를 만들어<br /> 일반 고객과 분리하여 데이터를<br /> 관리하고 있습니다.
                 </p>
               </div>
             </div>
@@ -148,7 +148,7 @@ function Home ({ handleIsLoginTab, userInfo }) {
               <div className="detaile-text">스토어 등록시 전체 알림 서비스</div>
               <div className="detaile-box">
                 <p>
-                  마이페이지에서 스토어를 등록하면 등록과 동시에 이 웹을 이용하고 있는 모든 고객들에게 알림이 갑니다.
+                  마이페이지에서 스토어를 등록하면<br /> 등록과 동시에 이 웹을 이용하고 있는<br /> 모든 고객들에게 알림이 갑니다.
                 </p>
               </div>
             </div>
@@ -162,7 +162,7 @@ function Home ({ handleIsLoginTab, userInfo }) {
               <div className="detaile-text">스토어 관리 서비스, 등록 서비스 제공</div>
               <div className="detaile-box">
                 <p>
-                  사업자는 마이페이지에서 여러 스토어를 등록 하거나 수정, 삭제할 수 있습니다.
+                  사업자는 마이페이지에서<br /> 여러 스토어를 등록 하거나 수정,<br /> 삭제할 수 있습니다.
                 </p>
               </div>
             </div>
@@ -176,7 +176,7 @@ function Home ({ handleIsLoginTab, userInfo }) {
               <div className="detaile-text">정보 보관 기간 만료 시 자동 폐기</div>
               <div className="detaile-box">
                 <p>
-                  등록한 지 2년이 지난 스토어는 자동으로 폐기되어 이 웹의 사용자에게 노출되지 않습니다.
+                  등록한 지 2년이 지난 스토어는<br /> 자동으로 폐기되어 이 웹의 사용자에게<br /> 노출되지 않습니다.
                 </p>
               </div>
             </div>
@@ -185,7 +185,17 @@ function Home ({ handleIsLoginTab, userInfo }) {
       </div>
       <footer>
         {/* 웹 로고와 팀원들 깃헙 링크 연결 */}
-        Hello World
+        <div className="open-spot-team">
+          <div className="logo-box">
+            <div className="open-spot-logo"></div>
+          </div>
+          <div className="with-people">
+            <div>김동운</div>
+            <div>양재영</div>
+            <div>이승연</div>
+            <div>정채련</div>
+          </div>
+        </div>
       </footer>
     </div>
   );
