@@ -49,5 +49,4 @@ const MapGuestSideBarPin = (props) => {
   );
 };
 
-
 export default MapGuestSideBarPin;

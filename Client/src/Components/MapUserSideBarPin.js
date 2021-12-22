@@ -47,7 +47,7 @@ const MapUserSideBarPin = (props) => {
           <div id="map-sidebar-body-guest">
             <div id="map-content">
               <div id="map-update-desc">{description}</div>
-              <img id="map-image" src={`${imageUrl}`} /> {/* 이미지링크 넣기 */}
+              <img id="map-image" src={ `${imageUrl}` } /> {/* 이미지링크 넣기 */}
               <div id="map-store-title">
                 {storeName}
               </div>
