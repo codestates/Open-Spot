@@ -5,9 +5,9 @@ module.exports = {
     const result = await models.Marker.findAll({
       raw: true
     }).catch(err => {
-      console.log(err);
+      return res.status(500).json({ code: 500, error: err });
     });
 
-    res.status(200).json(result);
+    res.status(200).json({ code: 200, markers: result });
   }
 };
