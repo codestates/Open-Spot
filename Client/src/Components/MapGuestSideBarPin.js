@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './../App.css';
 import './../Styles/Map.css';
+import { Link } from 'react-router-dom';
 
 const MapGuestSideBarPin = (props) => {
   const { storeName, address, callNum, tagName, description, createdAt } = props.currentMarker;
@@ -18,7 +19,9 @@ const MapGuestSideBarPin = (props) => {
       <div id="map-container">
         <div id="map-sidebar">
           <div id="map-sidebar-header">
-            <div id="map-logo" />
+            <Link to="/">
+              <div id="map-logo" />
+            </Link>
             <div id="map-update-tag">{`${updatedDate}일 전`}</div>
           </div>
           <div id="map-sidebar-body-guest">
@@ -42,7 +45,9 @@ const MapGuestSideBarPin = (props) => {
         </div>
       </div>
     </div>
+
   );
 };
+
 
 export default MapGuestSideBarPin;

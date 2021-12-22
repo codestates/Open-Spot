@@ -1,15 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import * as React from 'react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './../App.css';
 import './../Styles/Login.css';
 
-function BusinessLogin () {
+const BusinessLogin = ({ handleUserInfo }) => {
+  const navigate = useNavigate();
+  const [loginData, setLoginData] = useState({
+    email: null,
+    password: null
+  });
+  const [isNotMatch, setIsNotMatch] = useState(false);
+
+  const handleEmail = (event) => {
+    const email = event.target.value;
+    setLoginData({
+      ...loginData,
+      email
+    });
+  };
+
+  const handlePassword = (event) => {
+    const password = event.target.value;
+    setLoginData({
+      ...loginData,
+      password
+    });
+  };
+
+  const getLogin = (payload) => {
+    axios({
+      url: 'https://api.open-spot.tk/local/business',
+      method: 'post',
+      data: payload
+    }).then((res) => {
+      console.log(res);
+      const userInfo = {
+        isLogin: true,
+        role: res.data.role,
+        name: res.data.userName,
+        email: res.data.email,
+        profile: res.data.profile
+      };
+      handleUserInfo(userInfo);
+      setIsNotMatch(false);
+      navigate('/');
+    })
+      .catch((err) => {
+        console.log(err);
+        handleUserInfo({ isLogin: false });
+        setIsNotMatch(true);
+      });
+  };
+
   return (
     <>
       <div className="background">
         <header>
           <Link to="/">
-            <div id="logo"/>
+            <div id="logo" />
           </Link>
         </header>
         <div className="container">
@@ -18,18 +68,18 @@ function BusinessLogin () {
               LOG IN
             </p>
             <div id="input-container-login">
-              <input className="base-input" placeholder='이메일'/>
-              <input className="base-input" placeholder='비밀번호'/>
+              <input className="base-input" onChange={ handleEmail } placeholder="이메일" />
+              <input className="base-input" onChange={ handlePassword } placeholder="비밀번호" />
               <div className="verification">
-                {/* 이메일과 비밀번호가 일치하지 않습니다 -문구 띄우기 */}
+                {isNotMatch ? '이메일과 비밀번호가 일치하지 않습니다' : null}
               </div>
-              <button className="base-button">로그인</button>
+              <button className="base-button" onClick={ () => getLogin(loginData) } >로그인</button>
             </div>
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default BusinessLogin;

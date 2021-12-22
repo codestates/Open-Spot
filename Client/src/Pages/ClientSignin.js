@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './../App.css';
 import './../Styles/Signin.css';
 
 // http://open-spot-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com : S3 버킷 주소
 
-function ClientSignin () {
+function ClientSignin ({ handleUserInfo }) {
+  const navigate = useNavigate();
   // DOM에 접근
   const userNameVerDOM = useRef(null);
   const emailVerDOM = useRef(null);
@@ -82,13 +83,22 @@ function ClientSignin () {
       email,
       password,
       userName
-    }).then((response) => {
-      console.log(response);
-      if (response.data.code === 201) {
-        alert('회원가입 성공');
+    }).then((res) => {
+      console.log(res);
+      if (res.data.code === 201) {
+        const userInfo = {
+          isLogin: true,
+          role: res.data.role,
+          name: res.data.userName,
+          email: res.data.email,
+          profile: res.data.profile
+        };
+        handleUserInfo(userInfo);
+        navigate('/');
       }
     }).catch((err) => {
       if (err.response.status === 409) {
+        handleUserInfo({ isLogin: false });
         return alert('회원가입 실패. 이미 존재하는 이메일입니다.');
       }
       alert('서버 에러');
