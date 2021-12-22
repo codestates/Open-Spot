@@ -75,8 +75,8 @@ function ModalBox ({ handleChangeInfoBtn, userInfo }) {
               <div>
                 <input
                   className="modal-input-syle-wow" name="text-nmae" onChange={ handleNewName }
+                  placeholder={ userInfo.name }
                   size="30"
-                  // placeholder={userInfo.name}
                   type="text"
                 ></input>
               </div>
@@ -90,8 +90,8 @@ function ModalBox ({ handleChangeInfoBtn, userInfo }) {
               <div>
                 <input
                   className="modal-input-syle-wow" name="text-nmae" onChange={ handleNewEmail }
+                  placeholder={ userInfo.email }
                   size="30"
-                  // placeholder={userInfo.email}
                   type="text"
                 ></input>
               </div>

@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import Siderbar from './../Components/MyPageBusinessSideBar.js';
 import ModalModifyInfo from './../Modals/ModalModifyInfo';
 import ModalWithDrawal from './../Modals/ModalWithDrawal';
-// import ModalRegisterStore from './../Modals/ModalRegisterStore';
+import axios from 'axios';
 import './../Styles/MyPage.css';
 import './../Styles/Header.css';
 
-function BusinessMyPage ({ userInfo }) {
+function BusinessMyPage ({ userInfo, handleUserInfo }) {
   const [changeInfoBtnClicked, setChangeInfoBtnClicked] = useState(false);
   const [deleteInfoBtnClicked, setDeleteInfoBtnClicked] = useState(false);
   const handleChangeInfoBtn = (bool) => {
@@ -38,7 +38,20 @@ function BusinessMyPage ({ userInfo }) {
                   <button className="tab change-tab-design">MY PAGE</button>
                 </Link>
                 <Link to="/">
-                  <button className="tab change-tab-design">LOG OUT</button>
+                  <button
+                    className="tab change-tab-design" onClick={
+                    () => axios.get(
+                      'https://api.open-spot.tk/auth/local',
+                      { withCredentials: true })
+                      .then(() => {
+                        handleUserInfo({ isLogin: false });
+                      })
+                      .catch((err) => {
+                        alert(err);
+                        console.log(err);
+                      })
+                    }
+                  >LOG OUT</button>
                 </Link>
               </div>
             </div>
@@ -53,7 +66,7 @@ function BusinessMyPage ({ userInfo }) {
                 <img
                   className="client-img"
                   height="100"
-                  src="hrv.png"
+                  src={ `${userInfo.profile}` }
                   width="100"
                 />
               </div>
@@ -64,7 +77,7 @@ function BusinessMyPage ({ userInfo }) {
                   </div>
                   <div className="name-area">
                     <div className="mypage-userinfo-input-wow">
-                      {/* userInfo.name */} 닉네임 보여주세요
+                      {userInfo.name}
                     </div>
                   </div>
                 </div>
@@ -75,21 +88,24 @@ function BusinessMyPage ({ userInfo }) {
                   <div className="name-area">
                     <div className="mypage-userinfo-input-wow">
                       <div>
-                        {/* userInfo.email */} 이메일 보여주세요
+                        {userInfo.email}
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="change-bt">
-              <button className="info-change-bt" onClick={ () => handleChangeInfoBtn(true) }>
-                <div className="client-info-change">회원정보 수정</div>
-              </button>
-              <button className="delete-bt" onClick={ () => handleDeleteInfoBtn(true) }>
-                <div className="with-drawal">회원 탈퇴</div>
-              </button>
-            </div>
+            {userInfo.oauthLogin
+              ? null
+              : <div className="change-bt">
+                <button className="info-change-bt" onClick={ () => handleChangeInfoBtn(true) }>
+                  <div className="client-info-change">회원정보 수정</div>
+                </button>
+                <button className="delete-bt" onClick={ () => handleDeleteInfoBtn(true) }>
+                  <div className="with-drawal">회원 탈퇴</div>
+                </button>
+              </div>
+            }
           </div>
         </div>
       </div>

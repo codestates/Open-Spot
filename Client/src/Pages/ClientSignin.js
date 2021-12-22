@@ -22,7 +22,6 @@ function ClientSignin ({ handleUserInfo }) {
       email: '',
       password: '',
       verPassword: ''
-
     }
   );
 
@@ -91,7 +90,7 @@ function ClientSignin ({ handleUserInfo }) {
           role: res.data.role,
           name: res.data.userName,
           email: res.data.email,
-          profile: res.data.profile
+          oauthLogin: res.data.oauthLogin
         };
         handleUserInfo(userInfo);
         navigate('/');
