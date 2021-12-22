@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Siderbar from './../Components/MyPageBusinessSideBar.js';
 import StoreInfo from './../Components/MyPageStoreCard.js';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import './../Styles/Header.css';
 import { getMyFavoriteMarkers } from './../Actions/index.js';
 
 function BusinessFavoriteList () {
+  const dispatch = useDispatch();
   const { myFavoriteMarkers } = useSelector(state => state.userStateReducer);
 
   useEffect(() => {
@@ -19,13 +20,15 @@ function BusinessFavoriteList () {
       withCredentials: true
     }).then((res) => {
       const { markers } = res.data;
+      console.log(markers);
       markers.forEach((marker) => {
-        getMyFavoriteMarkers(marker);
+        dispatch(getMyFavoriteMarkers(marker));
+        console.log(myFavoriteMarkers);
       });
     }).catch((err) => {
       console.log(err);
     });
-  });
+  }, []);
 
   return (
     <div className="entire-box">

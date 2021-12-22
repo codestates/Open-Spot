@@ -140,7 +140,7 @@ const Routers = () => {
         <Route element={ <ClientSignin handleUserInfo={ handleUserInfo } /> } path="/client/signin" />
         <Route element={ <BusinessSignin handleUserInfo={ handleUserInfo } /> } path="/business/signin" />
         <Route element={ <MapGuest /> } path="/map/guest" />
-        <Route element={ <MapUser /> } path="/map/user" />
+        <Route element={ <MapUser userInfo={ userInfo } /> } path="/map/user" />
         <Route
           element={ <ClientUserInfo /> } exact path="/client/mypage"
           userInfo={ userInfo }
