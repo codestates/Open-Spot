@@ -34,17 +34,17 @@ const ClientLogin = ({ handleUserInfo, handleSocialLoginBtn }) => {
 
   const getLogin = (payload) => {
     axios({
-      url: 'https://api.open-spot.tk/auth/local',
+      url: 'https://api.open-spot.tk/local/general',
       method: 'post',
       data: payload
     }).then((res) => {
       console.log(res);
       const userInfo = {
         isLogin: true,
-        role: res.body.role,
-        name: res.body.userName,
-        email: res.body.email,
-        profile: res.body.profile
+        role: res.data.role,
+        name: res.data.userName,
+        email: res.data.email,
+        profile: res.data.profile
       };
       handleUserInfo(userInfo);
       setIsNotMatch(false);
@@ -88,8 +88,8 @@ const ClientLogin = ({ handleUserInfo, handleSocialLoginBtn }) => {
               LOG IN
             </p>
             <div id="input-container-login">
-              <input className="base-input" placeholder='이메일' onChange={handleEmail} />
-              <input className="base-input" placeholder='비밀번호' onChange={handlePassword} />
+              <input className="base-input" onChange={ handleEmail } placeholder="이메일" />
+              <input className="base-input" onChange={ handlePassword } placeholder="비밀번호" />
               <div className="verification">
                 {isNotMatch ? '이메일과 비밀번호가 일치하지 않습니다' : null}
               </div>
@@ -98,9 +98,18 @@ const ClientLogin = ({ handleUserInfo, handleSocialLoginBtn }) => {
             {/* client, business 구분자 */}
             <hr />
             <div className="button-container">
-              <input type="button" className="social-icons" id="googleIcon" value="google" onClick={(e) => { socialLoginHandler(google); getBtnName(e); }} />
-              <input type="button" className="social-icons" id="naverIcon" value="naver" onClick={(e) => { socialLoginHandler(naver); getBtnName(e); }} />
-              <input type="button" className="social-icons" id="kakaoIcon" value="kakao" onClick={(e) => { socialLoginHandler(kakao); getBtnName(e); }} />
+              <input
+                className="social-icons" id="googleIcon" onClick={ (e) => { socialLoginHandler(google); getBtnName(e); } }
+                type="button" value="google"
+              />
+              <input
+                className="social-icons" id="naverIcon" onClick={ (e) => { socialLoginHandler(naver); getBtnName(e); } }
+                type="button" value="naver"
+              />
+              <input
+                className="social-icons" id="kakaoIcon" onClick={ (e) => { socialLoginHandler(kakao); getBtnName(e); } }
+                type="button" value="kakao"
+              />
             </div>
             {/* client, business 구분자 */}
           </div>

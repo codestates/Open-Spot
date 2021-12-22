@@ -1,10 +1,10 @@
 import React from 'react';
-import '../MyPageStyles/ModalBox.css';
+import './../Styles/Modal.css';
 
-function RegisterStore () {
+function RegisterStore ({ setaddStoreMarkerClicked }) {
   return (
     <div className="modal-background">
-      <div className="modify-info-box">
+      <div className="register-box-container">
         <div className="modify-info">가게 등록 하기</div>
         <div className="modify-box">
           <div className="modal-input-box">
@@ -12,7 +12,10 @@ function RegisterStore () {
           </div>
           <div className="modal-input-area">
             <div>
-              <input name="text-nmae" size="30" type="text" ></input>
+              <input
+                className="modal-input-syle-wow" name="text-nmae" size="30"
+                type="text"
+              ></input>
             </div>
           </div>
         </div>
@@ -22,7 +25,10 @@ function RegisterStore () {
           </div>
           <div className="modal-input-area">
             <div>
-              <input name="text-nmae" size="30" type="text"></input>
+              <input
+                className="modal-input-syle-wow" name="text-nmae" size="30"
+                type="text"
+              ></input>
             </div>
           </div>
         </div>
@@ -32,7 +38,10 @@ function RegisterStore () {
           </div>
           <div className="modal-input-area">
             <div>
-              <input name="text-nmae" size="30" type="text"></input>
+              <input
+                className="modal-input-syle-wow" name="text-nmae" size="30"
+                type="text"
+              ></input>
             </div>
           </div>
         </div>
@@ -42,7 +51,10 @@ function RegisterStore () {
           </div>
           <div className="modal-input-area">
             <div>
-              <input name="text-nmae" size="30" type="text"></input>
+              <input
+                className="modal-input-syle-wow" name="text-nmae" size="30"
+                type="text"
+              ></input>
             </div>
           </div>
         </div>
@@ -52,12 +64,15 @@ function RegisterStore () {
           </div>
           <div className="modal-input-area">
             <div>
-              <input name="text-nmae" size="30" type="text"></input>
+              <input
+                className="modal-input-syle-wow" name="text-nmae" size="30"
+                type="text"
+              ></input>
             </div>
           </div>
         </div>
         <div className="modal-confirm-bt">
-          <button className="confirm-bt">수정 완료</button>
+          <button className="confirm-bt" onClick={ () => setaddStoreMarkerClicked(false) }>등록 완료</button>
         </div>
       </div>
     </div>

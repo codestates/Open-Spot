@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './../App.css';
 import './../Styles/Signin.css';
 
 // http://open-spot-bucket-deploy.s3-website.ap-northeast-2.amazonaws.com : S3 버킷 주소
 
-function BusinessSignin () {
+function BusinessSignin ({ handleUserInfo }) {
+  const navigate = useNavigate();
   // DOM에 접근
   const userNameVerDOM = useRef(null);
   const emailVerDOM = useRef(null);
@@ -117,13 +118,22 @@ function BusinessSignin () {
       password,
       userName,
       companyNumbers
-    }).then((response) => {
-      console.log(response);
-      if (response.data.code === 201) {
-        alert('회원가입 성공');
+    }).then((res) => {
+      console.log(res);
+      if (res.data.code === 201) {
+        const userInfo = {
+          isLogin: true,
+          role: res.data.role,
+          name: res.data.userName,
+          email: res.data.email,
+          profile: res.data.profile
+        };
+        handleUserInfo(userInfo);
+        navigate('/');
       }
     }).catch((err) => {
       if (err.response.status === 409) {
+        handleUserInfo({ isLogin: false });
         return alert('회원가입 실패. 이미 존재하는 이메일입니다.');
       }
       alert('서버 에러');
@@ -215,6 +225,7 @@ function BusinessSignin () {
       didMount.current = true;
     }
   }, [validationChk]);
+
   return (
     <>
       <div className="background">
@@ -248,11 +259,11 @@ function BusinessSignin () {
               <p className="sub-title">
                 사용자 개인 정보
               </p>
-              <input className="base-input" onChange={ handleUserName }placeholder="닉네임" />
+              <input className="base-input" onChange={ handleUserName } placeholder="닉네임" />
               <div className="verification" ref={ userNameVerDOM }>
                 {/* 닉네임이 중복됩니다/(통과) or 닉네임의 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
               </div>
-              <input className="base-input"onChange={ handleEmail } placeholder="이메일" />
+              <input className="base-input" onChange={ handleEmail } placeholder="이메일" />
               <div className="verification" ref={ emailVerDOM }>
                 {/* 이메일이 중복됩니다/(통과) or 이메일의 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
               </div>

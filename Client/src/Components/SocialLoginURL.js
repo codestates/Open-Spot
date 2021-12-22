@@ -6,7 +6,7 @@ const GOOGLE_QUERY_STRING = qs.stringify({
   client_id: GOOGLE_CLIENT_ID,
   redirect_uri: 'https://d1839m99iakp36.cloudfront.net',
   response_type: 'code',
-  scope: 'penid profile email',
+  scope: 'openid profile email',
   access_type: 'offline'
 });
 
