@@ -1,3 +1,4 @@
+const marker = require('../models/marker');
 const models = require('./../models');
 const { verifyToken } = require('./HashFunctions');
 
@@ -25,7 +26,8 @@ module.exports = {
         return res.status(401).json({ code: 401, message: 'unauthorized' });
       });
 
-    const { companyNumber, storeName, address, callNum, tagName, description, latitude, longitude, parking, booking } = req.body;
+    // req.body에서 imageId도 받아옴.
+    const { companyNumber, storeName, address, callNum, tagName, description, latitude, longitude, parking, booking, fileName } = req.body;
 
     const [newElement, created] = await models.Marker.findOrCreate({
       where: { id: companyNumber },
@@ -40,12 +42,15 @@ module.exports = {
         latitude: latitude,
         longitude: longitude,
         parking: parking,
-        booking: booking
+        booking: booking,
+        // req.body에서 imageId도 받아옴.
+        fileName: fileName
       },
       raw: true
-    }).catch(err => {
-      return res.status(500).json({ code: 500, error: err });
-    });
+    })
+      .catch(err => {
+        return res.status(500).json({ code: 500, error: err });
+      });
 
     if (created) {
       res.status(201).json({ code: 201, message: 'created' });
