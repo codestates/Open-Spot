@@ -23,7 +23,7 @@ const MapUser = () => {
     async function setInfo () {
       // 서버에서 주는 응답 body가 달라질 예정. 수정 필요!
       try {
-        const response = await axios.get('https://api.open-spot.tk/markers');
+        const response = await axios.get('https://api.open-spot.tk/markers', { withCredentials: true });
         const mapContainer = document.getElementById('map');
         const mapOptions = {
           center: new kakao.maps.LatLng(37.566693551619345, 126.97861550923805),
@@ -34,7 +34,7 @@ const MapUser = () => {
         /* 지도에 핀 표시하는 로직 */
         // 지도 Pin HTML
         // 마커들의 위치 정보들
-        const positions = getPositions(response.data);
+        const positions = getPositions(response.data.markers);
 
         // customOverlay.setMap(map);
         for (let i = 0; i < positions.length; i++) {
@@ -43,7 +43,7 @@ const MapUser = () => {
           content.className = 'fas fa-map-marker-alt fa-3x';
           content.style.cssText = 'color:rgba(216, 129, 129, 0.99)';
           content.onclick = function () {
-            setCurrentMarker(response.data[i]);
+            setCurrentMarker(response.data.markers[i]);
             setIsClicked(true);
           };
 

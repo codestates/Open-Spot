@@ -23,7 +23,7 @@ const MapGuest = () => {
     async function setInfo () {
       // 서버에서 주는 응답 body가 달라질 예정. 수정 필요!
       try {
-        const response = await axios.get('https://api.open-spot.tk/markers');
+        const response = await axios.get('https://api.open-spot.tk/markers', { withCredentials: true });
         const mapContainer = document.getElementById('map');
         const mapOptions = {
           center: new kakao.maps.LatLng(37.566693551619345, 126.97861550923805),

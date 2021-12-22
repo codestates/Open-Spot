@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './../Styles/Home.css';
 import './../Styles/Header.css';
+import axios from 'axios';
 
 // input 태그와 button 태그 둘 다 버튼을 만들 수 있음 -> 차이점 뭔지 알아보기
 
@@ -9,7 +10,7 @@ const User = ({ role }) => (
   <>
     { role === 'general' ? <Link to="/client/mypage"><button className="tab">MY PAGE</button></Link> : <Link to="/business/mypage"><button className="tab">MY PAGE</button></Link> }
     <Link to="/">
-      <button className="tab">LOG OUT</button>
+      <button className="tab" onClick={ () => axios.get('https://api.open-spot.tk/auth/local', { withCredentials: true }) }>LOG OUT</button>
     </Link>
   </>
 );
@@ -66,7 +67,7 @@ function Home ({ handleIsLoginTab, userInfo }) {
             <div id="nav-body">
               {userInfo.isLogin ? <MapTabUser /> : <MapTabGuest />}
               <div id="vertical-hr"></div>
-              {/* 사업자와 일반인을 구분하는 역할 필요 */}             
+              {/* 사업자와 일반인을 구분하는 역할 필요 */}
               {userInfo.isLogin ? <User role={ userInfo.role } /> : <Guest handleIsLoginTab={ handleIsLoginTab } />}
             </div>
           </div>
