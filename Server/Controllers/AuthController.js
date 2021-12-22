@@ -178,7 +178,7 @@ module.exports = {
   localSignIn: async (req, res) => {
     // email: req.body.email
     const userInfo = await models.User.findOne({
-      where: { email: 'abc11@naver.com' }
+      where: { email: req.body.email }
     }).catch(err => {
       return res.status(500).json({ code: 500, error: err });
     });
@@ -190,7 +190,7 @@ module.exports = {
 
     const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo;
     // req.body.password
-    const { saltedPassword } = await createSaltedPassword('12345', userInfo.salt).catch(err => {
+    const { saltedPassword } = await createSaltedPassword(req.body.password, userInfo.salt).catch(err => {
       return res.status(500).json({ code: 500, error: err });
     });
 
