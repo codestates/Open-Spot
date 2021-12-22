@@ -20,6 +20,7 @@ function BusinessFavoriteList () {
       withCredentials: true
     }).then((res) => {
       const { markers } = res.data;
+      console.log(markers);
       markers.forEach((marker) => {
         dispatch(getMyFavoriteMarkers(marker));
       });

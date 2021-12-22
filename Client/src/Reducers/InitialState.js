@@ -6,7 +6,8 @@ export const initialState = {
     role: null,
     name: null,
     email: null,
-    profile: null
+    profile: null,
+    oauthLogin: null
   },
   socialLoginBtn: {
     google: false,
@@ -37,8 +38,8 @@ export const initialState = {
       desc: '매일매일 맛있는 빵이 가득 !',
       lat: '33',
       lon: '126',
-      isPark: '불가능',
-      isBook: '불가능'
+      isPark: 0,
+      isBook: 1
     }
   ]
 };
