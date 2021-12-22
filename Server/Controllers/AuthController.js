@@ -53,7 +53,7 @@ module.exports = {
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: picture });
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: picture, oauthLogin: 1 });
   },
   GetNaverAPI: async (req, res) => {
     const redirectURI = encodeURI('https://d1839m99iakp36.cloudfront.net');
@@ -102,7 +102,7 @@ module.exports = {
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile });
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile, oauthLogin: 1 });
   },
   GetKakaoAPI: async (req, res) => {
     const clientID = process.env.KAKAO_CLIENT_ID;
@@ -115,7 +115,7 @@ module.exports = {
         grant_type: 'authorization_code',
         client_id: clientID,
         client_secret: clientSecret,
-        redirect_uri: 'http://localhost:3000',
+        redirect_uri: 'https://d1839m99iakp36.cloudfront.net',
         code: req.body.authorizationCode
       },
       headers: {
@@ -138,6 +138,7 @@ module.exports = {
     });
     console.log(kakaoInfo);
     const result = kakaoInfo.data;
+
     // const result =
     // {
     //   id: 2038967258,
@@ -172,9 +173,10 @@ module.exports = {
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile });
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile, oauthLogin: 1 });
   },
-  localSignIn: async (req, res) => {
+
+  localSignInGen: async (req, res) => {
     const userInfo = await models.User.findOne({
       where: { email: req.body.email }
     }).catch(err => {
@@ -184,6 +186,8 @@ module.exports = {
     // DB에 없는 이메일인 경우
     if (!userInfo) {
       return res.status(404).json({ code: 404, error: 'not found' });
+    } else if (userInfo.role === 'business') {
+      return res.status(401).json({ code: 401, error: 'unauthorized' });
     }
 
     const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo;
@@ -198,6 +202,36 @@ module.exports = {
       const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
       res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
       res.status(200).json({ code: 200, userName: userInfo.userName, role: userInfo.role, email: userInfo.email });
+    } else {
+      res.status(401).json({ code: 401, error: 'unauthorized' });
+    }
+  },
+  localSignInBus: async (req, res) => {
+    const userInfo = await models.User.findOne({
+      where: { email: req.body.email }
+    }).catch(err => {
+      return res.status(500).json({ code: 500, error: err });
+    });
+
+    // DB에 없는 이메일인 경우
+    if (!userInfo) {
+      return res.status(404).json({ code: 404, error: 'not found' });
+    } else if (userInfo.role === 'general') {
+      return res.status(401).json({ code: 401, error: 'unauthorized' });
+    }
+
+    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo;
+    // req.body.password
+    const { saltedPassword } = await createSaltedPassword(req.body.password, userInfo.salt).catch(err => {
+      return res.status(500).json({ code: 500, error: err });
+    });
+
+    // 쿠키의 유효 시간을 토큰의 만료 시간과 동일하게 설정
+    // https 통신을 할 경우 쿠키에서 secure: true옵션 사용하기
+    if (saltedPassword === userInfo.saltedPassword) {
+      const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
+      res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
+      res.status(200).json({ code: 200, userName: userInfo.userName, role: userInfo.role, email: userInfo.email, oauthLogin: 0 });
     } else {
       res.status(401).json({ code: 401, error: 'unauthorized' });
     }

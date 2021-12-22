@@ -1,0 +1,134 @@
+/* .modal-box-background{
+  background-color: #282828;
+  opacity: 42%;
+} */
+
+.modal-background{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(37, 37, 37, 0.7);
+  position: fixed;
+  z-index: 999; /*모달창엔 효과가 있다!*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modify-info-box{
+  background-color: #fff;
+  width: 600px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+}
+.register-box-container {
+  background-color: #fff;
+  width: 600px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+}
+
+#modal-modify-input-container {
+  height: 270px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+.modify-info{
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.modify-box{
+  display: flex;
+}
+.resolve-problem {
+  height: 300px;
+}
+
+.modal-input-box{
+  width: 100px;
+  font-weight: 400;
+  padding-right: 10px;
+  margin-top: 2px;
+  border-right: 2px solid rgba(37, 37, 37, 0.3);
+}
+
+.modal-input-area{
+  margin-left: 30px;
+}
+
+.modal-text-vertical-wow {
+  margin-top: 5.2px;
+}
+
+.modal-input-syle-wow {
+  height: 25px;
+  border: 0.5px solid rgba(37, 37, 37, 0.3);
+  border-radius: 5px;
+}
+.modal-input-syle-wow::placeholder {
+  padding-left: 5px;
+}
+/*text-area로 해결함..*/
+#resolve-problem {
+  padding-bottom: 80px;
+  width: 250px;
+  word-wrap : break-word;
+  white-space: normal;
+  word-break: keep-all;
+}
+
+.modal-confirm-bt{
+  width: 450px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirm-bt{
+  width: 180px;
+  height: 37px;
+  margin-bottom: 20px;
+  background-color: rgb(73, 70, 70);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+#withdrawal{
+  height: 100px;
+}
+
+/*  */
+
+.withdrawal-bt{
+  background-color: rgb(206, 58, 58);
+}
+
+#withdraqal-flex-party {
+  width: 450px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#modal-do-not-coincidence {
+  height: 5px;
+  color: red;
+  font-size: 0.9em;
+  margin-left: 140px;
+}
+.resolve-problem-align {
+  margin-right: 120px;
+  margin-bottom: 10px;
+}

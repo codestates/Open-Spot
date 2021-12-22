@@ -5,11 +5,9 @@ import './../Styles/Header.css';
 
 // input 태그와 button 태그 둘 다 버튼을 만들 수 있음 -> 차이점 뭔지 알아보기
 
-const User = () => (
+const User = ({ role }) => (
   <>
-    <Link to="/mypage">
-      <button className="tab">MY PAGE</button>
-    </Link>
+    { role === 'general' ? <Link to="/client/mypage"><button className="tab">MY PAGE</button></Link> : <Link to="/business/mypage"><button className="tab">MY PAGE</button></Link> }
     <Link to="/">
       <button className="tab">LOG OUT</button>
     </Link>
@@ -56,8 +54,8 @@ const MapButtonGuest = () => (
   </Link>
 );
 
-const Home = ({ handleIsLoginTab, isLogin }) => (
-  <>
+function Home ({ handleIsLoginTab, userInfo }) {
+  return (
     <div className="entire-container">
       <div className="main-section">
         <header>
@@ -66,16 +64,16 @@ const Home = ({ handleIsLoginTab, isLogin }) => (
               <div id="logo" />
             </Link>
             <div id="nav-body">
-              {isLogin ? <MapTabUser /> : <MapTabGuest />}
+              {userInfo.isLogin ? <MapTabUser /> : <MapTabGuest />}
               <div id="vertical-hr"></div>
-              {/* 사업자와 일반인을 구분하는 역할 필요 */}
-              {isLogin ? <User /> : <Guest handleIsLoginTab={ handleIsLoginTab } />}
+              {/* 사업자와 일반인을 구분하는 역할 필요 */}             
+              {userInfo.isLogin ? <User role={ userInfo.role } /> : <Guest handleIsLoginTab={ handleIsLoginTab } />}
             </div>
           </div>
         </header>
         <div className="main-container">
           <p id="main-title">새롭게 떠오르는.<br />빠르게 알고싶은.</p>
-          {isLogin ? <MapButtonUser /> : <MapButtonGuest />}
+          {userInfo.isLogin ? <MapButtonUser /> : <MapButtonGuest />}
         </div>
         <div className="down-button-container">
           <i className="fas fa-chevron-down" id="down-icon"></i>
@@ -190,7 +188,7 @@ const Home = ({ handleIsLoginTab, isLogin }) => (
         Hello World
       </footer>
     </div>
-  </>
-);
+  );
+}
 
 export default Home;

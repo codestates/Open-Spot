@@ -31,12 +31,19 @@ const BusinessLogin = ({ handleUserInfo }) => {
 
   const getLogin = (payload) => {
     axios({
-      url: 'https://api.open-spot.tk/auth/local',
+      url: 'https://api.open-spot.tk/local/business',
       method: 'post',
       data: payload
-    }).then((data) => {
-      console.log(data); // 받아오는 response.body로 handleUserInfo 업데이트시키기
-
+    }).then((res) => {
+      console.log(res);
+      const userInfo = {
+        isLogin: true,
+        role: res.data.role,
+        name: res.data.userName,
+        email: res.data.email,
+        profile: res.data.profile
+      };
+      handleUserInfo(userInfo);
       setIsNotMatch(false);
       navigate('/');
     })

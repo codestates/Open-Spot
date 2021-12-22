@@ -5,14 +5,17 @@ import { Provider } from 'react-redux';
 // test
 import Router from './Router.js';
 import './index.css';
+// 마이페이지 모음
+// import MyPageBusinessRouter from './MyPageBusinessRouter'; // 사업자 유저 MyPage
+// import MyPageClientRouter from './MyPageClientRouter.js'; // 일반 유저 MyPage
+// 모달창 모음
+// import ModalWithDrawal from './Modals/ModalWithDrawal'; // 회원 탈퇴 모달창
+// import ModalModifyInfo from './Modals/ModalModifyInfo'; // 회원 정보 수정 모달창
+// import ModalRegisterStore from './Modals/ModalRegisterStore'; // 가게 등록 모달창
 
 ReactDOM.render(
   <Provider store={ store }>
     <Router />
-  </Provider >,
+  </Provider>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

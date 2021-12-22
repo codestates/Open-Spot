@@ -183,8 +183,10 @@ module.exports = {
   },
   deleteUserInfo: async (req, res) => {
     // req.cookies에서 받아온 jwt의 userId로 DB에서 찾아서 삭제한다.
+    // req.body에 사유랑 비밀번호가 같이 온다.
 
     const token = req.cookies.accessToken;
+
     // 토큰의 유효성 검사
     const decoded = await verifyToken(token, process.env.ACCESS_SECRET)
       .catch(err => {
@@ -198,14 +200,20 @@ module.exports = {
       console.log(err);
       return res.status(404).json({ code: 404, error: 'user not found' });
     });
+    console.log(userInfo);
 
-    const { id, userName } = userInfo.dataValues;
-    console.log('userInfo의 id, userName은 이거다\n');
-    console.log({ id, userName });
+    // 로컬 사용자만 비밀번호 검증 단계를 거친다
+    if (userInfo.oauthLogin === 0) {
+      const { saltedPassword } = await createSaltedPassword(req.body.password, userInfo.salt).catch(err => {
+        return res.status(500).json({ code: 500, error: err });
+      });
+      if (saltedPassword !== userInfo.saltedPassword) {
+        res.status(401).json({ code: 401, error: 'unauthorized' });
+      }
+    }
 
     // dyingMessage 테이블 추가
-    // message: req.body.quitReason
-    // await models.DyingMessage.create({ userName: userName, message: '동운님 때문에 탈퇴함' });
+    await models.DyingMessage.create({ userName: userInfo.userName, message: req.body.quitReason });
 
     // 유저 테이블 지우기 전에, 유저마커 테이블의 마커id를 다 가져와서
     const removeMarkers = await models.User.findAll({
@@ -219,14 +227,14 @@ module.exports = {
     });
     // removeMarkers[0].dataValues.Markers는 배열이고, 각 요소가 내가 찾은 마커임
 
-    console.log('removeMarkers[0].dataValues.Markers[0].dataValues.userId은 이거다\n');
-    console.log(removeMarkers[0].dataValues.Markers[0].dataValues.userId);
+    // console.log('removeMarkers[0].dataValues.Markers[0].dataValues.userId은 이거다\n');
+    // console.log(removeMarkers[0].dataValues.Markers[0].dataValues.userId);
 
     // 마커를 지우려고 보니, Cannot delete or update a parent row 에러가 뜸
     // 제약이 걸려있기 때문에 UsersMarkers 테이블 제거가 먼저 이루어져야함
     await models.UsersMarkers.destroy({
       where: {
-        userId: id
+        userId: userInfo.id
       }
     });
 
@@ -243,14 +251,45 @@ module.exports = {
     // 삭제했으면 이제 삭제됐다고 메세지를 날려주자.
     await models.User.destroy({
       where: {
-        id: id
+        id: userInfo.id
       }
     })
       .then(() => {
-        res.status(200).json({ message: '탈퇴 완료' });
+        res.status(200).json({ message: '회원 탈퇴 되셨습니다.' });
       })
       .catch(err => {
         return res.status(500).json({ code: 500, error: err });
       });
+  },
+  addMarkerstoMypage: async (req, res) => {
+    // 토큰이 없는 경우
+    if (!req.cookies || !req.cookies.accessToken) {
+      return res.status(401).json({ code: 401, error: 'unauthorized' });
+    }
+
+    const token = req.cookies.accessToken;
+    // 토큰의 유효성 검사
+    const decoded = await verifyToken(token, process.env.ACCESS_SECRET)
+      .catch(err => {
+        console.log(err);
+        return res.status(401).json({ code: 401, message: 'unauthorized' });
+      });
+
+    const [newElement, created] = await models.UsersMarkers.findOrCreate({
+      where: { userId: decoded.id, markerId: req.body.markerId },
+      defaults: {
+        userId: decoded.id,
+        markerId: req.body.markerId
+      },
+      raw: true
+    }).catch(err => {
+      return res.status(500).json({ code: 500, error: err });
+    });
+
+    if (created) {
+      res.status(201).json({ code: 201, message: 'created' });
+    } else {
+      res.status(409).json({ code: 409, error: 'info already exists' });
+    }
   }
 };

@@ -38,6 +38,7 @@ hr {
   height: 55px;
   border: none;
   cursor: pointer;
+  font-size: 0; /*input value값 숨기기*/
 }
 /*구글*/
 #googleIcon {

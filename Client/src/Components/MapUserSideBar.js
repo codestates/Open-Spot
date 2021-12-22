@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import './../App.css';
 import './../Styles/Map.css';
 
@@ -6,8 +7,9 @@ const MapUserSideBar = () => (
   <div id="map-container">
     <div id="map-sidebar">
       <div id="map-sidebar-header">
-        <div id="map-logo" />
-        {/* <i className="fas fa-times fa-3x"></i> */}{/* 지울 가능성 열려있음 */}
+        <Link to="/">
+          <div id="map-logo" />
+        </Link>
       </div>
       <div id="map-firstpage-user">
         <div id="map-firstpage-btn">

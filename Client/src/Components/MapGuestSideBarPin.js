@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import './../App.css';
 import './../Styles/Map.css';
 
@@ -7,7 +8,9 @@ const MapGuestSideBarPin = () => (
     <div id="map-container">
       <div id="map-sidebar">
         <div id="map-sidebar-header">
-          <div id="map-logo" />
+          <Link to="/">
+            <div id="map-logo" />
+          </Link>
           <div id="map-update-tag">3일 전</div>
         </div>
         <div id="map-sidebar-body-guest">

@@ -27,7 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     latitude: DataTypes.DECIMAL,
     longitude: DataTypes.DECIMAL,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    parking: DataTypes.BOOLEAN,
+    booking: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Marker'
