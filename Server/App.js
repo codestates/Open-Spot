@@ -13,6 +13,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(cookieParser());
 app.use(express.json());
+
+
+
 app.use(
   cors({
     origin: true,

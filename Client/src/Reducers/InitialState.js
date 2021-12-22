@@ -7,5 +7,10 @@ export const initialState = {
     name: null,
     email: null,
     profile: null
+  },
+  socialLoginBtn: {
+    google: false,
+    naver: false,
+    kakao: false
   }
 };
