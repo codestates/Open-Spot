@@ -6,11 +6,24 @@ import axios from 'axios';
 
 // input 태그와 button 태그 둘 다 버튼을 만들 수 있음 -> 차이점 뭔지 알아보기
 
-const User = ({ role }) => (
+const User = ({ role, handleUserInfo }) => (
   <>
     { role === 'general' ? <Link to="/client/mypage"><button className="tab">MY PAGE</button></Link> : <Link to="/business/mypage"><button className="tab">MY PAGE</button></Link> }
     <Link to="/">
-      <button className="tab" onClick={ () => axios.get('https://api.open-spot.tk/auth/local', { withCredentials: true }) }>LOG OUT</button>
+      <button
+        className="tab" onClick={
+        () => axios.get(
+          'https://api.open-spot.tk/auth/local',
+          { withCredentials: true })
+          .then(() => {
+            handleUserInfo({ isLogin: false });
+          })
+          .catch((err) => {
+            alert(err);
+            console.log(err);
+          })
+        }
+      >LOG OUT</button>
     </Link>
   </>
 );
@@ -55,7 +68,10 @@ const MapButtonGuest = () => (
   </Link>
 );
 
-function Home ({ handleIsLoginTab, userInfo }) {
+
+
+
+function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
   return (
     <div className="entire-container">
       <div className="main-section">
@@ -68,7 +84,7 @@ function Home ({ handleIsLoginTab, userInfo }) {
               {userInfo.isLogin ? <MapTabUser /> : <MapTabGuest />}
               <div id="vertical-hr"></div>
               {/* 사업자와 일반인을 구분하는 역할 필요 */}
-              {userInfo.isLogin ? <User role={ userInfo.role } /> : <Guest handleIsLoginTab={ handleIsLoginTab } />}
+              {userInfo.isLogin ? <User handleUserInfo={ handleUserInfo } role={ userInfo.role } /> : <Guest handleIsLoginTab={ handleIsLoginTab } />}
             </div>
           </div>
         </header>

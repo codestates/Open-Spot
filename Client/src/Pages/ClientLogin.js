@@ -45,7 +45,6 @@ const ClientLogin = ({ handleUserInfo, handleSocialLoginBtn }) => {
         role: res.data.role,
         name: res.data.userName,
         email: res.data.email,
-        profile: res.data.profile,
         oauthLogin: res.data.oauthLogin
       };
       handleUserInfo(userInfo);
@@ -60,14 +59,23 @@ const ClientLogin = ({ handleUserInfo, handleSocialLoginBtn }) => {
   };
 
   const getBtnName = (event) => {
+    // const currSocialBtn = event.target.value;
+    // const socialBtns = ['google', 'naver', 'kakao'];
+    // const obj = {};
+    // socialBtns.forEach((btn) => {
+    //   if (btn === currSocialBtn) obj[btn] = true;
+    //   else obj[btn] = false;
+    // });
+    // handleSocialLoginBtn(obj);
     const currSocialBtn = event.target.value;
     const socialBtns = ['google', 'naver', 'kakao'];
-    const obj = {};
+    const result = {};
     socialBtns.forEach((btn) => {
-      if (btn === currSocialBtn) obj[btn] = true;
-      else obj[btn] = false;
+      if (btn === currSocialBtn) result[btn] = true;
+      else result[btn] = false;
     });
-    handleSocialLoginBtn(obj);
+    const data = JSON.stringify(result);
+    window.localStorage.setItem('socialBtn', data);
   };
 
   const { google, naver, kakao } = socialLoginURL;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Siderbar from './../Components/MyPageBusinessSideBar.js';
 import StoreInfo from './../Components/MyPageStoreCard.js';
 import ModalRegisterStore from './../Modals/ModalRegisterStore.js';
@@ -10,7 +10,9 @@ import './../Styles/MyPage.css';
 import './../Styles/Header.css';
 import { getMyStoreMarkers } from './../Actions/index.js';
 
-function BusinessMyStore () {
+
+function BusinessMyStore ({ handleUserInfo }) {
+  const dispatch = useDispatch();
   const { myStoreMarkers } = useSelector(state => state.userStateReducer);
   const [addStoreMarkerClicked, setaddStoreMarkerClicked] = useState(false);
 
@@ -26,12 +28,12 @@ function BusinessMyStore () {
     }).then((res) => {
       const { markers } = res.data;
       markers.forEach((marker) => {
-        getMyStoreMarkers(marker);
+        dispatch(getMyStoreMarkers(marker));
       });
     }).catch((err) => {
       console.log(err);
     });
-  });
+  }, []);
 
   return (
     <>
@@ -54,7 +56,20 @@ function BusinessMyStore () {
                   <button className="tab change-tab-design">MY PAGE</button>
                 </Link>
                 <Link to="/">
-                  <button className="tab change-tab-design">LOG OUT</button>
+                  <button
+                    className="tab change-tab-design" onClick={
+                    () => axios.get(
+                      'https://api.open-spot.tk/auth/local',
+                      { withCredentials: true })
+                      .then(() => {
+                        handleUserInfo({ isLogin: false });
+                      })
+                      .catch((err) => {
+                        alert(err);
+                        console.log(err);
+                      })
+                    }
+                  >LOG OUT</button>
                 </Link>
               </div>
             </div>

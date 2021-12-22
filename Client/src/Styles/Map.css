@@ -75,7 +75,7 @@
 }
 #map-content {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   justify-content: space-between;
 }
 /* 아니 이미지 왜 안나오는거임;; */
@@ -118,6 +118,12 @@
   background-color: rgb(97, 97, 97);
   color: rgb(240, 240, 240);
   cursor: pointer;
+}
+.put-force-margin-mypage {
+  margin-top: 25px;
+}
+#resolve-a-tag-problem {
+  width: 320px;
 }
 #map-firstpage-text {
   color: rgb(240, 240, 240);

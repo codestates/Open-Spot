@@ -32,11 +32,9 @@ import axios from 'axios';
 const Routers = () => {
   const state1 = useSelector(state => state.pageReducer);
   const state2 = useSelector(state => state.userStateReducer);
-  const { isLoginTab, socialLoginBtn } = state1;
+  const { isLoginTab } = state1;
   const { userInfo } = state2;
   const dispatch = useDispatch();
-
-  // test
 
   const handleIsLoginTab = (bool) => {
     dispatch(selectLoginOrSignin(bool));
@@ -121,18 +119,26 @@ const Routers = () => {
     const authorizationCode = url.searchParams.get('code');
     // console.log(`authorizationCode 값은 ${authorizationCode}`);
     if (authorizationCode) {
-      for (const btn in socialLoginBtn) {
-        if (socialLoginBtn[btn] === true) {
+      // for (const btn in socialLoginBtn) {
+      //   if (socialLoginBtn[btn] === true) {
+      //     getToken(authorizationCode, btn);
+      //   };
+      // };
+      const dataObj = JSON.parse(window.localStorage.getItem('socialBtn')); // JSON.parse 너 이 녀석
+      console.log(dataObj);
+      for (const btn in dataObj) {
+        if (dataObj[btn] === true) {
           getToken(authorizationCode, btn);
-        };
-      };
+          window.localStorage.removeItem('socialBtn');
+        }
+      }
     }
   });
 
   return (
     <Router>
       <Routes>
-        <Route element={ <Home handleIsLoginTab={ handleIsLoginTab } userInfo={ userInfo } /> } exact path="/" />
+        <Route element={ <Home handleIsLoginTab={ handleIsLoginTab } handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } exact path="/" />
         <Route element={ <Switch isLoginTab={ isLoginTab } /> } path="/switch" />
         <Route element={ <ClientLogin handleSocialLoginBtn={ handleSocialLoginBtn } handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } path="/client/login" />
         <Route element={ <BusinessLogin handleUserInfo={ handleUserInfo } /> } path="/business/login" />
@@ -141,18 +147,21 @@ const Routers = () => {
         <Route element={ <MapGuest /> } path="/map/guest" />
         <Route element={ <MapUser userInfo={ userInfo } /> } path="/map/user" />
         <Route
-          element={ <ClientUserInfo /> } exact path="/client/mypage"
+          element={ <ClientUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } exact path="/client/mypage"
           userInfo={ userInfo }
         />
-        <Route element={ <ClientUserInfo /> } path="/client/userinfo" userInfo={ userInfo } />
-        <Route element={ <ClientFavoriteList /> } path="/client/favoritelist" />
         <Route
-          element={ <BusinessUserInfo /> } exact path="/business/mypage"
-          userInfo={ userInfo }
+          element={ <ClientUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } path="/client/userinfo"
         />
-        <Route element={ <BusinessUserInfo /> } path="/business/userinfo" userInfo={ userInfo } />
-        <Route element={ <BusinessFavoriteList /> } path="/business/favoritelist" />
-        <Route element={ <BusinessMyStore /> } path="/business/mystore" />
+        <Route element={ <ClientFavoriteList handleUserInfo={ handleUserInfo } /> } path="/client/favoritelist" />
+        <Route
+          element={ <BusinessUserInfo userInfo={ userInfo } /> } exact path="/business/mypage"
+        />
+        <Route
+          element={ <BusinessUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } path="/business/userinfo"
+        />
+        <Route element={ <BusinessFavoriteList handleUserInfo={ handleUserInfo } /> } path="/business/favoritelist" />
+        <Route element={ <BusinessMyStore handleUserInfo={ handleUserInfo } /> } path="/business/mystore" />
       </Routes>
     </Router>
   );

@@ -246,8 +246,8 @@
 
 .name-box{
   display: flex;
-  justify-content: center;
   width: calc(600px - 200px);
+  padding-left: 10%;
   margin: 10px;
 }
 

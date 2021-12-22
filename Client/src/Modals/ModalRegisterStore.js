@@ -1,7 +1,24 @@
 import React from 'react';
+// import axios from 'axios';
 import './../Styles/Modal.css';
 
 function RegisterStore ({ setaddStoreMarkerClicked }) {
+  // const logoImginput = useRef(null);
+  // const logoImgInputBtn = (event) => {
+  //   event.preventDefault;
+  //   logoImginput.current.click();
+  // };
+  // const imgChange = async (event) => {
+  //   const formData = new FormData();
+  //   formData.append('file', event.target.files[0]);
+  //   const response = await axios({
+  //     url: 'https://api.open-spot.tk/image',
+  //     method: 'post',
+  //     data: {
+  //       formData
+  //     }
+  //   });
+  // };
   return (
     <div className="modal-background">
       <div className="register-box-container">
