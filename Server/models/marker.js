@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate (models) {
       models.Marker.hasMany(models.UsersMarkers);
       models.Marker.belongsTo(models.User);
+      models.Marker.hasMany(models.Images);
     }
   };
   Marker.init({
@@ -28,8 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     latitude: DataTypes.DECIMAL,
     longitude: DataTypes.DECIMAL,
     userId: DataTypes.INTEGER,
-    parking: DataTypes.BOOLEAN,
-    booking: DataTypes.BOOLEAN
+    fileName: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Marker'

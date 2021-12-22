@@ -23,7 +23,6 @@ function BusinessFavoriteList () {
       console.log(markers);
       markers.forEach((marker) => {
         dispatch(getMyFavoriteMarkers(marker));
-        console.log(myFavoriteMarkers);
       });
     }).catch((err) => {
       console.log(err);
