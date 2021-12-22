@@ -53,7 +53,7 @@ module.exports = {
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: picture });
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: picture, oauthLogin: 1 });
   },
   GetNaverAPI: async (req, res) => {
     const redirectURI = encodeURI('https://d1839m99iakp36.cloudfront.net');
@@ -102,7 +102,7 @@ module.exports = {
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile });
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile, oauthLogin: 1 });
   },
   GetKakaoAPI: async (req, res) => {
     const clientID = process.env.KAKAO_CLIENT_ID;
@@ -138,6 +138,7 @@ module.exports = {
     });
     console.log(kakaoInfo);
     const result = kakaoInfo.data;
+
     // const result =
     // {
     //   id: 2038967258,
@@ -172,9 +173,10 @@ module.exports = {
 
     const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
     res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile });
+    res.status(200).json({ code: 200, userName: needData.userName, role: needData.role, email: needData.email, profile: profile, oauthLogin: 1 });
   },
   localSignIn: async (req, res) => {
+    // email: req.body.email
     const userInfo = await models.User.findOne({
       where: { email: req.body.email }
     }).catch(err => {
@@ -187,7 +189,7 @@ module.exports = {
     }
 
     const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo;
-
+    // req.body.password
     const { saltedPassword } = await createSaltedPassword(req.body.password, userInfo.salt).catch(err => {
       return res.status(500).json({ code: 500, error: err });
     });
@@ -197,7 +199,7 @@ module.exports = {
     if (saltedPassword === userInfo.saltedPassword) {
       const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
       res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none' });
-      res.status(200).json({ code: 200, userName: userInfo.userName, role: userInfo.role, email: userInfo.email });
+      res.status(200).json({ code: 200, userName: userInfo.userName, role: userInfo.role, email: userInfo.email, oauthLogin: 0 });
     } else {
       res.status(401).json({ code: 401, error: 'unauthorized' });
     }
