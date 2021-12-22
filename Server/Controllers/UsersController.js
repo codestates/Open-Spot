@@ -247,7 +247,7 @@ module.exports = {
       }
     })
       .then(() => {
-        res.status(200).json({ message: '탈퇴 완료' });
+        res.status(200).json({ message: '회원 탈퇴 되셨습니다.' });
       })
       .catch(err => {
         return res.status(500).json({ code: 500, error: err });
