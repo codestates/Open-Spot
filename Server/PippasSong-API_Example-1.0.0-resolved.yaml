@@ -230,7 +230,7 @@ paths:
     delete:
       tags:
       - users
-      description: 사용자 정보 삭제
+      description: 사용자 정보 삭제와 동시에 회원 탈퇴 사유가 DB에 저장된다.
       responses:
         "200":
           description: ok
@@ -238,6 +238,43 @@ paths:
             application/json:
               schema:
                properties:
+                code:
+                  type: integer
+                  example: 200
+                message:
+                  type: string
+                  example: 회원 탈퇴 되셨습니다.
+        "401":
+          description: 토큰 유효 기간 경과
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 401
+                message:
+                  type: string
+                  example: 'expired token'
+        "404":
+          description: 토큰의 정보로 사용자 정보를 찾지 못함
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 404
+                message:
+                  type: string
+                  example: 'user not found'
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
   /users/general-markers:
     get:
       tags:
@@ -314,11 +351,11 @@ paths:
               schema:
                 type: object
                 $ref: '#/components/schemas/ServerErr'
-  /auth/naver:
+  /auth/kakao:
     post:
       tags:
       - auth
-      description: 네이버 소셜 로그인. 만약 서버에서 JWT를 발급한다면, body or cookie에 전달할지 결정해야 한다.
+      description: 카카오 소셜 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
       responses:
         "200":
           description: ok
@@ -326,6 +363,28 @@ paths:
             application/json:
               schema:
                properties:
+                code:
+                  type: integer
+                  example: 200
+                userName:
+                  type: string
+                  example: 용가리
+                role:
+                  type: string
+                  example: general
+                email:
+                  type: string
+                  example: terrabattle@naver.com
+                profile:
+                  type: string
+                  example: http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_110x110.jpg
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
       requestBody:
         content:
           application/json:
@@ -335,6 +394,95 @@ paths:
                 authorizationCode:
                   description: URL로 받은 인증 코드
                   type: string
+                  required: true
+  /auth/google:
+    post:
+      tags:
+      - auth
+      description: 구글 소셜 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 200
+                userName:
+                  type: string
+                  example: 화염용
+                role:
+                  type: string
+                  example: general
+                email:
+                  type: string
+                  example: gqwrgadsf@gmail.com
+                profile:
+                  type: string
+                  example: https://lh3.googleusercontent.com/a/AATXAJwhegjEnASqnjidlgyYC7xzyu4U5jdCPpfV30MT=s96-c
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authorizationCode:
+                  description: URL로 받은 인증 코드
+                  type: string
+                  required: true
+  /auth/naver:
+    post:
+      tags:
+      - auth
+      description: 네이버 소셜 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 200
+                userName:
+                  type: string
+                  example: 도롱뇽
+                role:
+                  type: string
+                  example: general
+                email:
+                  type: string
+                  example: yayww@naver.com
+                profile:
+                  type: string
+                  example: http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_110x110.jpg
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authorizationCode:
+                  description: URL로 받은 인증 코드
+                  type: string
+                  required: true
   /auth/local-general:
     post:
       tags:
