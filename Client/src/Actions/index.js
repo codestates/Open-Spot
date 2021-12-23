@@ -31,7 +31,8 @@ export const getMyFavoriteMarkers = (markerInfo) => ({
     lat: markerInfo.latitude,
     lon: markerInfo.longitude,
     isPark: markerInfo.parking,
-    isBook: markerInfo.booking
+    isBook: markerInfo.booking,
+    fileName: markerInfo.fileName
   }
 });
 

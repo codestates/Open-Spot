@@ -42,7 +42,7 @@ const BusinessLogin = ({ handleUserInfo }) => {
         role: res.data.role,
         name: res.data.userName,
         email: res.data.email,
-        profile: res.data.profile
+        profile: 'https://api.open-spot.tk/profile.png'
       };
       handleUserInfo(userInfo);
       setIsNotMatch(false);

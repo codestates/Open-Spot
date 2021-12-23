@@ -137,6 +137,12 @@
   /*왜 어제부터 img src 파일 경로가 안먹히냐*/
 }
 
+.dongun{
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+}
+
 .store-name-main{
   width: 100%;
   height: 60px;

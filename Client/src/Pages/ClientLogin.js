@@ -39,13 +39,17 @@ const ClientLogin = ({ handleUserInfo, handleSocialLoginBtn }) => {
       data: payload,
       withCredentials: true
     }).then((res) => {
-      console.log(res);
+      let profile = 'https://api.open-spot.tk/profile.png';
+      if (res.data.profile) {
+        profile = res.data.profile;
+      }
       const userInfo = {
         isLogin: true,
         role: res.data.role,
         name: res.data.userName,
         email: res.data.email,
-        oauthLogin: res.data.oauthLogin
+        oauthLogin: res.data.oauthLogin,
+        profile: profile
       };
       handleUserInfo(userInfo);
       setIsNotMatch(false);

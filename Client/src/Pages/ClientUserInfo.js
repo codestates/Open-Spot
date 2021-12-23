@@ -8,7 +8,6 @@ import './../Styles/MyPage.css';
 import './../Styles/Header.css';
 
 function ClientMyPage ({ userInfo, handleUserInfo }) {
-  console.log(userInfo);
   const [changeInfoBtnClicked, setChangeInfoBtnClicked] = useState(false);
   const [deleteInfoBtnClicked, setDeleteInfoBtnClicked] = useState(false);
   const handleChangeInfoBtn = (bool) => {
@@ -67,7 +66,7 @@ function ClientMyPage ({ userInfo, handleUserInfo }) {
                 <img
                   className="client-img"
                   height="100"
-                  /* src={ `${userInfo.profile}` } */
+                  src={ `${userInfo.profile}` }
                   width="100"
                 />
               </div>
