@@ -10,6 +10,9 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
   const [description, setDescription] = useState('');
   const [isParking, setIsParking] = useState(0);
   const [reservation, setReservation] = useState(0);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
+  const [tagName, setTagName] = useState('');
 
   const handleDescription = (event) => {
     const desc = event.target.value;
@@ -32,25 +35,28 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
     setCallNum(callNum);
   };
   const handleIsParking = (event) => {
-    // if (event.target.checked) {
-    //   setIsParking(1);
-    // } else {
-    //   setIsParking(0);
-    // }
     const available = event.target.checked;
     setIsParking(available);
     console.log(available);
   };
   const handleReservation = (event) => {
-    // if (event.target.checked) {
-    //   setReservation(1);
-    // } else {
-    //   setReservation(0);
-    // }
     const available = event.target.checked;
     setReservation(available);
     console.log(available);
   };
+  const handleLatitude = (event) => {
+    const location = event.target.value;
+    setLatitude(location);
+  };
+  const handleLongitude = (event) => {
+    const location = event.target.value;
+    setLongitude(location);
+  };
+  const handTagName = (event) => {
+    const location = event.target.value;
+    setTagName(location);
+  };
+
   const sendInformation = async () => {
     axios({
       url: 'https://api.open-spot.tk/markers',
@@ -60,10 +66,10 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
         storeName: storeName,
         address: storeAddress,
         callNum: callNum,
-        tagName: '중식집',
+        tagName: tagName,
         description: description,
-        latitude: '37.567849416994065',
-        longitude: '126.96984561951388',
+        latitude: latitude,
+        longitude: longitude,
         parking: isParking,
         booking: reservation,
         fileName: '4Vh5X2LT.png'
@@ -164,6 +170,48 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
               <input
                 className="modal-input-syle-wow" name="text-nmae" onChange={ handleDescription }
                 size="30"
+                type="text"
+              ></input>
+            </div>
+          </div>
+        </div>
+        <div className="modify-box">
+          <div className="modal-input-box">
+            <div>태그명</div>
+          </div>
+          <div className="modal-input-area">
+            <div>
+              <input
+                className="modal-input-syle-wow" onChange={ handTagName } name="text-nmae" size="30"
+                type="text" placeholder="일식  중식  양식  한식  카페  etc"
+              ></input>
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="https://tablog.neocities.org/keywordposition.html" target="_blank" rel="noreferrer">위도와 경도를 확인하세요</a>
+        </div>
+        <div className="modify-box">
+          <div className="modal-input-box">
+            <div>위도</div>
+          </div>
+          <div className="modal-input-area">
+            <div>
+              <input
+                className="modal-input-syle-wow" onChange={ handleLatitude } name="text-nmae" size="30"
+                type="text"
+              ></input>
+            </div>
+          </div>
+        </div>
+        <div className="modify-box">
+          <div className="modal-input-box">
+            <div>경도</div>
+          </div>
+          <div className="modal-input-area">
+            <div>
+              <input
+                className="modal-input-syle-wow" onChange={ handleLongitude } name="text-nmae" size="30"
                 type="text"
               ></input>
             </div>
