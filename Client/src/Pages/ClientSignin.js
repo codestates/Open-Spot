@@ -197,11 +197,17 @@ function ClientSignin ({ handleUserInfo }) {
               <div className="verification" ref={ emailVerDOM }>
                 {/* 이메일이 중복됩니다/(통과) or 이메일의 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
               </div>
-              <input className="base-input" onChange={ handlePassword } placeholder="비밀번호" />
+              <input
+                className="base-input" onChange={ handlePassword } placeholder="비밀번호"
+                type="password"
+              />
               <div className="verification" ref={ passwordVerDOM }>
                 {/* 비밀번호의 형식이 올바르지 않습니다/(통과) -문구 띄우기 */}
               </div>
-              <input className="base-input" onChange={ handleVerPassword } placeholder="비밀번호 확인" />
+              <input
+                className="base-input" onChange={ handleVerPassword } placeholder="비밀번호 확인"
+                type="password"
+              />
               <div className="verification" ref={ chkPasswordDOM }>
                 {/* 비밀번호가 일치합니다/비밀번호가 일치하지 않습니다 -문구 띄우기 */}
               </div>

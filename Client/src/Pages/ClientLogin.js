@@ -103,7 +103,10 @@ const ClientLogin = ({ handleUserInfo, handleSocialLoginBtn }) => {
             </p>
             <div id="input-container-login">
               <input className="base-input" onChange={ handleEmail } placeholder="이메일" />
-              <input className="base-input" onChange={ handlePassword } placeholder="비밀번호" />
+              <input
+                className="base-input" onChange={ handlePassword } placeholder="비밀번호"
+                type="password"
+              />
               <div className="verification">
                 {isNotMatch ? '이메일과 비밀번호가 일치하지 않습니다' : null}
               </div>

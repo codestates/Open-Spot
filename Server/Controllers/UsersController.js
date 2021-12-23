@@ -81,7 +81,7 @@ module.exports = {
       });
 
     // id정보로 유저 조회
-    const userInfo = models.User.findOne({ where: { id: decoded.id } }).catch(err => {
+    const userInfo = await models.User.findOne({ where: { id: decoded.id } }).catch(err => {
       console.log(err);
       return res.status(404).json({ code: 404, error: 'user not found' });
     });
@@ -104,7 +104,10 @@ module.exports = {
       return res.status(500).json({ code: 500, error: err });
     });
 
-    res.status(201).json({ code: 201, message: 'modified' });
+    const { id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI } = userInfo;
+    const accessToken = jwt.sign({ id, userName, email, role, oauthLogin, createdAt, updatedAt, oauthCI }, process.env.ACCESS_SECRET, { expiresIn: '5h' });
+    res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 5 * 60 * 60 * 1000, sameSite: 'none', secure: true });
+    res.status(201).json({ code: 201, userName: userInfo.userName, role: userInfo.role, email: userInfo.email, oauthLogin: 0 });
   },
   getGeneralMarkers: async (req, res) => {
     // 토큰이 없는 경우
