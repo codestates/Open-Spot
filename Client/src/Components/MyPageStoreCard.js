@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 function StoreInfo ({ marker }) {
-  console.log(marker);
   return (
     <div id="store-card-container">
       <div className="store-info">
