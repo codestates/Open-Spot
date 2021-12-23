@@ -109,7 +109,7 @@ function ModalBox ({ handleChangeInfoBtn, userInfo }) {
                   className="modal-input-syle-wow" name="text-nmae" onChange={ handleNewPassword }
                   placeholder="변경하실 비밀번호를 입력해주세요"
                   size="30"
-                  type="text"
+                  type="password"
                 ></input>
               </div>
             </div>
@@ -124,7 +124,7 @@ function ModalBox ({ handleChangeInfoBtn, userInfo }) {
                   className="modal-input-syle-wow" name="text-nmae" onChange={ handleConfirmPassword }
                   placeholder="변경하신 비밀번호를 한번 더 입력해주세요"
                   size="30"
-                  type="text"
+                  type="password"
                 ></input>
               </div>
             </div>

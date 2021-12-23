@@ -15,7 +15,7 @@ function BusinessFavoriteList ({ handleUserInfo }) {
 
   useEffect(() => {
     axios({
-      url: 'https://api.open-spot.tk/users/business-markers',
+      url: 'https://api.open-spot.tk/users/general-markers',
       method: 'get',
       withCredentials: true
     }).then((res) => {

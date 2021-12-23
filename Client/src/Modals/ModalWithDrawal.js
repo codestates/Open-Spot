@@ -61,6 +61,7 @@ function ModalBox ({ handleDeleteInfoBtn }) {
               <input
                 className="modal-input-syle-wow" onChange={ handlePassword } placeholder="비밀번호를 입력해주세요"
                 size="30"
+                type="password"
               ></input>
             </div>
           </div>
