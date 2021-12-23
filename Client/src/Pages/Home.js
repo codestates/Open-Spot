@@ -8,10 +8,10 @@ import axios from 'axios';
 
 const User = ({ role, handleUserInfo }) => (
   <>
-    { role === 'general' ? <Link to="/client/mypage"><button className="tab">MY PAGE</button></Link> : <Link to="/business/mypage"><button className="tab">MY PAGE</button></Link> }
+    { role === 'general' ? <Link to="/client/mypage"><button className="tab change-tab-design">MY PAGE</button></Link> : <Link to="/business/mypage"><button className="tab">MY PAGE</button></Link> }
     <Link to="/">
       <button
-        className="tab" onClick={
+        className="tab change-tab-design" onClick={
         () => axios.get(
           'https://api.open-spot.tk/auth/local',
           { withCredentials: true })

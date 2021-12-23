@@ -55,7 +55,8 @@ const Routers = () => {
         await axios({
           url: 'https://api.open-spot.tk/auth/google',
           method: 'post',
-          data: { authorizationCode }
+          data: { authorizationCode },
+          withCredentials: true
         }).then((res) => {
           const userInfo = {
             isLogin: true,
@@ -75,7 +76,8 @@ const Routers = () => {
         await axios({
           url: 'https://api.open-spot.tk/auth/naver',
           method: 'post',
-          data: { authorizationCode }
+          data: { authorizationCode },
+          withCredentials: true
         }).then((res) => {
           const userInfo = {
             isLogin: true,
@@ -95,7 +97,8 @@ const Routers = () => {
         await axios({
           url: 'https://api.open-spot.tk/auth/kakao',
           method: 'post',
-          data: { authorizationCode }
+          data: { authorizationCode },
+          withCredentials: true
         }).then((res) => {
           const userInfo = {
             isLogin: true,
@@ -149,20 +152,11 @@ const Routers = () => {
         <Route element={ <BusinessSignin handleUserInfo={ handleUserInfo } /> } path="/business/signin" />
         <Route element={ <MapGuest /> } path="/map/guest" />
         <Route element={ <MapUser userInfo={ userInfo } /> } path="/map/user" />
-        <Route
-          element={ <ClientUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } exact path="/client/mypage"
-          userInfo={ userInfo }
-        />
-        <Route
-          element={ <ClientUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } path="/client/userinfo"
-        />
+        <Route element={ <ClientUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } exact path="/client/mypage" />
+        <Route element={ <ClientUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } path="/client/userinfo" />
         <Route element={ <ClientFavoriteList handleUserInfo={ handleUserInfo } /> } path="/client/favoritelist" />
-        <Route
-          element={ <BusinessUserInfo userInfo={ userInfo } /> } exact path="/business/mypage"
-        />
-        <Route
-          element={ <BusinessUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } path="/business/userinfo"
-        />
+        <Route element={ <BusinessUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } exact path="/business/mypage" />
+        <Route element={ <BusinessUserInfo handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> } path="/business/userinfo" />
         <Route element={ <BusinessFavoriteList handleUserInfo={ handleUserInfo } /> } path="/business/favoritelist" />
         <Route element={ <BusinessMyStore handleUserInfo={ handleUserInfo } /> } path="/business/mystore" />
       </Routes>
