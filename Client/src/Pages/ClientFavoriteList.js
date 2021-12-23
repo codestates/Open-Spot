@@ -20,9 +20,7 @@ function ClientFavoriteList ({ handleUserInfo }) {
       withCredentials: true
     }).then((res) => {
       const { markers } = res.data;
-      markers.forEach((marker) => {
-        dispatch(getMyFavoriteMarkers(marker));
-      });
+      dispatch(getMyFavoriteMarkers(markers));
     }).catch((err) => {
       console.log(err);
     });
@@ -61,6 +59,7 @@ function ClientFavoriteList ({ handleUserInfo }) {
                       profile: null,
                       oauthLogin: null
                     });
+                    dispatch(getMyFavoriteMarkers([]));
                   })
                   .catch((err) => {
                     alert(err);

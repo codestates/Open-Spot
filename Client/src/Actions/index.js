@@ -19,21 +19,9 @@ export const selectSocialLoginBtn = (btnState) => ({
   payload: btnState
 });
 
-export const getMyFavoriteMarkers = (markerInfo) => ({
+export const getMyFavoriteMarkers = (markers) => ({
   type: GET_MY_FAVORITE_MARKERS,
-  payload: {
-    compId: markerInfo.id,
-    compName: markerInfo.storeName,
-    compAddr: markerInfo.address,
-    compCall: markerInfo.callNum,
-    tag: markerInfo.tagName,
-    desc: markerInfo.description,
-    lat: markerInfo.latitude,
-    lon: markerInfo.longitude,
-    isPark: markerInfo.parking,
-    isBook: markerInfo.booking,
-    fileName: markerInfo.fileName
-  }
+  payload: markers // 이거 배열이다.
 });
 
 export const getMyStoreMarkers = (storeMarkerInfo) => ({
@@ -48,6 +36,7 @@ export const getMyStoreMarkers = (storeMarkerInfo) => ({
     lat: storeMarkerInfo.latitude,
     lon: storeMarkerInfo.longitude,
     isPark: storeMarkerInfo.parking,
-    isBook: storeMarkerInfo.booking
+    isBook: storeMarkerInfo.booking,
+    fileName: storeMarkerInfo.fileName
   }
 });

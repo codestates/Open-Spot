@@ -12,17 +12,21 @@ const userStateReducer = (state = initialState, action) => {
       copiedState.userInfo = Object.assign(state.userInfo, action.payload);
       return copiedState;
     case GET_MY_FAVORITE_MARKERS:
-      {
-        const id = action.payload.compId;
-        const len = copiedState.myFavoriteMarkers.length;
-        const values = [];
-        for (let i = 0; i < len; i++) {
-          values.push(copiedState.myFavoriteMarkers[i].compId);
-        };
-        if (values.indexOf(id) === -1) {
-          copiedState.myFavoriteMarkers = copiedState.myFavoriteMarkers.concat(action.payload);
-        }
-      };
+      // {
+      //   if(action.payload.length === 0){
+      //     copiedState.myFavoriteMarkers = [];
+      //   }
+      //   const id = action.payload.compId;
+      //   const len = copiedState.myFavoriteMarkers.length;
+      //   const values = [];
+      //   for (let i = 0; i < len; i++) {
+      //     values.push(copiedState.myFavoriteMarkers[i].compId);
+      //   };
+      //   if (values.indexOf(id) === -1) {
+      //     copiedState.myFavoriteMarkers = copiedState.myFavoriteMarkers.concat(action.payload);
+      //   }
+      // };
+      copiedState.myFavoriteMarkers = action.payload;
       return copiedState;
     case GET_MY_STORE_MARKERS:
       {

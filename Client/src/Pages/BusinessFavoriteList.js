@@ -20,10 +20,7 @@ function BusinessFavoriteList ({ handleUserInfo }) {
       withCredentials: true
     }).then((res) => {
       const { markers } = res.data;
-      console.log(markers);
-      markers.forEach((marker) => {
-        dispatch(getMyFavoriteMarkers(marker));
-      });
+      dispatch(getMyFavoriteMarkers(markers));
     }).catch((err) => {
       console.log(err);
     });
@@ -33,7 +30,7 @@ function BusinessFavoriteList ({ handleUserInfo }) {
     <div className="entire-box">
       <div className="intro-bg">
         <header>
-          <div id="nav-container">ssss
+          <div id="nav-container">
             <Link to="/">
               <div id="logo" />
             </Link>
@@ -62,6 +59,7 @@ function BusinessFavoriteList ({ handleUserInfo }) {
                         profile: null,
                         oauthLogin: null
                       });
+                      dispatch(getMyFavoriteMarkers([]));
                     })
                     .catch((err) => {
                       alert(err);

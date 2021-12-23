@@ -4,10 +4,13 @@ import Siderbar from './../Components/MyPageBusinessSideBar.js';
 import ModalModifyInfo from './../Modals/ModalModifyInfo';
 import ModalWithDrawal from './../Modals/ModalWithDrawal';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import './../Styles/MyPage.css';
 import './../Styles/Header.css';
+import { getMyFavoriteMarkers } from './../Actions/index.js';
 
 function BusinessMyPage ({ userInfo, handleUserInfo }) {
+  const dispatch = useDispatch();
   const [changeInfoBtnClicked, setChangeInfoBtnClicked] = useState(false);
   const [deleteInfoBtnClicked, setDeleteInfoBtnClicked] = useState(false);
   const handleChangeInfoBtn = (bool) => {
@@ -18,8 +21,8 @@ function BusinessMyPage ({ userInfo, handleUserInfo }) {
   };
   return (
     <>
-      { changeInfoBtnClicked ? <ModalModifyInfo handleChangeInfoBtn={ handleChangeInfoBtn } userInfo={ userInfo } /> : null }
-      { deleteInfoBtnClicked ? <ModalWithDrawal handleDeleteInfoBtn={ handleDeleteInfoBtn } userInfo={ userInfo } /> : null }
+      { changeInfoBtnClicked ? <ModalModifyInfo handleChangeInfoBtn={ handleChangeInfoBtn } handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> : null }
+      { deleteInfoBtnClicked ? <ModalWithDrawal handleDeleteInfoBtn={ handleDeleteInfoBtn } handleUserInfo={ handleUserInfo } userInfo={ userInfo } /> : null }
       <div className="entire-box">
         <div className="intro-bg">
           <header>
@@ -52,6 +55,7 @@ function BusinessMyPage ({ userInfo, handleUserInfo }) {
                           profile: null,
                           oauthLogin: null
                         });
+                        dispatch(getMyFavoriteMarkers([]));
                       })
                       .catch((err) => {
                         alert(err);
