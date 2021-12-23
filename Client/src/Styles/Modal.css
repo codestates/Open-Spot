@@ -27,7 +27,7 @@
 .register-box-container {
   background-color: #fff;
   width: 600px;
-  height: 800px;
+  height: 900px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -50,8 +50,10 @@
 .modify-box{
   display: flex;
 }
-#jaeyoung-make {
-  padding: 400px;
+.modify-design-jaeyoung {
+  width: 67%;
+  display: flex;
+  justify-content: space-between;
 }
 .resolve-problem {
   height: 300px;

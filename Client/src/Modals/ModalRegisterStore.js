@@ -169,31 +169,33 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
             </div>
           </div>
         </div>
-        <div className="modify-box" id="jaeyoung-make">
-          <div className="modal-input-box">
-            <div>주차 여부</div>
-          </div>
-          <div className="modal-input-area">
-            <div>
-              <input
-                className="modal-input-syle-wow" name="text-nmae" onClick={ handleIsParking }
-                size="30"
-                type="checkbox"
-              ></input>
+        <div className="modify-design-jaeyoung">
+          <div className="modify-box">
+            <div className="modal-input-box">
+              <div>주차 여부</div>
+            </div>
+            <div className="modal-input-area">
+              <div>
+                <input
+                  className="modal-input-syle-wow" name="text-nmae" onClick={ handleIsParking }
+                  size="30"
+                  type="checkbox"
+                ></input>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="modify-box" id="jaeyoung-make">
-          <div className="modal-input-box">
-            <div>예약 여부</div>
-          </div>
-          <div className="modal-input-area">
-            <div>
-              <input
-                className="modal-input-syle-wow" name="text-nmae" onClick={ handleReservation }
-                size="30"
-                type="checkbox"
-              ></input>
+          <div className="modify-box">
+            <div className="modal-input-box">
+              <div>예약 여부</div>
+            </div>
+            <div className="modal-input-area">
+              <div>
+                <input
+                  className="modal-input-syle-wow" name="text-nmae" onClick={ handleReservation }
+                  size="30"
+                  type="checkbox"
+                ></input>
+              </div>
             </div>
           </div>
         </div>
