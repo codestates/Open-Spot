@@ -76,7 +76,7 @@ About Project
 TECH STACK
 =============
 
-![아키텍쳐](https://user-images.githubusercontent.com/85025833/147171118-e1c30a91-9d60-42e3-9478-d7708e883299.png)
+![아키텍쳐](https://user-images.githubusercontent.com/80025242/146559502-120b83f0-2f9e-47b3-aff8-e852caff20af.png)
 
 ***
 
