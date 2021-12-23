@@ -7,9 +7,14 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
   const [storeName, setStoreName] = useState('');
   const [storeAddress, setStoreAddress] = useState('');
   const [callNum, setCallNum] = useState('');
-  const [isParking, setIsParking] = useState(false);
-  const [reservation, setReservation] = useState(false);
+  const [description, setDescription] = useState('');
+  const [isParking, setIsParking] = useState(0);
+  const [reservation, setReservation] = useState(0);
 
+  const handleDescription = (event) => {
+    const desc = event.target.value;
+    setDescription(desc);
+  };
   const handleRegistrationNumber = (event) => {
     const name = event.target.value;
     setRegistrationNumber(name);
@@ -27,12 +32,24 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
     setCallNum(callNum);
   };
   const handleIsParking = (event) => {
+    // if (event.target.checked) {
+    //   setIsParking(1);
+    // } else {
+    //   setIsParking(0);
+    // }
     const available = event.target.checked;
     setIsParking(available);
+    console.log(available);
   };
   const handleReservation = (event) => {
+    // if (event.target.checked) {
+    //   setReservation(1);
+    // } else {
+    //   setReservation(0);
+    // }
     const available = event.target.checked;
     setReservation(available);
+    console.log(available);
   };
   const sendInformation = async () => {
     axios({
@@ -44,7 +61,7 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
         address: storeAddress,
         callNum: callNum,
         tagName: '중식집',
-        description: '맛있고 깔끔하고 사장님이 청렴하고 잘생긴 알바생이 있는 훌륭한 식당',
+        description: description,
         latitude: '37.567849416994065',
         longitude: '126.96984561951388',
         parking: isParking,
@@ -84,7 +101,7 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
         <div className="modify-info">가게 등록 하기</div>
         <div className="modify-box">
           <div className="modal-input-box">
-            <div>사업자 등록 번호</div>
+            <div>사업자 번호</div>
           </div>
           <div className="modal-input-area">
             <div>
@@ -129,6 +146,19 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
             <div>
               <input
                 className="modal-input-syle-wow" onChange={ handleCallNum } name="text-nmae" size="30"
+                type="text"
+              ></input>
+            </div>
+          </div>
+        </div>
+        <div className="modify-box">
+          <div className="modal-input-box">
+            <div>한 줄 설명</div>
+          </div>
+          <div className="modal-input-area">
+            <div>
+              <input
+                className="modal-input-syle-wow" onChange={ handleDescription } name="text-nmae" size="30"
                 type="text"
               ></input>
             </div>
