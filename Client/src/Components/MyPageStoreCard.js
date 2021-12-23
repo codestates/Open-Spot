@@ -8,7 +8,7 @@ function StoreInfo ({ marker }) {
           <img className="dongun" src={ `https://api.open-spot.tk/${marker.fileName}` }></img>
         </div>
         <div className="store-name-main">
-          {marker.compName}
+          {marker.storeName}
         </div>
         <div className="store-detail-info">
           <div className="detail-info">
@@ -17,7 +17,7 @@ function StoreInfo ({ marker }) {
                 주소
               </div>
               <div className="store-info-property">
-                {marker.compAddr}
+                {marker.address}
               </div>
             </div>
             <div className="store-info-style-sheet">
@@ -25,7 +25,7 @@ function StoreInfo ({ marker }) {
                 전화번호
               </div>
               <div className="store-info-property">
-                {marker.compCall}
+                {marker.callNum}
               </div>
             </div>
             <div className="store-info-style-sheet">
@@ -33,7 +33,7 @@ function StoreInfo ({ marker }) {
                 주차여부
               </div>
               <div className="store-info-property">
-                {marker.isPark ? '가능' : '불가능'}
+                {marker.parking ? '가능' : '불가능'}
               </div>
             </div>
             <div className="store-info-style-sheet">
@@ -41,13 +41,13 @@ function StoreInfo ({ marker }) {
                 예약 여부
               </div>
               <div className="store-info-property">
-                {marker.isBook ? '가능' : '불가능'}
+                {marker.booking ? '가능' : '불가능'}
               </div>
             </div>
           </div>
           <div className="store-reaction-box">
             <i className="fas fa-heart" id="store-info-like"></i>
-            <div className="store-info-count">20</div>
+            <div className="store-info-count"></div>
           </div>
         </div>
       </div>

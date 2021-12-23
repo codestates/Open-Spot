@@ -15,15 +15,12 @@ function BusinessFavoriteList ({ handleUserInfo }) {
 
   useEffect(() => {
     axios({
-      url: 'https://api.open-spot.tk/users/business-markers',
+      url: 'https://api.open-spot.tk/users/general-markers',
       method: 'get',
       withCredentials: true
     }).then((res) => {
       const { markers } = res.data;
-      console.log(markers);
-      markers.forEach((marker) => {
-        dispatch(getMyFavoriteMarkers(marker));
-      });
+      dispatch(getMyFavoriteMarkers(markers));
     }).catch((err) => {
       console.log(err);
     });
@@ -62,6 +59,7 @@ function BusinessFavoriteList ({ handleUserInfo }) {
                         profile: null,
                         oauthLogin: null
                       });
+                      dispatch(getMyFavoriteMarkers([]));
                     })
                     .catch((err) => {
                       alert(err);

@@ -86,7 +86,7 @@ function ClientSignin ({ handleUserInfo }) {
       console.log(res);
       if (res.data.code === 201) {
         const userInfo = {
-          isLogin: true,
+          isLogin: false,
           role: res.data.role,
           name: res.data.userName,
           email: res.data.email,

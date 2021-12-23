@@ -8,7 +8,7 @@ import ModalRegisterStore from './../Modals/ModalRegisterStore.js';
 import axios from 'axios';
 import './../Styles/MyPage.css';
 import './../Styles/Header.css';
-import { getMyStoreMarkers } from './../Actions/index.js';
+import { getMyStoreMarkers, getMyFavoriteMarkers } from './../Actions/index.js';
 
 function BusinessMyStore ({ handleUserInfo }) {
   const dispatch = useDispatch();
@@ -69,6 +69,7 @@ function BusinessMyStore ({ handleUserInfo }) {
                           profile: null,
                           oauthLogin: null
                         });
+                        dispatch(getMyFavoriteMarkers([]));
                       })
                       .catch((err) => {
                         alert(err);
