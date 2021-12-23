@@ -85,10 +85,10 @@ TECH STACK
 
    |        이름          |      포지션        |        깃헙           |  
    |:---: | :---: | :---: |  
-   | 정채련(팀장)   |   Front-End   |      |  
-   | 이승연(팀원)           | Front-End   ||  
-   | 양재영(팀원)   |   Back-End     |         |
-   |   양재영(팀원)   | Back-End     |        |
+   | 정채련(팀장)   |   Front-End   |   https://github.com/Brian-free1   |  
+   | 이승연(팀원)           | Front-End   | https://github.com/ciocio97 |  
+   | 양재영(팀원)   |   Back-End     |  https://github.com/jyang510       |
+   |   김동운(팀원)   | Back-End     |  https://github.com/PippasSong      |
 
 
 우리가 원하는것은?
