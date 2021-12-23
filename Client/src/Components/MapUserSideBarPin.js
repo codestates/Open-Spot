@@ -45,7 +45,7 @@ const MapUserSideBarPin = (props) => {
           <div id="map-sidebar-body-guest">
             <div id="map-content">
               <div id="map-update-desc">{description}</div>
-              <img id="map-image" src={imageUrl} />
+              <img id="map-image" src={ imageUrl } />
               <div id="map-store-title">
                 {storeName}
               </div>

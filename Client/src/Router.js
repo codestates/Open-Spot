@@ -108,6 +108,7 @@ const Routers = () => {
             profile: res.data.profile,
             oauthLogin: res.data.oauthLogin
           };
+          console.log(userInfo);
           handleUserInfo(userInfo);
         }).catch((err) => {
           console.log(err);

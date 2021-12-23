@@ -126,13 +126,16 @@ function BusinessSignin ({ handleUserInfo }) {
           role: res.data.role,
           name: res.data.userName,
           email: res.data.email,
-          profile: res.data.profile
+          profile: res.data.profile,
+          oauthLogin: res.data.oauthLogin
         };
+        console.log(userInfo);
         handleUserInfo(userInfo);
-        navigate('/');
+        navigate('/business/login');
       }
     }).catch((err) => {
-      if (err.response.status === 409) {
+      console.log(err.response);
+      if (err.status === 409) {
         handleUserInfo({ isLogin: false });
         return alert('회원가입 실패. 이미 존재하는 이메일입니다.');
       }
