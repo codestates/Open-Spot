@@ -220,16 +220,6 @@ module.exports = {
     // dyingMessage 테이블 추가
     await models.DyingMessage.create({ userName: userInfo.userName, message: req.body.quitReason });
 
-    // 유저 테이블 지우기 전에, 유저마커 테이블의 마커id를 다 가져와서
-    const removeMarkers = await models.User.findAll({
-      include: [
-        {
-          model: models.Marker
-        }
-      ],
-      where: { id: Sequelize.col('Markers.userId') }
-      // raw: true
-    });
     // removeMarkers[0].dataValues.Markers는 배열이고, 각 요소가 내가 찾은 마커임
 
     // console.log('removeMarkers[0].dataValues.Markers[0].dataValues.userId은 이거다\n');
@@ -249,7 +239,7 @@ module.exports = {
     // 그것들을 배열이나 아무튼 아무곳에 넣어서 원래 하던 것마냥 destroy해주면 되는 거 아닌가?
     await models.Marker.destroy({
       where: {
-        userId: removeMarkers[0].dataValues.Markers[0].dataValues.userId
+        userId: userInfo.id
       }
     });
     // 그 후에 유저 테이블 제거
