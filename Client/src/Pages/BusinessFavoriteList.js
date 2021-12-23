@@ -15,7 +15,7 @@ function BusinessFavoriteList ({ handleUserInfo }) {
 
   useEffect(() => {
     axios({
-      url: 'https://api.open-spot.tk/users/general-markers',
+      url: 'https://api.open-spot.tk/users/business-markers',
       method: 'get',
       withCredentials: true
     }).then((res) => {
@@ -33,7 +33,7 @@ function BusinessFavoriteList ({ handleUserInfo }) {
     <div className="entire-box">
       <div className="intro-bg">
         <header>
-          <div id="nav-container">ssss
+          <div id="nav-container">
             <Link to="/">
               <div id="logo" />
             </Link>

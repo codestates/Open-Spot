@@ -361,7 +361,9 @@
   font-weight: 700;
   font-size: 1.1em;
 }
-
+#add-cursoromg {
+  cursor: pointer;
+}
 .aside{
   width: 70%;
   height: 5px;
