@@ -67,7 +67,6 @@ About Project
 
 4. 사업자 등록 번호를 인증하시면 사업자 권한으로 가게를 등록하거나 삭제, 정보 수정 등을 할 수 있습니다.
 
-
 ```
 <br />
 
@@ -75,7 +74,7 @@ About Project
 TECH STACK
 =============
 
-![아키텍쳐](https://user-images.githubusercontent.com/85025833/147171118-e1c30a91-9d60-42e3-9478-d7708e883299.png)
+![아키텍쳐](https://user-images.githubusercontent.com/80025242/146559502-120b83f0-2f9e-47b3-aff8-e852caff20af.png)
 
 ***
 
