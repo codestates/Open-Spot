@@ -17,7 +17,7 @@ function ModalBox ({ handleDeleteInfoBtn }) {
   const deleteUserInfo = () => {
     axios({
       url: 'https://api.open-spot.tk/users',
-      delete: 'delete',
+      method: 'delete',
       data: {
         quitReason: withdrawalReason,
         password: password

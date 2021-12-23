@@ -48,6 +48,7 @@ export const getMyStoreMarkers = (storeMarkerInfo) => ({
     lat: storeMarkerInfo.latitude,
     lon: storeMarkerInfo.longitude,
     isPark: storeMarkerInfo.parking,
-    isBook: storeMarkerInfo.booking
+    isBook: storeMarkerInfo.booking,
+    fileName: storeMarkerInfo.fileName
   }
 });
