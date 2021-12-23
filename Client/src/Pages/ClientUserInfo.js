@@ -44,7 +44,14 @@ function ClientMyPage ({ userInfo, handleUserInfo }) {
                       'https://api.open-spot.tk/auth/local',
                       { withCredentials: true })
                       .then(() => {
-                        handleUserInfo({ isLogin: false });
+                        handleUserInfo({
+                          isLogin: false,
+                          role: null,
+                          name: null,
+                          email: null,
+                          profile: null,
+                          oauthLogin: null
+                        });
                       })
                       .catch((err) => {
                         alert(err);
