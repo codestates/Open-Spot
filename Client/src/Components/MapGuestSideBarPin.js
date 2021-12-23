@@ -28,11 +28,10 @@ const MapGuestSideBarPin = (props) => {
             <Link to="/">
               <div id="map-logo" />
             </Link>
-            <div id="map-update-tag">{`${updatedDate}일 전`}</div>
           </div>
           <div id="map-sidebar-body-guest">
             <div id="map-content">
-              <div id="map-update-desc">{description}</div>
+              <div id="map-update-desc"></div>
               <img id="map-image" src={imageUrl} />
               <div id="map-store-title">
                 {storeName}
@@ -41,8 +40,6 @@ const MapGuestSideBarPin = (props) => {
               <div id="map-text">
                 {`위치: ${address}`} <br />
                 {`전화: ${callNum}`} <br />
-                예약: 불가능 <br />
-                주차: 가능
               </div>
               <div className="map-line" />
               <button className="map-button" onClick={ () => alertDeniedMessage() }>내 목록에 담기</button>

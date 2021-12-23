@@ -50,6 +50,8 @@ About Project
 <br />  
 <br />
 
+
+
 " 소비자의 호기심과 사업자의 호기를 잇다. "
 ==================================
   
@@ -59,28 +61,37 @@ About Project
 
 ```
 
-1. 지도를 통해서 제공하는 새로 오픈한 가게의 정보를 보실 수 있습니다.
+1. 지도 페이지에서 개업한 지 2년이 채 안된, 신생 점포들의 정보를 확인 할 수 있습니다.
 
-2. 만약 마음에 드는 정보가 있다면 마이페이지에 해당 정보를 등록할 수 있습니다.
+2. 만약 마음에 드는 점포가 있다면 마이페이지에 해당 점포의 정보를 저장할 수 있습니다.
 
-3. 나만의 맛집, 나만의 카페를 list up 하고 싶다면 로그인을 통해 마이페이지에서 확인해 보세요
+3. 로그인 후 가게의 오픈 정보, 주차 여부, 예약 여부 등 등록된 점포의 핵심 정보를 확인 할 수 있습니다.
 
-4. 또한, 새로 오픈한 나의 가게를 홍보하고 싶은 대표님들도 로그인을 통해 나의 가게 정보를 지도에 올려 볼 수 있습니다.
-
-5. 자신의 열정을 보여주고 싶은 사업자 그 열정을 사고 싶은 소비자를 연결 시켜주는 Open Spot입니다.
+4. 사업자 등록 번호를 인증하시면 사업자 권한으로 가게를 등록하거나 삭제, 정보 수정 등을 할 수 있습니다.
 
 ```
 <br />
 
 
-How to make
+TECH STACK
 =============
 
-* [Workog](https://github.com/codestates/Open-Spot/wiki/Worklog)
-* [Team Rule](https://github.com/codestates/Open-Spot/wiki/Team-Rule)
-* [Requirements](https://github.com/codestates/Open-Spot/wiki/Requirements)
-* [DB Schema](https://github.com/codestates/Open-Spot/wiki/DB-Schema)
-* [Wireframe](https://github.com/codestates/Open-Spot/wiki/Wireframe)
-* [UI Design](https://github.com/codestates/Open-Spot/wiki/UI-Design)
-* [API](https://github.com/codestates/Open-Spot/wiki/API)
-* [FlowChart](https://github.com/codestates/Open-Spot/wiki/FlowChart)
+![아키텍쳐](https://user-images.githubusercontent.com/80025242/146559502-120b83f0-2f9e-47b3-aff8-e852caff20af.png)
+
+***
+
+팀원을 소개합니다.
+=============
+
+   |        이름          |      포지션        |        깃헙           |  
+   |:---: | :---: | :---: |  
+   | 정채련(팀장)   |   Front-End   |   https://github.com/Brian-free1   |  
+   | 이승연(팀원)           | Front-End   | https://github.com/ciocio97 |  
+   | 양재영(팀원)   |   Back-End     |  https://github.com/jyang510       |
+   |   김동운(팀원)   | Back-End     |  https://github.com/PippasSong      |
+
+
+우리가 원하는것은?
+=============
+
+https://github.com/codestates/Open-Spot/wiki/Requirements

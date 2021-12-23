@@ -8,7 +8,6 @@ import './../Styles/MyPage.css';
 import './../Styles/Header.css';
 
 function ClientMyPage ({ userInfo, handleUserInfo }) {
-  console.log(userInfo);
   const [changeInfoBtnClicked, setChangeInfoBtnClicked] = useState(false);
   const [deleteInfoBtnClicked, setDeleteInfoBtnClicked] = useState(false);
   const handleChangeInfoBtn = (bool) => {

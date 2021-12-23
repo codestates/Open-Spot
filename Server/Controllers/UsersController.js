@@ -178,7 +178,7 @@ module.exports = {
     // });
 
     // Users, Markers테이블을 join
-    const queryString = 'SELECT Markers.id, storeName, address, callNum, tagName, description, latitude, longitude, Markers.createdAt, Markers.updatedAt, userId FROM Markers JOIN Users ON Markers.userId=Users.id WHERE Markers.userId=?';
+    const queryString = 'SELECT Markers.id, storeName, address, callNum, tagName, description, latitude, longitude, Markers.createdAt, Markers.updatedAt, Markers.fileName, userId FROM Markers JOIN Users ON Markers.userId=Users.id WHERE Markers.userId=?';
 
     db.query(queryString, [decoded.id], (error, markers) => {
       if (error) return res.status(500).json({ code: 500, error: error });
