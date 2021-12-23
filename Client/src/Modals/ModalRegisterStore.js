@@ -12,6 +12,7 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
   const [reservation, setReservation] = useState(0);
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
+  const [tagName, setTagName] = useState('');
 
   const handleDescription = (event) => {
     const desc = event.target.value;
@@ -51,6 +52,10 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
     const location = event.target.value;
     setLongitude(location);
   };
+  const handTagName = (event) => {
+    const location = event.target.value;
+    setTagName(location);
+  };
 
   const sendInformation = async () => {
     axios({
@@ -61,7 +66,7 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
         storeName: storeName,
         address: storeAddress,
         callNum: callNum,
-        tagName: '중식집',
+        tagName: tagName,
         description: description,
         latitude: latitude,
         longitude: longitude,
@@ -172,9 +177,9 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
           <div className="modal-input-area">
             <div>
               <input
-                className="modal-input-syle-wow" onChange={ handleDescription } name="text-nmae" size="30"
+                className="modal-input-syle-wow" onChange={ handTagName } name="text-nmae" size="30"
                 type="text" placeholder="일식  중식  양식  한식  카페  etc"
-              ></input>Withdrawal
+              ></input>
             </div>
           </div>
         </div>
