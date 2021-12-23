@@ -26,7 +26,6 @@ module.exports = {
         return res.status(401).json({ code: 401, message: 'unauthorized' });
       });
 
-    // req.body에서 imageId도 받아옴.
     const { companyNumber, storeName, address, callNum, tagName, description, latitude, longitude, parking, booking, fileName } = req.body;
 
     const [newElement, created] = await models.Marker.findOrCreate({
@@ -43,7 +42,6 @@ module.exports = {
         longitude: longitude,
         parking: parking,
         booking: booking,
-        // req.body에서 imageId도 받아옴.
         fileName: fileName
       },
       raw: true

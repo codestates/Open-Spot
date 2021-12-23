@@ -67,7 +67,7 @@ function ClientMyPage ({ userInfo, handleUserInfo }) {
                 <img
                   className="client-img"
                   height="100"
-                  /* src={ `${userInfo.profile}` } */
+                  src={ `${userInfo.profile}` }
                   width="100"
                 />
               </div>

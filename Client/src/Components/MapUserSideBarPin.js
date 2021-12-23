@@ -14,10 +14,8 @@ const MapUserSideBarPin = (props) => {
     const now = new Date();
     return Math.round((now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24));
   }
-  // 마커의 imageName을 가지고 파일네임 확인.
-  // 서버url + 확인된 파일네임 으로 img src에 값 입력
-  const imageUrl = 'https://api.open-spot.tk/' + fileName;
 
+  const imageUrl = 'https://api.open-spot.tk/' + fileName;
   const updatedDate = getUpdateDate(createdAt);
 
   // 내 보관함에 담기 버튼
@@ -47,7 +45,7 @@ const MapUserSideBarPin = (props) => {
           <div id="map-sidebar-body-guest">
             <div id="map-content">
               <div id="map-update-desc">{description}</div>
-              <img id="map-image" src={ `${imageUrl}` } /> {/* 이미지링크 넣기 */}
+              <img id="map-image" src={imageUrl} />
               <div id="map-store-title">
                 {storeName}
               </div>
