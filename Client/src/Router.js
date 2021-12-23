@@ -62,7 +62,8 @@ const Routers = () => {
             role: res.data.role,
             name: res.data.userName,
             email: res.data.email,
-            profile: res.data.profile
+            profile: res.data.profile,
+            oauthLogin: res.data.oauthLogin
           };
           handleUserInfo(userInfo);
         }).catch((err) => {
@@ -81,7 +82,8 @@ const Routers = () => {
             role: res.data.role,
             name: res.data.userName,
             email: res.data.email,
-            profile: res.data.profile
+            profile: res.data.profile,
+            oauthLogin: res.data.oauthLogin
           };
           handleUserInfo(userInfo);
         }).catch((err) => {
@@ -100,7 +102,8 @@ const Routers = () => {
             role: res.data.role,
             name: res.data.userName,
             email: res.data.email,
-            profile: res.data.profile
+            profile: res.data.profile,
+            oauthLogin: res.data.oauthLogin
           };
           handleUserInfo(userInfo);
         }).catch((err) => {

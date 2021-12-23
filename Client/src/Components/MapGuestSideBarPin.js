@@ -4,7 +4,7 @@ import './../Styles/Map.css';
 import { Link } from 'react-router-dom';
 
 const MapGuestSideBarPin = (props) => {
-  const { storeName, address, callNum, /* tagName, */ description, createdAt } = props.currentMarker;
+  const { storeName, address, callNum, /* tagName, */ description, createdAt, fileName } = props.currentMarker;
 
   // 마커가 추가된 뒤, 경과한 시간을 계산
   function getUpdateDate (createdAt) {
@@ -17,7 +17,9 @@ const MapGuestSideBarPin = (props) => {
     alert('로그인이 필요한 서비스입니다');
   };
 
+  const imageUrl = 'https://api.open-spot.tk/' + fileName;
   const updatedDate = getUpdateDate(createdAt);
+
   return (
     <div id="map-background">
       <div id="map-container">
@@ -30,7 +32,7 @@ const MapGuestSideBarPin = (props) => {
           <div id="map-sidebar-body-guest">
             <div id="map-content">
               <div id="map-update-desc"></div>
-              <img id="map-image" src="" /> {/* 이미지링크 넣기 */}
+              <img id="map-image" src={imageUrl} />
               <div id="map-store-title">
                 {storeName}
               </div>
