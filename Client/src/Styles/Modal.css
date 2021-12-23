@@ -50,6 +50,9 @@
 .modify-box{
   display: flex;
 }
+#jaeyoung-make {
+  padding: 400px;
+}
 .resolve-problem {
   height: 300px;
 }

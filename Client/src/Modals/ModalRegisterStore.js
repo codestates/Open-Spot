@@ -106,7 +106,8 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
           <div className="modal-input-area">
             <div>
               <input
-                className="modal-input-syle-wow" onChange={ handleRegistrationNumber } name="text-nmae" size="30"
+                className="modal-input-syle-wow" name="text-nmae" onChange={ handleRegistrationNumber }
+                size="30"
                 type="text"
               ></input>
             </div>
@@ -119,7 +120,8 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
           <div className="modal-input-area">
             <div>
               <input
-                className="modal-input-syle-wow" onChange={ handleStoreName } name="text-nmae" size="30"
+                className="modal-input-syle-wow" name="text-nmae" onChange={ handleStoreName }
+                size="30"
                 type="text"
               ></input>
             </div>
@@ -132,7 +134,8 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
           <div className="modal-input-area">
             <div>
               <input
-                className="modal-input-syle-wow" onChange={ handleStoreAddress } name="text-nmae" size="30"
+                className="modal-input-syle-wow" name="text-nmae" onChange={ handleStoreAddress }
+                size="30"
                 type="text"
               ></input>
             </div>
@@ -145,7 +148,8 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
           <div className="modal-input-area">
             <div>
               <input
-                className="modal-input-syle-wow" onChange={ handleCallNum } name="text-nmae" size="30"
+                className="modal-input-syle-wow" name="text-nmae" onChange={ handleCallNum }
+                size="30"
                 type="text"
               ></input>
             </div>
@@ -158,33 +162,36 @@ function RegisterStore ({ setaddStoreMarkerClicked }) {
           <div className="modal-input-area">
             <div>
               <input
-                className="modal-input-syle-wow" onChange={ handleDescription } name="text-nmae" size="30"
+                className="modal-input-syle-wow" name="text-nmae" onChange={ handleDescription }
+                size="30"
                 type="text"
               ></input>
             </div>
           </div>
         </div>
-        <div className="modify-box">
+        <div className="modify-box" id="jaeyoung-make">
           <div className="modal-input-box">
             <div>주차 여부</div>
           </div>
           <div className="modal-input-area">
             <div>
               <input
-                className="modal-input-syle-wow" onClick={ handleIsParking } name="text-nmae" size="30"
+                className="modal-input-syle-wow" name="text-nmae" onClick={ handleIsParking }
+                size="30"
                 type="checkbox"
               ></input>
             </div>
           </div>
         </div>
-        <div className="modify-box">
+        <div className="modify-box" id="jaeyoung-make">
           <div className="modal-input-box">
             <div>예약 여부</div>
           </div>
           <div className="modal-input-area">
             <div>
               <input
-                className="modal-input-syle-wow" onClick={ handleReservation } name="text-nmae" size="30"
+                className="modal-input-syle-wow" name="text-nmae" onClick={ handleReservation }
+                size="30"
                 type="checkbox"
               ></input>
             </div>
