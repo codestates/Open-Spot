@@ -20,6 +20,7 @@ const MapUser = ({ userInfo }) => {
 
   // 마커 좌표들을 가져오기 위해 한 번만 실행
   useEffect(() => {
+    console.log(userInfo);
     async function setInfo () {
       // 서버에서 주는 응답 body가 달라질 예정. 수정 필요!
       try {
