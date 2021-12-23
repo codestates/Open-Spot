@@ -1,11 +1,12 @@
 import * as React from 'react';
 
 function StoreInfo ({ marker }) {
+  console.log(marker);
   return (
     <div id="store-card-container">
       <div className="store-info">
         <div className="store-img-box">
-          <img src="Client/public/Img/StoreIMG.jpg"></img>
+          <img className="dongun" src={ `https://api.open-spot.tk/${marker.fileName}` }></img>
         </div>
         <div className="store-name-main">
           {marker.compName}

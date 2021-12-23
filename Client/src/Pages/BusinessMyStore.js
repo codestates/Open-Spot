@@ -10,7 +10,6 @@ import './../Styles/MyPage.css';
 import './../Styles/Header.css';
 import { getMyStoreMarkers } from './../Actions/index.js';
 
-
 function BusinessMyStore ({ handleUserInfo }) {
   const dispatch = useDispatch();
   const { myStoreMarkers } = useSelector(state => state.userStateReducer);
