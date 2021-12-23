@@ -31,24 +31,24 @@ const User = ({ role, handleUserInfo }) => (
 const Guest = ({ handleIsLoginTab }) => (
   <>
     <Link to="/switch">
-      <button className="tab" onClick={ () => handleIsLoginTab(true) }>LOG IN</button>
+      <button className="tab change-tab-design" onClick={ () => handleIsLoginTab(true) }>LOG IN</button>
     </Link>
     <Link to="/switch">
-      <button className="tab" onClick={ () => handleIsLoginTab(false) }>SIGN IN</button>
+      <button className="tab change-tab-design" onClick={ () => handleIsLoginTab(false) }>SIGN IN</button>
     </Link>
   </>
 );
 
 const MapTabUser = () => (
   <Link to="/map/user">
-    <button className="tab">
+    <button className="tab change-tab-design">
       MAP
     </button>
   </Link>
 );
 const MapTabGuest = () => (
   <Link to="/map/guest">
-    <button className="tab">
+    <button className="tab change-tab-design">
       MAP
     </button>
   </Link>
@@ -67,9 +67,6 @@ const MapButtonGuest = () => (
     </button>
   </Link>
 );
-
-
-
 
 function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
   return (
@@ -108,27 +105,27 @@ function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
           <div className="pt-section">
             <div className="pt-map-img"></div>
             <div className="pt-text-box">
-              <div className="pt-sequence">1</div>
+              <div className="pt-sequence" id="count-num-home">1</div>
               <div className="pt-text">
-                소비자의 취향을 고려한 새로운 장소 추천
+                개업을 준비하거나 개업한지 2년이 채 안된 신생 점포들만 추천하는 지도 서비스
               </div>
             </div>
           </div>
           <div className="pt-section">
             <div className="pt-notification-img"></div>
             <div className="pt-text-box">
-              <div className="pt-sequence">2</div>
+              <div className="pt-sequence" id="count-num-home">2</div>
               <div className="pt-text">
-                실시간 업데이트를 통한 오픈 가게 알림 서비스
+                좋아하는 가게를 저장하고 가게 정보를 실시간으로 확인할 수 있는 보관함 서비스
               </div>
             </div>
           </div>
           <div className="pt-section">
             <div className="pt-reservation-img"></div>
             <div className="pt-text-box">
-              <div className="pt-sequence">3</div>
+              <div className="pt-sequence" id="count-num-home">3</div>
               <div className="pt-text">
-                실시간 중계 서비스를 통해 웨이팅 불만 해소
+                예약 여부, 주차 여부, 개업 날짜를 추적하여 선별된 데이터를 제공하는 서비스
               </div>
             </div>
           </div>
@@ -151,7 +148,7 @@ function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
               <div className="detaile-text">사업자 등록 번호 검증 후 회원 등록</div>
               <div className="detaile-box">
                 <p>
-                  사업자 전용 페이지를 만들어<br /> 일반 고객과 분리하여 데이터를<br /> 관리하고 있습니다.
+                  사업자 전용 페이지를 만들어 일반 고객과 분리하여 데이터를 관리하고 있습니다.
                 </p>
               </div>
             </div>
@@ -159,13 +156,13 @@ function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
           <div className="business-pt-box">
             <div className="pt-about-business">
               <div className="business-pt-sequence">2.</div>
-              <div className="business-pt-text">사업자 스토어 등록 알림</div>
+              <div className="business-pt-text">나의 보관함 페이지</div>
             </div>
             <div className="pt-detaile-box">
-              <div className="detaile-text">스토어 등록시 전체 알림 서비스</div>
+              <div className="detaile-text">좋아하는 가게 저장 서비스</div>
               <div className="detaile-box">
                 <p>
-                  마이페이지에서 스토어를 등록하면<br /> 등록과 동시에 이 웹을 이용하고 있는<br /> 모든 고객들에게 알림이 갑니다.
+                  점포를 등록할 수 있는 서비스 이외에도 개인적으로 간직하고 싶은 점포를 저장할 수 있습니다.
                 </p>
               </div>
             </div>
@@ -173,13 +170,13 @@ function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
           <div className="business-pt-box">
             <div className="pt-about-business">
               <div className="business-pt-sequence">3.</div>
-              <div className="business-pt-text">사업자 전용 마이페이지</div>
+              <div className="business-pt-text">나의 점포 관리 페이지</div>
             </div>
             <div className="pt-detaile-box">
               <div className="detaile-text">스토어 관리 서비스, 등록 서비스 제공</div>
               <div className="detaile-box">
                 <p>
-                  사업자는 마이페이지에서<br /> 여러 스토어를 등록 하거나 수정,<br /> 삭제할 수 있습니다.
+                  사업자는 마이페이지에서 여러 스토어를 등록 하거나 수정, 삭제할 수 있습니다.
                 </p>
               </div>
             </div>
@@ -193,7 +190,7 @@ function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
               <div className="detaile-text">정보 보관 기간 만료 시 자동 폐기</div>
               <div className="detaile-box">
                 <p>
-                  등록한 지 2년이 지난 스토어는<br /> 자동으로 폐기되어 이 웹의 사용자에게<br /> 노출되지 않습니다.
+                  등록한 지 2년이 지난 스토어는 자동으로 폐기되어 이 웹의 사용자에게 노출되지 않습니다.
                 </p>
               </div>
             </div>
@@ -209,9 +206,9 @@ function Home ({ handleIsLoginTab, userInfo, handleUserInfo }) {
             </div>
           </Link>
           <div className="with-people">
-            <a href={ 'https://github.com/jyang510' } id="our-worklog">김동운</a>
+            <a href={ 'https://github.com/PippasSong' } id="our-worklog">김동운</a>
             <a href={ 'https://github.com/jyang510' } id="our-worklog">양재영</a>
-            <a href={ 'https://github.com/jyang510' } id="our-worklog">이승연</a>
+            <a href={ 'https://github.com/ciocio97' } id="our-worklog">이승연</a>
             <a href={ 'https://github.com/Brian-free1' } id="our-worklog">정채련</a>
           </div>
         </div>

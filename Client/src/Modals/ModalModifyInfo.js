@@ -49,7 +49,8 @@ function ModalBox ({ handleChangeInfoBtn, userInfo }) {
       axios({
         url: 'https://api.open-spot.tk/users',
         method: 'patch',
-        data: newUserInfo
+        data: newUserInfo,
+        withCredentials: true
       }).then((res) => {
         console.log(res.data);
         // 회원정보 수정이 완료되면 닫아야지.

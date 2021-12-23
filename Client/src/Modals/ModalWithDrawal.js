@@ -21,7 +21,8 @@ function ModalBox ({ handleDeleteInfoBtn }) {
       data: {
         quitReason: withdrawalReason,
         password: password
-      }
+      },
+      withCredentials: true
     }).then((res) => {
       console.log(res);
       alert('그동안 이용해주셔서 감사합니다 :)');
