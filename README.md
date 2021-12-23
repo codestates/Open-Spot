@@ -78,6 +78,20 @@ TECH STACK
 
 ***
 
+
+
+<br />
+
+DB shema
+=============
+
+
+![DB-shema](https://user-images.githubusercontent.com/85025833/147265410-8e6783dc-79de-4d60-a938-45a2fc508b85.png)
+
+***
+
+
+
 팀원을 소개합니다.
 =============
 
@@ -93,18 +107,6 @@ TECH STACK
 
 
 <br />
-
-
-
-
-DB shema
-=============
-
-
-
-![DB-shema](https://user-images.githubusercontent.com/85025833/147265410-8e6783dc-79de-4d60-a938-45a2fc508b85.png)
-
-
 
 
 우리가 원하는것은?
