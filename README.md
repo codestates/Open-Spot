@@ -73,14 +73,25 @@ About Project
 <br />
 
 
-How to make
+TECH STACK
 =============
 
-* [Workog](https://github.com/codestates/Open-Spot/wiki/Worklog)
-* [Team Rule](https://github.com/codestates/Open-Spot/wiki/Team-Rule)
-* [Requirements](https://github.com/codestates/Open-Spot/wiki/Requirements)
-* [DB Schema](https://github.com/codestates/Open-Spot/wiki/DB-Schema)
-* [Wireframe](https://github.com/codestates/Open-Spot/wiki/Wireframe)
-* [UI Design](https://github.com/codestates/Open-Spot/wiki/UI-Design)
-* [API](https://github.com/codestates/Open-Spot/wiki/API)
-* [FlowChart](https://github.com/codestates/Open-Spot/wiki/FlowChart)
+![아키텍쳐](https://user-images.githubusercontent.com/85025833/147171118-e1c30a91-9d60-42e3-9478-d7708e883299.png)
+
+***
+
+팀원을 소개합니다.
+=============
+
+   |        이름          |      포지션        |        깃헙           |  
+   |:---: | :---: | :---: |  
+   | 정채련(팀장)   |   Front-End   |      |  
+   | 이승연(팀원)           | Front-End   ||  
+   | 양재영(팀원)   |   Back-End     |         |
+   |   양재영(팀원)   | Back-End     |        |
+
+
+우리가 원하는것은?
+=============
+
+https://github.com/codestates/Open-Spot/wiki/Requirements
