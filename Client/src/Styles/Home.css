@@ -50,14 +50,14 @@
 /*다운 스크롤 아이콘*/
 #down-icon {
   color: rgb(240, 240, 240, 0.8);
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 /*다운 스크롤 text*/
 #down-text {
   color: rgb(240, 240, 240, 0.8);
   font-size: 0.85em;
   text-align: center;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .client-pt-container{
@@ -67,8 +67,8 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-around;
   justify-content: center;
+  margin-top: 3%;
 }
 
 .about-open-spot-container{
@@ -81,6 +81,7 @@
 }
 
 .second-title{
+  margin-bottom: 3%;
   text-align: center;
   font-size: 3.5em;
   font-weight: 300;
@@ -89,17 +90,18 @@
 }
 
 .client-pt-section{
-  width: 90%;
-  height: 80%;
+  width: 100%;
+  height: 80%;  /*오류 테스트*/
   display: flex;
   justify-content: space-around;
+  flex-wrap: nowrap;
   align-items: center;
-  background-color: rgba(238, 237, 237, 0.6);
+  background-color: #f2f2f2;
 }
 
 .pt-section{
-  width: 30%;
-  height: 70%;
+  width: 100%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -107,30 +109,27 @@
 }
 
 .pt-map-img{
-  width: 90%;
+  width: 100%;
   height: 70%;
-  background-image: url(../../public/Img/Recommend-Freepik.png);
+  background: url(../../public/Img/iconlee03.jpg) no-repeat center center;
 }
-
 .pt-notification-img{
-  width: 90%;
+  width: 100%;
   height: 70%;
-  background-image: url(../../public/Img/Notification-Freepick.png);
+  background: url(../../public/Img/iconlee02.jpg) no-repeat center center;
 }
 
 .pt-reservation-img{
-  width: 90%;
+  width: 100%;
   height: 70%;
-  background-image: url(../../public/Img/Waiting-Freepik.png);
+  background: url(../../public/Img/iconlee.jpg) no-repeat center center;
 }
 
 .pt-text-box{
-  width: 100%;
-  height: 25%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  justify-content: center;
+  width: 280px;
+}
+#count-num-home {
+  margin-right: 200px;
 }
 
 .pt-sequence{
@@ -138,10 +137,8 @@
 }
 
 .pt-text{
-  margin-left: 20px;
-  text-align: center;
-  box-shadow: inset 0 -5px 0 rgb(240, 240, 240, 0.6);
-  line-height: 21px;
+  margin-top: 30px;
+  line-height: 25px;
 }
 .business-pt-container{
   display: flex;
@@ -155,11 +152,9 @@
 .about-business-container{
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: center;
   width: 90%;
   height: 30%;
-  border-top: 1px solid rgb(56, 55, 55, 0.3);
 }
 
 .third-title{
@@ -182,16 +177,16 @@
   justify-content: space-around;
   width: 23%;
   height: 90%;
-  border-top: 2px solid rgb(226, 224, 224);
+  border-top: 3px solid rgb(226, 224, 224);
 }
 
 .business-pt-box:hover{
-  border-top: 2px solid #000 ;
+  border-top: 3px solid #000 ;
 }
 
 .pt-about-business{
   width: 100%;
-  height: 25%;
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -211,8 +206,6 @@
 .pt-detaile-box{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  justify-content: flex-start;
   align-items: center;
   width: 100%;
   height: 70%;
@@ -220,10 +213,13 @@
 
 .detaile-text{
   color: #B2B2B2;
+  margin-bottom: 7%;
 }
 
 .detaile-box{
-  text-align: center;
+  width: 210px;
+  text-align: justify;
+  line-height: 1.2em;
   color: #B2B2B2;
   font-weight: bolder;
 }
@@ -241,10 +237,10 @@
 }
 
 .open-spot-logo {
-  width: 50px;
-  height: 50px;
+  width: 180px;
+  height: 30px;
   margin-left: 45px;
-  background: url(./../../public/Img/ProjectLogoEX.png) no-repeat center center;
+  background: url(./../../public/Img/logo2.png) no-repeat center center;
   background-size: cover;
   cursor: pointer;
 }
