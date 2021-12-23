@@ -87,7 +87,7 @@ function BusinessMyStore ({ handleUserInfo }) {
           <div className="store-inner-box">
             <div>
               <button className="register-bt" onClick={ () => handleAddStoreMarkerBtn(true) }>
-                <div className="change">가게 등록 하기</div>
+                <div className="change" id="add-cursoromg">가게 등록 하기</div>
               </button>
             </div>
             <div className="aside"></div>
