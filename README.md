@@ -80,15 +80,28 @@ TECH STACK
 
 ***
 
+<br />
+
+DB shema
+=============
+
+
+![DB-shema](https://user-images.githubusercontent.com/85025833/147265410-8e6783dc-79de-4d60-a938-45a2fc508b85.png)
+
+***
+
+
+
 팀원을 소개합니다.
 =============
 
-   |        이름          |      포지션        |        깃헙           |  
-   |:---: | :---: | :---: |  
-   | 정채련(팀장)   |   Front-End   |   https://github.com/Brian-free1   |  
-   | 이승연(팀원)           | Front-End   | https://github.com/ciocio97 |  
-   | 양재영(팀원)   |   Back-End     |  https://github.com/jyang510       |
-   |   김동운(팀원)   | Back-End     |  https://github.com/PippasSong      |
+   |        이름          |      포지션        |    GITHUB   |
+   |:---: | :---: |  :---: |
+   | 정채련(팀장)   |   Front-End   |[<img width="163" alt="정채련" src="https://user-images.githubusercontent.com/85025833/147273670-e633cfe4-383f-4797-a244-86a72cc6326f.png">](https://github.com/Brian-free1)|
+   | 이승연(팀원)| Front-End   |[<img width="163" alt="이승연" src="https://user-images.githubusercontent.com/85025833/147273856-726450aa-3aa0-4e3d-a82e-635531a3e073.png">](https://github.com/ciocio97)|
+   | 양재영(팀원)|   Back-End     | [<img width="163" alt="양재영" src="https://user-images.githubusercontent.com/85025833/147272834-6a257405-fae7-4afb-aef7-c42c968f5180.png">](https://github.com/jyang510)|
+   | 김동운(팀원) | Back-End     | [<img width="163" alt="김동운" src="https://user-images.githubusercontent.com/85025833/147273446-36a11b56-ca38-45b9-8e29-93f9e41e5b42.png">](https://github.com/PippasSong)|
+
 
 
 우리가 원하는것은?
