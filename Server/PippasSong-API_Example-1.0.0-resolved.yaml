@@ -1,0 +1,814 @@
+---
+openapi: 3.0.0
+info:
+  title: open-spot-API
+  version: 1.0.0
+host: ec2-54-180-147-254.ap-northeast-2.compute.amazonaws.com
+basePath: /
+paths:
+  /markers:
+    get:
+      tags:
+      - markers
+      description: 모든 마커를 조회한다
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+                  markers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Marker'
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+    post:
+      tags:
+      - markers
+      description: 마커를 추가한다.
+      responses:
+        "201":
+          description: 추가 성공
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 201
+                message:
+                  type: string
+                  example: created
+        "401":
+          description: 토큰을 받지 못하거나 유효성 검사에 실패했을 때
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 401
+                error:
+                  type: string
+                  example: unauthorized
+        "409": 
+          description: 이미 추가된 마커인 경우
+          content: 
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 409
+                  error:
+                    type: string
+                    example: marker info already exists          
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'  
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeName:
+                  description: 가게명
+                  type: string
+                address:
+                  description: 가게 주소
+                  type: string
+                callNum:
+                  description: 전화번호
+                  type: string
+                tagName:
+                  description: 태그명
+                  type: string
+                description:
+                  description: 가게 설명
+                  type: string
+                latitude:
+                  description: 위도
+                  type: number
+                longitude:
+                  description: 경도
+                  type: number
+                parking:
+                  description: 주차 가능 여부
+                  type: integer
+                booking:
+                  description: 예약 가능 여부
+                  type: integer
+  /users:
+    post:
+      tags:
+      - users
+      description: 회원가입 요청. 요청 본문의 사업자 등록번호 유무에 따라 일반사용자 / 사업자로 구분한다. 회원가입 성공 시 일반사용자 / 사업자 여부를 반환한다.
+      responses:
+        "201": 
+          description: created
+          content: 
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 201
+                  role:
+                    type: string
+                    example: general / business
+        "409": 
+          description: conflict
+          content: 
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 409
+                  error:
+                    type: string
+                    example: user info already exists
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  description: 이메일
+                  type: string
+                  example: abc@naver.com
+                  required: true
+                password:
+                  description: 비밀 번호
+                  type: string
+                  example: password
+                  required: true
+                userName:
+                  description: 닉네임
+                  type: string
+                  example: 김사과
+                  required: true
+                companyNumbers:
+                  description: 사업자 등록번호
+                  example: '0001122222'
+                  type: string
+    patch:
+      tags:
+      - users
+      description: 사용자 정보 업데이트
+      responses:
+        "201":
+          description: 수정 성공
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 201
+                message:
+                  type: string
+                  example: 'modified'
+        "401":
+          description: 토큰 유효 기간 경과
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 401
+                message:
+                  type: string
+                  example: 'expired token'
+        "404":
+          description: 토큰의 정보로 사용자 정보를 찾지 못함
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 404
+                message:
+                  type: string
+                  example: 'user not found'
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newUserName:
+                  description: 새로운 사용자 이름
+                  type: string
+                  example: 새이름
+                newEmail:
+                  description: 새로운 이메일
+                  type: string
+                  example: newemail@naver.com
+                newPassword:
+                  description: 비밀 번호
+                  type: string
+                  example: newpassword
+    delete:
+      tags:
+      - users
+      description: 사용자 정보 삭제와 동시에 회원 탈퇴 사유가 DB에 저장된다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 200
+                message:
+                  type: string
+                  example: 회원 탈퇴 되셨습니다.
+        "401":
+          description: 토큰 유효 기간 경과
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 401
+                message:
+                  type: string
+                  example: 'expired token'
+        "404":
+          description: 토큰의 정보로 사용자 정보를 찾지 못함
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 404
+                message:
+                  type: string
+                  example: 'user not found'
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+  /users/general-markers:
+    get:
+      tags:
+      - users
+      description: 유저의 토큰을 이용해, 유저가 저장한 마커들을 조회한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 200
+                markers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Marker'
+        "401":
+          description: 토큰을 받지 못하거나 유효성 검사에 실패했을 때
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 401
+                error:
+                  type: string
+                  example: unauthorized
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+  /users/business-markers:
+    get:
+      tags:
+      - users
+      description: 유저의 토큰을 이용해, 사업자가 등록한 마커들을 조회한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 200
+                markers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Marker'
+        "401":
+          description: 토큰을 받지 못하거나 유효성 검사에 실패했을 때
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 401
+                error:
+                  type: string
+                  example: unauthorized
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+
+  /users/markers:
+    post:
+      tags:
+      - users
+      description: 마이페이지 보관함에 해당 마커를 보관한다.
+      responses:
+        "201":
+          description: 보관 성공
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 201
+                message:
+                  type: string
+                  example: created
+        "401":
+          description: 토큰을 받지 못하거나 유효성 검사에 실패했을 때
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 401
+                error:
+                  type: string
+                  example: unauthorized
+        "409":
+          description: 이미 추가된 마커인 경우
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: number
+                  example: 409
+                error:
+                  type: string
+                  example: info already exists
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr' 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                markerId:
+                  description: 마커의 아이디(사업자 번호)
+                  type: string
+                  example: '2223344444'
+  /auth/kakao:
+    post:
+      tags:
+      - auth
+      description: 카카오 소셜 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 200
+                userName:
+                  type: string
+                  example: 용가리
+                role:
+                  type: string
+                  example: general
+                email:
+                  type: string
+                  example: terrabattle@naver.com
+                profile:
+                  type: string
+                  example: http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_110x110.jpg
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authorizationCode:
+                  description: URL로 받은 인증 코드
+                  type: string
+                  required: true
+  /auth/google:
+    post:
+      tags:
+      - auth
+      description: 구글 소셜 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 200
+                userName:
+                  type: string
+                  example: 화염용
+                role:
+                  type: string
+                  example: general
+                email:
+                  type: string
+                  example: gqwrgadsf@gmail.com
+                profile:
+                  type: string
+                  example: https://lh3.googleusercontent.com/a/AATXAJwhegjEnASqnjidlgyYC7xzyu4U5jdCPpfV30MT=s96-c
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authorizationCode:
+                  description: URL로 받은 인증 코드
+                  type: string
+                  required: true
+  /auth/naver:
+    post:
+      tags:
+      - auth
+      description: 네이버 소셜 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+               properties:
+                code:
+                  type: integer
+                  example: 200
+                userName:
+                  type: string
+                  example: 도롱뇽
+                role:
+                  type: string
+                  example: general
+                email:
+                  type: string
+                  example: yayww@naver.com
+                profile:
+                  type: string
+                  example: http://k.kakaocdn.net/dn/crXJwu/btqUsRhQUx0/cH6CxkKCcteXkkcuRUulx1/img_110x110.jpg
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                authorizationCode:
+                  description: URL로 받은 인증 코드
+                  type: string
+                  required: true
+  /auth/local-general:
+    post:
+      tags:
+      - auth
+      description: 일반 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+                  userName:
+                    type: string
+                    example: 귤
+                  role:
+                    type: string
+                    example: general or business
+                  email:
+                    type: string
+                    example: abc@naver.com
+                  oauthLogin:
+                    type: integer
+                    example: 0
+        "401":
+          description: unauthorized. 잘못된 비밀번호를 입력받거나 일반 사용자 / 사업자 여부가 잘못된 경우
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error:
+                    type: string
+                    example: unauthorized
+        "404":
+          description: not found. DB에 없는 이메일이 입력된 경우
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error:
+                    type: string
+                    example: not found
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  description: 이메일
+                  type: string
+                  example: abc@naver.com
+                  required: true
+                password:
+                  description: 비밀 번호
+                  type: string
+                  example: rbf
+                  required: true
+  /auth/local-business:
+    post:
+      tags:
+      - auth
+      description: 사업자 로그인. 로그인이 성공한 경우 쿠키에 토큰을 발급하고, 사용자의 정보를 반환한다.
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+                  userName:
+                    type: string
+                    example: 귤
+                  role:
+                    type: string
+                    example: general or business
+                  email:
+                    type: string
+                    example: abc@naver.com
+                  oauthLogin:
+                    type: integer
+                    example: 0
+        "401":
+          description: unauthorized. 잘못된 비밀번호를 입력받거나 일반 사용자 / 사업자 여부가 잘못된 경우
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error:
+                    type: string
+                    example: unauthorized
+        "404":
+          description: not found. DB에 없는 이메일이 입력된 경우
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error:
+                    type: string
+                    example: not found
+        "500": 
+          description: internal server error
+          content: 
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/ServerErr'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  description: 이메일
+                  type: string
+                  example: abc11@naver.com
+                  required: true
+                password:
+                  description: 비밀 번호
+                  type: string
+                  example: '12345'
+                  required: true
+  /auth/local:    
+    get:
+      tags:
+      - auth
+      description: 로그아웃. 쿠키의 토큰에 빈 문자열을 할당한다. 이미 만료된 토큰의 경우 expired token 메시지를 반환한다
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+        "401":
+          description: 쿠키가 없거나 쿠키에 토큰이 없는 경우
+          content:
+            application/json:
+              schema:
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error:
+                    type: string
+                    example: unauthorized
+  
+                
+components:
+  schemas:
+    Marker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 사업자 등록번호
+          example: '0001122222'
+        userId:
+          type: integer
+          description: 마커를 추가한 유저의 아이디
+          example: 18
+        storeName:
+          type: string
+          description: 가게명
+          example: 멋진 가게명
+        address:
+          type: string
+          description: 가게 주소
+          example: 서울시 성북구
+        callNum:
+          type: string
+          description: 전화번호
+          example: 010-1234-5678
+        tagName:
+          type: string
+          description: 태그명
+          example: 카페
+        description:
+          type: string
+          description: 가게 소개
+          example: 주택 개조 카페
+        latitude:
+          type: number
+          description: 위도
+          example: 33.0000000000
+        longitude:
+          type: number
+          description: 경도
+          example: 126.0000000000
+        createdAt:
+          type: string
+          format: date-time
+          description: 생성일자
+          example: 2021-12-16 13:28:26
+        updatedAt:
+          type: string
+          format: date-time
+          description: 갱신일자
+          example: 2021-12-16 13:28:26
+        parking:
+          type: integer
+          description: 주차 가능 여부
+          example: 0
+        booking:
+          type: integer
+          description: 예약 가능 여부
+          example: 0
+        imageId:
+          type: integer
+          description: 이미지 파일 id
+        fileName:
+          type: string
+          description: 이미지 파일 정보
+    ServerErr:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: http status code
+          example: 500
+        error:
+          type: string
+          description: server error description
+          example: server error
+        

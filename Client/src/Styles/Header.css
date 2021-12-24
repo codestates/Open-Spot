@@ -1,0 +1,39 @@
+#logo{
+  width: 180px;
+  height: 40px;
+  position: fixed;
+  top: 42px;
+  left: 45px;
+  background: url(../../public/Img/logo2.png) no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+#nav-body {
+  position: fixed;
+  top: 0.5%;
+  right: 3%;
+  width: 270px;
+  height: 105px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+/*분리선*/
+#vertical-hr {
+  width: 0.5px;
+  height: 13px;
+  background-color: rgb(255, 255, 255, 0.7);
+}
+/*Tab 버튼*/
+.tab {
+  color: rgb(240, 240, 240);
+  font-size: 0.9em;
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+}
+.change-tab-design {
+  background-color: rgba(82, 82, 82, 0.8);
+  padding-top: 3px;
+  border-radius: 5px;
+}

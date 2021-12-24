@@ -1,0 +1,382 @@
+.entire-box {
+  width: 100%;
+  height: auto;
+}
+.intro-bg {
+  width: 100vw;
+  height: 331.71px;
+  position: relative;
+  background: url(../../public/Img/StoreIMG.jpg) no-repeat center center rgba(82, 82, 82, 0.5);
+}
+
+.second-big-box{
+  width: 100vw;
+  height: 100%;
+  display: flex;
+}
+
+.header{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 70px;
+}
+
+#logo{
+  width: 180px;
+  height: 40px;
+  position: fixed;
+  top: 42px;
+  left: 45px;
+  background: url(../../public/Img/logo2.png) no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.nav{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  line-height: 86px;
+  width: 100%;
+  margin-right: 20px;
+}
+
+.nav > li{ 
+  margin-left: 84px;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  color: rgb(240, 240, 240);
+}
+/*MyPage SideBar 컴포넌트 css*/
+.sider-bar{
+  width: 250px;
+  height: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  border-right: 1px solid rgba(82, 82, 82, 0.5);
+}
+
+#mypage-vertical-line-wow {
+  width: 1px;
+  height: 65vh;
+}
+
+.client-info-bt{
+  width: 250px;
+  height: 67px;
+  border: none;
+  cursor: pointer;
+}
+.favorite-li-bt{
+  width: 250px;
+  height: 67px;
+  border: none;
+  cursor: pointer;
+}
+.my-store-bt{
+  width: 250px;
+  height: 67px;
+  border: none;
+  cursor: pointer;
+}
+.my-store-bt{
+  width: 250px;
+  height: 67px;
+  border: none;
+  cursor: pointer;
+}
+
+.client-info{ 
+  text-align: center;
+  /* color: #000; */
+  font-size: 20px;
+  font-weight: 300;
+}
+.favorite-li{
+  text-align: center;
+  /* color: #000; */
+  font-size: 20px;
+  font-weight: 300;
+}
+.my-store-li{
+  text-align: center;
+  /* color: #000; */
+  font-size: 20px;
+  font-weight: 300;
+}
+
+/* 여기까지 공통으로 있는거 */
+
+/*MyPageStoreCard*/
+#store-card-container {
+  width: 300px;
+  height: 400px;
+  border: 2px solid rgba(82, 82, 82, 0.2);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3%;
+}
+
+.store-info{
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.store-img-box{
+  width: 100%;
+  height: 50%;
+  background-color: pink;
+  /*왜 어제부터 img src 파일 경로가 안먹히냐*/
+}
+
+.dongun{
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+}
+
+.store-name-main{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  color: rgba(41, 41, 41);
+}
+
+.store-detail-info{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: column wrap;
+}
+.detail-info {
+  margin-left: 27px;
+}
+.store-info-style-sheet {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  font-size: 0.85em;
+  color: rgba(82, 82, 82, 0.95);
+}
+.store-info-title {
+  width: 70px;
+  font-weight: 600;
+  border-right: 1.5px solid rgba(82, 82, 82, 0.75);
+}
+.store-info-property {
+  margin-left: 13px;
+}
+.store-reaction-box {
+  width: 100%;
+  height: 10px;
+  margin-top: 19px;
+  display: flex;
+  align-items: center;
+}
+#store-info-like {
+  color: rgba(211, 67, 67, 0.55);
+  margin-left: 30px;
+}
+.store-info-count {
+  color: rgba(211, 67, 67, 0.85);
+  margin-left: 5px;
+  font-size: 0.95em;
+  font-weight: 800;
+}
+
+
+/* 여기까지 */
+
+/* BusinessFavoriteList inner box */
+.favorite-list-container {
+  width: 100%;
+  height: 100%;
+  min-width: auto;
+  padding: 5% 0;
+}
+#favorite-list-get-center {
+  margin-left: 13.5%;
+}
+.favorite-inner-box{
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 60%;
+}
+/*회원정보 inner box*/
+.my-page-inner-box{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8%;
+}
+/*회원정보 박스*/
+.client-info-box{
+  display: flex;
+  align-items: center;
+  width: 500px;
+  height: 200px;
+}
+
+.client-img-box{
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.client-img{
+  cursor: pointer;
+}
+
+.info-box{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.name-box{
+  display: flex;
+  width: calc(600px - 200px);
+  padding-left: 10%;
+  margin: 10px;
+}
+
+.name{
+  width: 100px;
+  font-size: 0.9em;
+  margin-top: 6px;
+  border-right: 1.1px solid rgba(82, 82, 82, 0.3);
+}
+
+.name-area{
+  margin-left: 50px;
+  margin-top: 5px;
+}
+.mypage-userinfo-input-wow {
+  font-size: 0.95em;
+}
+
+/* .email-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: calc(600px - 200px);
+  margin-top: 10%;
+} */
+
+/* .email{
+  width: 80px;
+  border-right: 1px solid rgb(34, 33, 33);
+} */
+
+/* .email-area{
+  margin-left: 50px;
+} */
+
+.change-bt{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-change-bt{
+  width: 495px;
+  height: 30px;
+  margin-top: 10px;
+  margin-right: 20px;
+  border-radius: 5px;
+  background-color: rgba(37, 37, 37, 0.7);
+  border: 1.5px solid rgb(240, 240, 240, 0.6);
+  cursor: pointer;
+}
+
+.client-info-change{
+  color: rgb(240, 240, 240);
+  /* font-weight: bolder; */
+}
+
+.delete-bt{
+  width: 495px;
+  height: 30px;
+  margin-top: 10px;
+  margin-right: 20px;
+  border-radius: 5px;
+  background-color: rgb(206, 58, 58);
+  border: rgb(206, 58, 58);
+  cursor: pointer;
+}
+
+.with-drawal{
+  color: rgb(240, 240, 240);
+  /* font-weight: bolder; */
+}
+
+/* 여기까지 */
+
+/* 여기는 BusinessMyStore inner box */
+
+.store-inner-box{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*  */
+
+/* 여기부턴 BusinessMyStore  */
+
+.register-bt{
+  width: 300px;
+  height: 34px;
+  background-color: rgb(73, 70, 70, 0.92);
+  border: 1.5px solid rgb(240, 240, 240, 0.6);
+  border-radius: 7px;
+  margin-top: 30%;
+  margin-bottom: 10%;
+}
+
+.change{
+  color: rgb(240, 240, 240);
+  font-weight: 700;
+  font-size: 1.1em;
+}
+#add-cursoromg {
+  cursor: pointer;
+}
+.aside{
+  width: 70%;
+  height: 5px;
+  border-bottom: 1px solid rgb(73, 70, 70, 0.32);
+  margin-top: 5%;
+}
+
+.divider{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5%;
+}

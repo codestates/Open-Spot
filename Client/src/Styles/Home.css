@@ -1,0 +1,259 @@
+/*전체를 감싸는 div*/
+.entire-container {
+  display: flex;
+  flex-flow: column wrap;
+}
+/*배경 이미지 고정*/ /*fixed제거, width&height % -> vw 변경*/
+.main-section {
+  width: 100vw;
+  height: 100vh;
+  background: url(../../public/Img/StoreIMG.jpg) no-repeat center center rgba(82, 82, 82, 0.5);
+  background-blend-mode: multiply;
+  background-size: cover;
+}
+/*메인 타이틀*/
+#main-title {
+  text-align: center;
+  font-size: 3.5em;
+  font-weight: 300;
+  color: rgb(240, 240, 240);
+  cursor: grab;
+}
+/*main div*/
+.main-container {
+  height: 70%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+/*map 버튼*/
+#home-map-button {
+  width: 380px;
+  height: 35px;
+  border-radius: 4px;
+  color: rgb(240, 240, 240);
+  font-size: 0.9em;
+  font-weight: 400;
+  border: 1.5px solid rgb(240, 240, 240, 0.6);;
+  background-color: rgb(240, 240, 240, 0.3);;
+  cursor: pointer;
+  margin-top: 45px;
+}
+/*scroll-down div*/
+.down-button-container {
+  height: 20%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+/*다운 스크롤 아이콘*/
+#down-icon {
+  color: rgb(240, 240, 240, 0.8);
+  /* cursor: pointer; */
+}
+/*다운 스크롤 text*/
+#down-text {
+  color: rgb(240, 240, 240, 0.8);
+  font-size: 0.85em;
+  text-align: center;
+  /* cursor: pointer; */
+}
+
+.client-pt-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%;
+}
+
+.about-open-spot-container{
+  width: 90%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.second-title{
+  margin-bottom: 3%;
+  text-align: center;
+  font-size: 3.5em;
+  font-weight: 300;
+  color: rgb(56, 55, 55);
+  cursor: grab;
+}
+
+.client-pt-section{
+  width: 100%;
+  height: 80%;  /*오류 테스트*/
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+
+.pt-section{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.pt-map-img{
+  width: 100%;
+  height: 70%;
+  background: url(../../public/Img/iconlee03.jpg) no-repeat center center;
+}
+.pt-notification-img{
+  width: 100%;
+  height: 70%;
+  background: url(../../public/Img/iconlee02.jpg) no-repeat center center;
+}
+
+.pt-reservation-img{
+  width: 100%;
+  height: 70%;
+  background: url(../../public/Img/iconlee.jpg) no-repeat center center;
+}
+
+.pt-text-box{
+  width: 280px;
+}
+#count-num-home {
+  margin-right: 200px;
+}
+
+.pt-sequence{
+  font-size: 60px;
+}
+
+.pt-text{
+  margin-top: 30px;
+  line-height: 25px;
+}
+.business-pt-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100vw;
+  height: 100vh;
+}
+
+.about-business-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  height: 30%;
+}
+
+.third-title{
+  width: 100%;
+  font-size: 3.5em;
+  font-weight: 300;
+  color: rgb(56, 55, 55);
+  cursor: grab;
+}
+
+.business-pt-section{
+  display: flex;
+  width: 90%;
+  height: 40%;
+}
+
+.business-pt-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 23%;
+  height: 90%;
+  border-top: 3px solid rgb(226, 224, 224);
+}
+
+.business-pt-box:hover{
+  border-top: 3px solid #000 ;
+}
+
+.pt-about-business{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  justify-content: center;
+}
+
+.business-pt-sequence{
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.business-pt-text{
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.pt-detaile-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+}
+
+.detaile-text{
+  color: #B2B2B2;
+  margin-bottom: 7%;
+}
+
+.detaile-box{
+  width: 210px;
+  text-align: justify;
+  line-height: 1.2em;
+  color: #B2B2B2;
+  font-weight: bolder;
+}
+
+.open-spot-team{
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 20vh;
+  background-color: #282828;
+}
+
+.logo-box{
+  width: 20%;
+}
+
+.open-spot-logo {
+  width: 180px;
+  height: 30px;
+  margin-left: 45px;
+  background: url(./../../public/Img/logo2.png) no-repeat center center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.with-people{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 75%;
+  height: 60%;
+}
+
+#our-worklog{
+  color: rgb(240, 240, 240);;
+}

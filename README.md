@@ -50,6 +50,8 @@ About Project
 <br />  
 <br />
 
+
+
 " 소비자의 호기심과 사업자의 호기를 잇다. "
 ==================================
   
@@ -78,8 +80,6 @@ TECH STACK
 
 ***
 
-
-
 <br />
 
 DB shema
@@ -102,11 +102,6 @@ DB shema
    | 양재영(팀원)|   Back-End     | [<img width="163" alt="양재영" src="https://user-images.githubusercontent.com/85025833/147272834-6a257405-fae7-4afb-aef7-c42c968f5180.png">](https://github.com/jyang510)|
    | 김동운(팀원) | Back-End     | [<img width="163" alt="김동운" src="https://user-images.githubusercontent.com/85025833/147273446-36a11b56-ca38-45b9-8e29-93f9e41e5b42.png">](https://github.com/PippasSong)|
 
-
-
-
-
-<br />
 
 
 우리가 원하는것은?
